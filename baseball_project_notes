@@ -1,0 +1,74 @@
+""" Baseball Project Notes
+
+This project will be a baseball game written in Python. It is simple and will be a basic flow of a game.
+
+1 - Every at bat result will be randomly determined
+    each pitch will result in either a:
+        a) strike
+        b) ball
+        c) single
+        d) double
+        e) triple
+        f) grand slam (if bases are loaded)
+
+2 - Code will keep track of results of each inning. 
+
+3 - Player will be choose to be home or visitor.
+        a) Player will only intiate each pitch. Result will be random
+        b) Computer will play opposing team and will run through defense (small interval count between pitches)
+        
+4 - Basic loops to run through each at bat, innings
+
+5 - Need algorithm to keep track of players that make a hit and keep count of score
+
+6 - Try to create a simple table that shows the scores for each inning. Also (H)its, (R)uns & (E)rrors
+
+"""
+
+Additional Notes:
+
+
+start inning
+
+start with visitors team
+
+get next batter
+
+initialize variables for strikes, fouls, outs & balls to zero
+
+generate pitch result
+
+if pitch is strike, strike += 1
+	if pitch == 3
+		out +=1
+		break to next batter
+
+if pitch is ball, ball +=1
+	if ball == 4 -> walk batter > execute advance runners using WALK
+	break to next batter
+
+if pitch is foul
+	if foul > 2 break
+	else foul += 1 and strikes += 1
+
+if pitch is foul out, outs += 1
+
+if pitch is an out, outs +=1
+
+if pitch is a hit (single through homer/grand slam), advance runner(s) based on hit type
+	execute advance runner function
+	break to next batter
+
+before next batter check the following
+	if outs == 3, stop and switch to next team
+	get next batter in lineup
+		if lineup is empty, get copy of lineup and begin
+	resume and get pitch result
+
+if outs == 3
+
+	switch to next team
+		if next team is home team, continue inning
+		if visitors and home team have batted, proceed to next inning
+
+if next inning > 9 (or list is exhausted) >>> end game and show final box score 
