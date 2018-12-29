@@ -1,5 +1,6 @@
 import baseball_functions
 
+
 # Variables & Data structures
 
 # Variables for bases & home plate
@@ -206,8 +207,6 @@ print()
 #
 # hit_g, base1_g, base2_g, base3_g, home_plate_g = 0
 # advance_runner(hit_f, base1_f, base2_f, base3_f, home_plate_f):
-
-
 
 
 print("*" * 30)
