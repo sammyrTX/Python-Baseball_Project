@@ -10,8 +10,17 @@ hit_g = base1_g = base2_g = base3_g = home_plate_g = 0
 
 # Innings
 
-innings_name = ["1st Inning", "2nd Inning", "3rd Inning", "4th Inning", "5th Inning", "6th Inning", "7th Inning",
-                "8th Inning", "9th Inning"]
+innings_name = [
+    "1st Inning",
+    "2nd Inning",
+    "3rd Inning",
+    "4th Inning",
+    "5th Inning",
+    "6th Inning",
+    "7th Inning",
+    "8th Inning",
+    "9th Inning",
+]
 
 innings_tracker = [x for x in range(0, 9)]
 print(innings_tracker)
