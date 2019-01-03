@@ -18,3 +18,6 @@ if __name__ == "__main__":
     xxxx = batting_order()
 
     print(xxxx)
+
+    for i in range(3):
+        print(i)
