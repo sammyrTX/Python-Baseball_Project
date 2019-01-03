@@ -30,9 +30,9 @@ innings_tracker = [x for x in range(0, 9)]
 
 # Home team & Visitors score tracking
 
-home_team_list = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+home_team_list = [0 for init in range(10)]
 
-visitors_list = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+visitors_list = [0 for init in range(10)]
 
 # ***** MAIN SECTION *****
 
