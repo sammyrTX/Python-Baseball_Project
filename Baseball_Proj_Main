@@ -68,7 +68,7 @@ if __name__ == "__main__":
         home_team_list[game_inning] = game_inning
         visitors_list[game_inning] = game_inning
         print(innings_name[game_inning])
-        print_scorebox(home_team_list, visitors_list)
+        pass    #    print_scorebox(home_team_list, visitors_list)
         print("-" * 50)
         print()
 
@@ -76,14 +76,10 @@ if __name__ == "__main__":
     print("+" * 80)
     print("*** MAIN SECTION ***")
     print()
+    print("Home Team List: {}".format(home_team_list))
+    print("Visitor List: {}".format(visitors_list))
 
     print()
-
-    home_team_list[0] = 1
-    home_team_list[3] = 3
-
-    visitors_list[2] = 10
-    visitors_list[6] = 2
 
     print("Scorebox test:")
     print_scorebox(home_team_list, visitors_list)
