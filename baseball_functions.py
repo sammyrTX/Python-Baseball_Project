@@ -7,14 +7,15 @@
 import random
 
 #  **** Advance Runner Needs further testing ****
+
+
 def advance_runner(hit_f, base1_f, base2_f, base3_f, home_plate_f):
     print("before advance:")
-    print(hit_f, base1_f, base2_f, base3_f, home_plate_f)
+    print("Hits: {} 1st: {} 2nd: {} 3rd: {} Home: {}".format(hit_f, base1_f, base2_f, base3_f, home_plate_f))
     print("Hit Result = {}".format(hit_f))
 
     batter = 1   # Initialize batter to put batter on base if someone already on first
     print("batter: {}".format(batter))
-
 
     while hit_f:
         if base3_f == 1:
@@ -32,11 +33,16 @@ def advance_runner(hit_f, base1_f, base2_f, base3_f, home_plate_f):
             else:
                 base1_f = 0
             base2_f = 1
+            batter = 0
         else:
-            base1_f = 1
+            if batter:
+                base1_f = 1
+                batter = 0
 
         hit_f -= 1
+        print()
         print("after 1 loop:\t", hit_f, base1_f, base2_f, base3_f, home_plate_f)
+        print("Hits: {} 1st: {} 2nd: {} 3rd: {} Home: {}".format(hit_f, base1_f, base2_f, base3_f, home_plate_f))  #TODO
         print("batter: {}".format(batter))
     print("function returns:", hit_f, base1_f, base2_f, base3_f, home_plate_f)
     print("batter: {}".format(batter))
@@ -47,16 +53,16 @@ def print_scorebox(home_list, visitors_list):
     print("INNING  ", "\t 1", "\t 2", "\t 3", "\t 4", "\t 5", "\t 6", "\t 7", "\t 8", "\t 9", "\t R", "\t H")
     print("------  ", "\t--", "\t--", "\t--", "\t--", "\t--", "\t--", "\t--", "\t--", "\t--", "\t--", "\t--")
     print("HOME:     \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2}".
-        format(home_list[0], home_list[1], home_list[2], home_list[3], home_list[4], home_list[5], home_list[6]
-               , home_list[7],home_list[8], sum(home_list), 0))
+          format(home_list[0], home_list[1], home_list[2], home_list[3], home_list[4], home_list[5], home_list[6]
+                 , home_list[7],home_list[8], sum(home_list), 0))
 
     print("VISITORS: \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2}"
-            .format(visitors_list[0], visitors_list[1], visitors_list[2], visitors_list[3], visitors_list[4]
-                    , visitors_list[5]
-                    , visitors_list[6]
-                    , visitors_list[7]
-                    , visitors_list[8]
-                    , sum(visitors_list), 0))
+          .format(visitors_list[0], visitors_list[1], visitors_list[2], visitors_list[3], visitors_list[4]
+                  , visitors_list[5]
+                  , visitors_list[6]
+                  , visitors_list[7]
+                  , visitors_list[8]
+                  , sum(visitors_list), 0))
 
 
 def batting_order():
@@ -78,4 +84,3 @@ def pitch_result():
                           ('hit - single', 1), ('hit - double', 2), ('hit - triple', 3), ('hit - homerun', 4))
     pitch_result_return = random.randint(0, 8)
     return pitch_result_tuple[pitch_result_return]
-
