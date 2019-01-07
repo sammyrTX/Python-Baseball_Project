@@ -53,8 +53,8 @@ if __name__ == "__main__":
     hometeam_batting_lineup = batting_order()
 
     # Keep batting list order in order to start at beginning of line up
-    visitors_batting_lineup_keep = batting_order()
-    hometeam_batting_lineup_keep = batting_order()
+    visitors_batting_lineup_keep = tuple(visitors_batting_lineup)
+    hometeam_batting_lineup_keep = tuple(hometeam_batting_lineup)
 
     print("vistors batting order: {}".format(visitors_batting_lineup))
     print("home team batting order: {}".format(hometeam_batting_lineup))
@@ -83,7 +83,9 @@ if __name__ == "__main__":
                 print("{} up to bat (player idx {})".format(players_tuple[visitors_batting_lineup[0]], visitors_batting_lineup[0]))
                 visitors_batting_lineup.pop(0)
             else:
-                visitors_batting_lineup = visitors_batting_lineup_keep
+                visitors_batting_lineup = list(visitors_batting_lineup_keep)
+                print("visitors_batting_lineup: {}".format(visitors_batting_lineup))
+                print("visitors_batting_lineup_keep: {}".format(visitors_batting_lineup_keep))
                 print("{} up to bat (player idx {})".format(players_tuple[visitors_batting_lineup[0]], visitors_batting_lineup[0]))
                 visitors_batting_lineup.pop(0)
 
@@ -93,7 +95,7 @@ if __name__ == "__main__":
                 print("{} up to bat (player idx {})".format(players_tuple[hometeam_batting_lineup[0]], hometeam_batting_lineup[0]))
                 hometeam_batting_lineup.pop(0)
             else:
-                hometeam_batting_lineup = hometeam_batting_lineup_keep
+                hometeam_batting_lineup = list(hometeam_batting_lineup_keep)
                 print("{} up to bat (player idx {})".format(players_tuple[hometeam_batting_lineup[0]], hometeam_batting_lineup[0]))
                 hometeam_batting_lineup.pop(0)
 
