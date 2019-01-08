@@ -11,9 +11,20 @@ import random
 #  **** Advance Runner Needs further testing ****
 
 
-def advance_runner(hit_f, base1_f, base2_f, base3_f, home_plate_f):
+def advance_runner(hit_f,
+                   base1_f,
+                   base2_f,
+                   base3_f,
+                   home_plate_f):
+
     print("before advance:")
-    print("Hits: {} 1st: {} 2nd: {} 3rd: {} Home: {}".format(hit_f, base1_f, base2_f, base3_f, home_plate_f))
+    print("Hits: {} 1st: {} 2nd: {} 3rd: {} Home: {}"
+          .format(hit_f,
+                  base1_f,
+                  base2_f,
+                  base3_f,
+                  home_plate_f))
+
     print("Hit Result = {}".format(hit_f))
 
     batter = 1   # Initialize batter to put batter on base if someone already on first
