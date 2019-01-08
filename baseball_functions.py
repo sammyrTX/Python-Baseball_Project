@@ -101,51 +101,49 @@ def process_pitch_result(pitch_result_f, outs_count_f, strikes_count_f, ball_cou
     result_txt, result_idx = pitch_result_f
     print("Pitch Result: ",result_txt, result_idx)
 
-    while outs_count_f < 3:
+    if result_idx in range(1,5):
+        print("A hit: ", result_txt, result_idx)
+        print("Add step here to advance runner")
+        strikes_count_f = ball_count_f = foul_count_f = 0
 
-        if result_idx in range(1,5):
-            print("A hit: ", result_txt, result_idx)
-            print("Add step here to advance runner")
+    if result_idx in range(10, 15):
+
+        if result_idx == 10:
+            strikes_count_f += 1
+            print("Strike {}!".format(strikes_count_f))
+            if strikes_count_f == 3:
+                print("Yer' out!")
+                outs_count_f +=1
+                strikes_count_f = ball_count_f = foul_count_f = 0
+
+        if result_idx == 11:
+            print("Ball!")
+            ball_count_f +=1
+            print("Ball count: {}".format(ball_count_f))
+            if ball_count_f == 4:
+                print("Ball count is 4, Need to add process to walk the batter")
+                strikes_count_f = ball_count_f = foul_count_f = 0
+
+        if result_idx == 12:
+            print("Foul ball!")
+            if foul_count_f < 2:
+                foul_count_f += 1
+                if strikes_count_f < 2:
+                    strikes_count_f +=1
+
+            print("Foul count: {}".format(foul_count_f))
+
+        if result_idx == 13:
+            print("Fouled out!")
+            outs_count_f += 1
             strikes_count_f = ball_count_f = foul_count_f = 0
 
-        if result_idx in range(10, 15):
+        if result_idx == 14:
+            print("Pop fly caught - Yer' out!")
+            outs_count_f += 1
+            strikes_count_f = ball_count_f = foul_count_f = 0
 
-            if result_idx == 10:
-                strikes_count_f += 1
-                print("Strike {}!".format(strikes_count_f))
-                if strikes_count_f == 3:
-                    print("Yer' out!")
-                    outs_count_f +=1
-                    strikes_count_f = ball_count_f = foul_count_f = 0
+    ball_count_print(outs_count_f, strikes_count_f, ball_count_f)
+    print()
 
-            if result_idx == 11:
-                print("Ball!")
-                ball_count_f +=1
-                print("Ball count: {}".format(ball_count_f))
-                if ball_count_f == 4:
-                    print("Ball count is 4, Need to add process to walk the batter")
-                    strikes_count_f = ball_count_f = foul_count_f = 0
-
-            if result_idx == 12:
-                print("Foul ball!")
-                if foul_count_f < 2:
-                    foul_count_f += 1
-                    if strikes_count_f < 2:
-                        strikes_count_f +=1
-
-                print("Foul count: {}".format(foul_count_f))
-
-            if result_idx == 13:
-                print("Fouled out!")
-                outs_count_f += 1
-                strikes_count_f = ball_count_f = foul_count_f = 0
-
-            if result_idx == 14:
-                print("Pop fly caught - Yer' out!")
-                outs_count_f += 1
-                strikes_count_f = ball_count_f = foul_count_f = 0
-
-        ball_count_print(outs_count_f, strikes_count_f, ball_count_f)
-        print()
-
-        return (outs_count_f, strikes_count_f, ball_count_f, foul_count_f)
+    return (outs_count_f, strikes_count_f, ball_count_f, foul_count_f)
