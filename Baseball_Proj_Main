@@ -1,5 +1,7 @@
 from baseball_functions import *
 
+# Need overall clean up to conform with PEP 8   TODO
+
 # Variables & Data structures
 
 # Variables for bases & home plate
@@ -30,16 +32,16 @@ innings_tracker = [x for x in range(0, 9)]
 
 # Home team & Visitors score tracking
 
-home_team_list = [0 for init in range(10)]
+home_team_list = [0 for init_home in range(10)]
 
-visitors_list = [0 for init in range(10)]
+visitors_list = [0 for init_visitor in range(10)]
 
 # ***** MAIN SECTION *****
 
 if __name__ == "__main__":
 
     print()
-    print("*** MAIN SECTION ***")
+    print("*** MAIN SECTION _ START ***")
     print("+" * 80)
 
     print()
@@ -51,10 +53,6 @@ if __name__ == "__main__":
 
     visitors_batting_lineup = batting_order()
     hometeam_batting_lineup = batting_order()
-
-    # Keep batting list order in order to start at beginning of line up
-    visitors_batting_lineup_keep = tuple(visitors_batting_lineup)
-    hometeam_batting_lineup_keep = tuple(hometeam_batting_lineup)
 
     print("vistors batting order: {}".format(visitors_batting_lineup))
     print("home team batting order: {}".format(hometeam_batting_lineup))
@@ -72,42 +70,39 @@ if __name__ == "__main__":
         home_team_list[game_inning] = game_inning
         visitors_list[game_inning] = game_inning
         print(innings_name[game_inning])
-        pass    #    print_scorebox(home_team_list, visitors_list)
 
-        # Building out game play for each team during an inning; implementing batting order for each team
+        # Adding steps to process pitch for Visitors; need to add steps to track player and hits  TODO
+        # Add score tracking   TODO
 
         print()
-        print("Visitors at bat...")
-        for vctr in range(3):    # TODO
-            if len(visitors_batting_lineup):
-                print("{} up to bat (player idx {})".format(players_tuple[visitors_batting_lineup[0]], visitors_batting_lineup[0]))
-                visitors_batting_lineup.pop(0)
-            else:
-                visitors_batting_lineup = list(visitors_batting_lineup_keep)
-                print("visitors_batting_lineup: {}".format(visitors_batting_lineup))
-                print("visitors_batting_lineup_keep: {}".format(visitors_batting_lineup_keep))
-                print("{} up to bat (player idx {})".format(players_tuple[visitors_batting_lineup[0]], visitors_batting_lineup[0]))
-                visitors_batting_lineup.pop(0)
+        print("Visitors at bat:")
 
-        print("Home at bat...")
-        for hctr in range(3):   # TODO
-            if len(hometeam_batting_lineup):
-                print("{} up to bat (player idx {})".format(players_tuple[hometeam_batting_lineup[0]], hometeam_batting_lineup[0]))
-                hometeam_batting_lineup.pop(0)
-            else:
-                hometeam_batting_lineup = list(hometeam_batting_lineup_keep)
-                print("{} up to bat (player idx {})".format(players_tuple[hometeam_batting_lineup[0]], hometeam_batting_lineup[0]))
-                hometeam_batting_lineup.pop(0)
+        outs_count = strikes_count = ball_count = foul_count = 0
 
+        while outs_count < 3:
+
+            outs_count, strikes_count, ball_count, foul_count = process_pitch_result(pitch_result(), outs_count, strikes_count,
+                                                                             ball_count, foul_count)
+
+
+        print()
+        print("Home at bat:")
+
+        outs_count = strikes_count = ball_count = foul_count = 0
+
+        while outs_count < 3:
+
+            outs_count, strikes_count, ball_count, foul_count = process_pitch_result(pitch_result(), outs_count, strikes_count,
+                                                                                     ball_count, foul_count)
+
+        pass         #print_scorebox(home_team_list, visitors_list) TODO
         print("-" * 50)
         print()
 
     print()
     print("+" * 80)
-    print("*** MAIN SECTION ***")
+    print("*** MAIN SECTION - END ***")
     print()
-    print("Home Team List: {}".format(home_team_list))
-    print("Visitor List: {}".format(visitors_list))
 
     print()
 
@@ -123,3 +118,4 @@ if __name__ == "__main__":
     print()
 
     print("END")
+    
