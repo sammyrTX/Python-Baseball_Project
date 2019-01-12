@@ -12,8 +12,8 @@ bb_diamond = {'h_g': 0, 'b1_g': 0, 'b2_g': 0, 'b3_g':0}     # Possible alternate
 
 # Player positions stored in a tuple
 
-players_tuple = ("pitcher", "catcher", "first base", "second base", "third base", "shortstop", "left field"
-                 , "center field", "right field")
+players_tuple = ("Pitcher", "Catcher", "First Base", "Second Base", "Third Base", "Shortstop", "Left Field"
+                 , "Center Field", "Right Field")
 
 # Team Roster with lists that for each player store inning, hits, RBI's
 
@@ -60,8 +60,14 @@ if __name__ == "__main__":
     visitors_batting_lineup = batting_order()
     hometeam_batting_lineup = batting_order()
 
+    visitors_batting_lineup_keep = tuple(visitors_batting_lineup)
+    hometeam_batting_lineup_keep = tuple(hometeam_batting_lineup)
+
     print("vistors batting order: {}".format(visitors_batting_lineup))
     print("home team batting order: {}".format(hometeam_batting_lineup))
+
+    print("vistors batting order (copy): {}".format(visitors_batting_lineup_keep))
+    print("home team batting order (copy): {}".format(hometeam_batting_lineup_keep))
 
 
     print()
@@ -87,9 +93,22 @@ if __name__ == "__main__":
 
         while outs_count < 3:
 
+        # Get next batter from line up. If necessary reset line up list and start from the beginning
+
+            if len(visitors_batting_lineup) != 0:
+                batter_up = visitors_batting_lineup[0]
+                visitors_batting_lineup.pop(0)
+                print("At bat: {}".format(players_tuple[batter_up]))
+            else:
+                visitors_batting_lineup = list(visitors_batting_lineup_keep)
+                batter_up = visitors_batting_lineup[0]
+                visitors_batting_lineup.pop(0)
+                print("At bat: {}".format(players_tuple[batter_up]))
+
             outs_count, strikes_count, ball_count, foul_count = process_pitch_result(pitch_result(), outs_count, strikes_count,
                                                                              ball_count, foul_count)
-
+            print("Add process here to capture the results of the at bat and append to the team roster list")  # TODO
+            print()
 
         print()
         print("Home at bat:")
@@ -98,8 +117,23 @@ if __name__ == "__main__":
 
         while outs_count < 3:
 
+            # Get next batter from line up. If necessary reset line up list and start from the beginning
+
+            if len(hometeam_batting_lineup) != 0:
+                batter_up = hometeam_batting_lineup[0]
+                hometeam_batting_lineup.pop(0)
+                print("At bat: {}".format(players_tuple[batter_up]))
+            else:
+                hometeam_batting_lineup = list(hometeam_batting_lineup_keep)
+                batter_up = hometeam_batting_lineup[0]
+                hometeam_batting_lineup.pop(0)
+                print("At bat: {}".format(players_tuple[batter_up]))
+
             outs_count, strikes_count, ball_count, foul_count = process_pitch_result(pitch_result(), outs_count, strikes_count,
                                                                                      ball_count, foul_count)
+
+            print("Add process here to capture the results of the at bat and append to the team roster list")  # TODO
+            print()
 
         pass         #print_scorebox(home_team_list, visitors_list) TODO
         print("-" * 50)
