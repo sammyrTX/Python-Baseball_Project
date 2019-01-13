@@ -26,6 +26,10 @@ visitor = {player: [[0, 0, 0]] for player in players_tuple}
 innings_name = ["1st Inning", "2nd Inning", "3rd Inning", "4th Inning", "5th Inning", "6th Inning", "7th Inning",
                 "8th Inning", "9th Inning"]
 
+# Ball count variables
+
+outs_count = strikes_count = ball_count = foul_count = 0
+
 # Pitch Result tuple
 
 pitch_result_tuple = (('strike', 10), ('ball', 11), ('foul ball', 12), ('foul out', 13), ('out - defense', 14)
@@ -89,8 +93,6 @@ if __name__ == "__main__":
         print()
         print("Visitors at bat:")
 
-        outs_count = strikes_count = ball_count = foul_count = 0
-
         while outs_count < 3:
 
         # Get next batter from line up. If necessary reset line up list and start from the beginning
@@ -112,8 +114,6 @@ if __name__ == "__main__":
 
         print()
         print("Home at bat:")
-
-        outs_count = strikes_count = ball_count = foul_count = 0
 
         while outs_count < 3:
 
