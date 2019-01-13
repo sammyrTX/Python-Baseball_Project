@@ -15,7 +15,12 @@ bb_diamond = {'h_g': 0, 'b1_g': 0, 'b2_g': 0, 'b3_g':0}     # Possible alternate
 players_tuple = ("Pitcher", "Catcher", "First Base", "Second Base", "Third Base", "Shortstop", "Left Field"
                  , "Center Field", "Right Field")
 
-# Team Roster with lists that for each player store inning, hits, RBI's
+# Teams Roster with lists that for each player stores team, inning, hits, RBI's
+# List index key:
+#   [0]: Team (0 - Visitors, 1 - Home)
+#   [1]: Inning (0 - 8 for 1st through 9th Inning)
+#   [2]: Hits (Cumulative for a player within an inning)
+#   [3]: RBI (Run(s) Batted In; will ignore errors since they are not being tracked)
 
 home_roster = {player: [[0, 0, 0]] for player in players_tuple}
 
