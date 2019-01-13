@@ -5,6 +5,7 @@
 # - generate pitch result
 # - ball count print
 # - process pitch result
+# - next batter
 
 import random
 
@@ -62,7 +63,7 @@ def advance_runner(hit_f,
     return hit_f, base1_f, base2_f, base3_f, home_plate_f
 
 
-def print_scorebox(home_list, visitors_list):
+def print_scorebox(visitors_list, home_list):
     print("INNING  ", "\t 1", "\t 2", "\t 3", "\t 4", "\t 5", "\t 6", "\t 7", "\t 8", "\t 9", "\t R", "\t H")
     print("------  ", "\t--", "\t--", "\t--", "\t--", "\t--", "\t--", "\t--", "\t--", "\t--", "\t--", "\t--")
     print("HOME:     \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2}".
@@ -158,3 +159,21 @@ def process_pitch_result(pitch_result_f, outs_count_f, strikes_count_f, ball_cou
     print()
 
     return outs_count_f, strikes_count_f, ball_count_f, foul_count_f
+
+
+def next_batter(team_f, batting_lineup_f, batting_lineup_keep_f):
+
+    players_tuple_f = ("Pitcher", "Catcher", "First Base", "Second Base", "Third Base", "Shortstop", "Left Field"
+                     , "Center Field", "Right Field")
+
+    if len(batting_lineup_f[team_f]) != 0:
+        batter_up_f = batting_lineup_f[team_f][0]
+        batting_lineup_f[team_f].pop(0)
+        print("At bat: {}".format(players_tuple_f[batter_up_f]))
+    else:
+        batting_lineup_f[team_f] = list(batting_lineup_keep_f[team_f])
+        batter_up_f = batting_lineup_f[team_f][0]
+        batting_lineup_f[team_f].pop(0)
+        print("At bat: {}".format(players_tuple_f[batter_up_f]))
+
+    return team_f, batting_lineup_f, batter_up_f

@@ -22,9 +22,7 @@ players_tuple = ("Pitcher", "Catcher", "First Base", "Second Base", "Third Base"
 #   [2]: Hits (Cumulative for a player within an inning)
 #   [3]: RBI (Run(s) Batted In; will ignore errors since they are not being tracked)
 
-home_roster = {player: [[0, 0, 0]] for player in players_tuple}
-
-visitor = {player: [[0, 0, 0]] for player in players_tuple}
+teams_roster = {player: [[0, 0, 0, 0]] for player in players_tuple}
 
 # Innings
 
@@ -43,13 +41,12 @@ pitch_result_tuple = (('strike', 10), ('ball', 11), ('foul ball', 12), ('foul ou
 # Innings tracker list by list comprehension
 
 innings_tracker = [x for x in range(0, 9)]
-# print(innings_tracker)
 
 # Home team & Visitors score tracking
 
-home_team_list = [0 for init_home in range(10)]
+score_tracking_by_inning = [0 for init_inning in range(10)]
 
-visitors_list = [0 for init_visitor in range(10)]
+score_list = [list(score_tracking_by_inning), list(score_tracking_by_inning)]
 
 # ***** MAIN SECTION *****
 
@@ -66,51 +63,44 @@ if __name__ == "__main__":
     # Set up batting order
     print("Set up batting order")
 
-    visitors_batting_lineup = batting_order()
-    hometeam_batting_lineup = batting_order()
+    batting_lineup = [list(batting_order()), list(batting_order())]
 
-    visitors_batting_lineup_keep = tuple(visitors_batting_lineup)
-    hometeam_batting_lineup_keep = tuple(hometeam_batting_lineup)
+    # Store the lineup in a tuple in order start at top of the list
+    batting_lineup_keep = tuple(batting_lineup)
 
-    print("vistors batting order: {}".format(visitors_batting_lineup))
-    print("home team batting order: {}".format(hometeam_batting_lineup))
+    print("vistors batting order: {}".format(batting_lineup[0]))
+    print("home batting order: {}".format(batting_lineup[1]))
 
-    print("vistors batting order (copy): {}".format(visitors_batting_lineup_keep))
-    print("home team batting order (copy): {}".format(hometeam_batting_lineup_keep))
-
+    print("vistors batting order (copy): {}".format(batting_lineup_keep[0]))
+    print("home batting order (copy): {}".format(batting_lineup_keep[1]))
 
     print()
     print("=" * 70)
     print()
 
     print("+" * 80)
-    print("Check innings:")
 
+    # Innings Loop
     for game_inning in innings_tracker:
         print("-" * 50)
-        home_team_list[game_inning] = game_inning
-        visitors_list[game_inning] = game_inning
-        print(innings_name[game_inning])
+        score_list[0][game_inning] = game_inning  # TODO - Remove - this tests score storage for visitors
+        score_list[1][game_inning] = game_inning  # TODO - Remove - this tests score storage for home
+        print(innings_name[game_inning], "*** BEGIN ***")
 
         # Adding steps to process pitch for Visitors; need to add steps to track player and hits  TODO
         # Add score tracking   TODO
 
-        print()
+        #  TODO Need to re-work the pitch result handling
+
+        #    At Bat Loop - Visitors
+
         print("Visitors at bat:")
 
         while outs_count < 3:
 
-        # Get next batter from line up. If necessary reset line up list and start from the beginning
+            # Get next batter from line up. If necessary reset line up list and start from the beginning
 
-            if len(visitors_batting_lineup) != 0:
-                batter_up = visitors_batting_lineup[0]
-                visitors_batting_lineup.pop(0)
-                print("At bat: {}".format(players_tuple[batter_up]))
-            else:
-                visitors_batting_lineup = list(visitors_batting_lineup_keep)
-                batter_up = visitors_batting_lineup[0]
-                visitors_batting_lineup.pop(0)
-                print("At bat: {}".format(players_tuple[batter_up]))
+            team, batting_lineup, batter_up = next_batter(0, batting_lineup, batting_lineup_keep)
 
             outs_count, strikes_count, ball_count, foul_count = process_pitch_result(pitch_result(), outs_count, strikes_count,
                                                                              ball_count, foul_count)
@@ -118,21 +108,15 @@ if __name__ == "__main__":
             print()
 
         print()
+        #    At Bat Loop - Home
+
         print("Home at bat:")
 
         while outs_count < 3:
 
             # Get next batter from line up. If necessary reset line up list and start from the beginning
 
-            if len(hometeam_batting_lineup) != 0:
-                batter_up = hometeam_batting_lineup[0]
-                hometeam_batting_lineup.pop(0)
-                print("At bat: {}".format(players_tuple[batter_up]))
-            else:
-                hometeam_batting_lineup = list(hometeam_batting_lineup_keep)
-                batter_up = hometeam_batting_lineup[0]
-                hometeam_batting_lineup.pop(0)
-                print("At bat: {}".format(players_tuple[batter_up]))
+            team, batting_lineup, batter_up = next_batter(1, batting_lineup, batting_lineup_keep)
 
             outs_count, strikes_count, ball_count, foul_count = process_pitch_result(pitch_result(), outs_count, strikes_count,
                                                                                      ball_count, foul_count)
@@ -140,7 +124,7 @@ if __name__ == "__main__":
             print("Add process here to capture the results of the at bat and append to the team roster list")  # TODO
             print()
 
-        pass         #print_scorebox(home_team_list, visitors_list) TODO
+        print(innings_name[game_inning], "*** END ***")
         print("-" * 50)
         print()
 
@@ -152,7 +136,7 @@ if __name__ == "__main__":
     print()
 
     print("Scorebox test:")
-    print_scorebox(home_team_list, visitors_list)
+    print_scorebox(score_list[0], score_list[1])
 
     print()
     # ***** MAIN SECTION *****
