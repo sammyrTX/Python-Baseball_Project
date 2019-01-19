@@ -176,4 +176,6 @@ def next_batter(team_f, batting_lineup_f, batting_lineup_keep_f):
         batting_lineup_f[team_f].pop(0)
         print("At bat: {}".format(players_tuple_f[batter_up_f]))
 
+    print(">>>> Line Up for team {}: {}".format(team_f, batting_lineup_f[team_f]))
+
     return team_f, batting_lineup_f, batter_up_f

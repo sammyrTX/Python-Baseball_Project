@@ -24,6 +24,12 @@ players_tuple = ("Pitcher", "Catcher", "First Base", "Second Base", "Third Base"
 
 teams_roster = {player: [[0, 0, 0, 0]] for player in players_tuple}
 
+# Use to flag which team is at bat Team (0 - Visitors, 1 - Home)
+
+team_at_bat = 0
+
+teams_description = ('VISITORS', 'HOME')
+
 # Innings
 
 innings_name = ["1st Inning", "2nd Inning", "3rd Inning", "4th Inning", "5th Inning", "6th Inning", "7th Inning",
@@ -94,13 +100,15 @@ if __name__ == "__main__":
 
         #    At Bat Loop - Visitors
 
-        print("Visitors at bat:")
+        team_at_bat = 0
+
+        print("{} at bat: ".format(teams_description[team_at_bat]))
 
         while outs_count < 3:
 
             # Get next batter from line up. If necessary reset line up list and start from the beginning
 
-            team, batting_lineup, batter_up = next_batter(0, batting_lineup, batting_lineup_keep)
+            team, batting_lineup, batter_up = next_batter(team_at_bat, batting_lineup, batting_lineup_keep)
 
             outs_count, strikes_count, ball_count, foul_count = process_pitch_result(pitch_result(), outs_count, strikes_count,
                                                                              ball_count, foul_count)
@@ -110,13 +118,15 @@ if __name__ == "__main__":
         print()
         #    At Bat Loop - Home
 
-        print("Home at bat:")
+        team_at_bat = 1
+
+        print("{} at bat: ".format(teams_description[team_at_bat]))
 
         while outs_count < 3:
 
             # Get next batter from line up. If necessary reset line up list and start from the beginning
 
-            team, batting_lineup, batter_up = next_batter(1, batting_lineup, batting_lineup_keep)
+            team, batting_lineup, batter_up = next_batter(team_at_bat, batting_lineup, batting_lineup_keep)
 
             outs_count, strikes_count, ball_count, foul_count = process_pitch_result(pitch_result(), outs_count, strikes_count,
                                                                                      ball_count, foul_count)
