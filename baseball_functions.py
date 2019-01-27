@@ -109,6 +109,7 @@ def ball_count_print(outs_f, strikes_f, ball_f):
 def process_pitch_result(pitch_result_f, outs_count_f, strikes_count_f, ball_count_f, foul_count_f):
 
     # Need to add steps to process advancing runners and tracking runs scored  TODO
+    # Need to add steps to process a batter getting walked (4 balls)
 
     result_txt, result_idx = pitch_result_f
     print("Pitch Result: ",result_txt, result_idx)
@@ -166,12 +167,33 @@ def next_batter(team_f, batting_lineup_f, batting_lineup_keep_f):
     players_tuple_f = ("Pitcher", "Catcher", "First Base", "Second Base", "Third Base", "Shortstop", "Left Field"
                      , "Center Field", "Right Field")
 
+    # troubleshooting print statements; remove after testing   TODO Test Prints to be removed
+    # print("from function: batting_lineup_f: {}".format(batting_lineup_f))
+    # print("from function: batting_lineup_keep_f: {}".format(batting_lineup_keep_f))
+    # print(batting_lineup_f == batting_lineup_keep_f)
+
     if len(batting_lineup_f[team_f]) != 0:
+
         batter_up_f = batting_lineup_f[team_f][0]
         batting_lineup_f[team_f].pop(0)
         print("At bat: {}".format(players_tuple_f[batter_up_f]))
+
+        # troubleshooting print statements; remove after testing   TODO Test Prints to be removed
+        # print("len(batting_lineup_f[team_f]: {}".format(len(batting_lineup_f[team_f])))
+        # print("check len of list: {}".format(len(batting_lineup_f[team_f]) != 0))
+        # print("check the keep tuple: {}".format(batting_lineup_keep_f[team_f]))
     else:
+        # troubleshooting print statements; remove after testing   TODO Test Prints to be removed
+        # print("Hit the else clause here ***")
+        # print("lineup: {}   keep tuple: {}".format(id(batting_lineup_f), id(batting_lineup_keep_f)))
+
         batting_lineup_f[team_f] = list(batting_lineup_keep_f[team_f])
+
+        # troubleshooting print statements; remove after testing   TODO Test Prints to be removed
+        # print("keep list: {}".format(list(batting_lineup_keep_f[team_f])))
+        # print("just keep: {}".format(batting_lineup_keep_f[team_f]))
+        # print("batting lineup after updating to batting line up keep: {}".format(batting_lineup_f[team_f]))
+
         batter_up_f = batting_lineup_f[team_f][0]
         batting_lineup_f[team_f].pop(0)
         print("At bat: {}".format(players_tuple_f[batter_up_f]))
@@ -179,3 +201,20 @@ def next_batter(team_f, batting_lineup_f, batting_lineup_keep_f):
     print(">>>> Line Up for team {}: {}".format(team_f, batting_lineup_f[team_f]))
 
     return team_f, batting_lineup_f, batter_up_f
+
+
+def bases_picture():
+
+    # Place holder for bases picture to potentially use to show status of bases during an at bat
+
+    base01 = '*'
+    base02 = '*'
+    base03 = '*'
+
+    print("            [{}]".format(base02))
+    print("           /   \\")
+    print("          /     \\")
+    print("        [{}]      [{}]".format(base03, base01))
+    print("          \\     /")
+    print("           \\   /")
+    print("            [ ]")

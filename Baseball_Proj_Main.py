@@ -1,6 +1,6 @@
 from baseball_functions import *
 
-# Need overall clean up to conform with PEP 8   TODO
+# Need overall clean up of formatting   TODO
 
 # Variables & Data structures
 
@@ -72,7 +72,8 @@ if __name__ == "__main__":
     batting_lineup = [list(batting_order()), list(batting_order())]
 
     # Store the lineup in a tuple in order start at top of the list
-    batting_lineup_keep = tuple(batting_lineup)
+
+    batting_lineup_keep = tuple(tuple(x) for x in batting_lineup)
 
     print("vistors batting order: {}".format(batting_lineup[0]))
     print("home batting order: {}".format(batting_lineup[1]))
@@ -106,16 +107,24 @@ if __name__ == "__main__":
 
         while outs_count < 3:
 
+#######################################################################################################################
+
             # Get next batter from line up. If necessary reset line up list and start from the beginning
 
             team, batting_lineup, batter_up = next_batter(team_at_bat, batting_lineup, batting_lineup_keep)
 
-            outs_count, strikes_count, ball_count, foul_count = process_pitch_result(pitch_result(), outs_count, strikes_count,
-                                                                             ball_count, foul_count)
+            outs_count, strikes_count, ball_count, foul_count = process_pitch_result(pitch_result(), outs_count,
+                                                                                     strikes_count, ball_count,
+                                                                                     foul_count)
+
             print("Add process here to capture the results of the at bat and append to the team roster list")  # TODO
             print()
 
+#######################################################################################################################
         print()
+
+        outs_count = 0   # reset outs
+
         #    At Bat Loop - Home
 
         team_at_bat = 1
@@ -135,6 +144,13 @@ if __name__ == "__main__":
             print()
 
         print(innings_name[game_inning], "*** END ***")
+
+        outs_count = 0   # reset outs
+
+        print()
+        print("Score at the end of the {}:".format(innings_name[game_inning]))
+        print()
+        print_scorebox(score_list[0], score_list[1])
         print("-" * 50)
         print()
 
