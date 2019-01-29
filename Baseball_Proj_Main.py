@@ -113,6 +113,8 @@ if __name__ == "__main__":
 
             team, batting_lineup, batter_up = next_batter(team_at_bat, batting_lineup, batting_lineup_keep)
 
+            # Move the next line of code to a function   TODO Move to Function
+
             outs_count, strikes_count, ball_count, foul_count = process_pitch_result(pitch_result(), outs_count,
                                                                                      strikes_count, ball_count,
                                                                                      foul_count)
@@ -136,6 +138,8 @@ if __name__ == "__main__":
             # Get next batter from line up. If necessary reset line up list and start from the beginning
 
             team, batting_lineup, batter_up = next_batter(team_at_bat, batting_lineup, batting_lineup_keep)
+
+            # Move the next line of code to a function   TODO Move to Function
 
             outs_count, strikes_count, ball_count, foul_count = process_pitch_result(pitch_result(), outs_count, strikes_count,
                                                                                      ball_count, foul_count)

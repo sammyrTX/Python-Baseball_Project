@@ -114,10 +114,13 @@ def process_pitch_result(pitch_result_f, outs_count_f, strikes_count_f, ball_cou
     result_txt, result_idx = pitch_result_f
     print("Pitch Result: ",result_txt, result_idx)
 
+    # Hit
+
     if result_idx in range(1,5):
         print("A hit: ", result_txt, result_idx)
         print("Add step here to advance runner")
-        strikes_count_f = ball_count_f = foul_count_f = 0
+
+    # Strike, Ball or Foul
 
     if result_idx in range(10, 15):
 
@@ -126,16 +129,14 @@ def process_pitch_result(pitch_result_f, outs_count_f, strikes_count_f, ball_cou
             print("Strike {}!".format(strikes_count_f))
             if strikes_count_f == 3:
                 print("Yer' out!")
-                outs_count_f +=1
-                strikes_count_f = ball_count_f = foul_count_f = 0
+                outs_count_f = 1
 
         if result_idx == 11:
             print("Ball!")
             ball_count_f +=1
             print("Ball count: {}".format(ball_count_f))
             if ball_count_f == 4:
-                print("Ball count is 4, Need to add process to walk the batter")  # TODO
-                strikes_count_f = ball_count_f = foul_count_f = 0
+                print("Ball count is 4, Need to add process to walk the batter")  # TODO  Need to Process a Walked Batter
 
         if result_idx == 12:
             print("Foul ball!")
@@ -146,20 +147,23 @@ def process_pitch_result(pitch_result_f, outs_count_f, strikes_count_f, ball_cou
 
             print("Foul count: {}".format(foul_count_f))
 
+        # Foul Ball that is caught resulting in an Out
+
         if result_idx == 13:
             print("Fouled out!")
-            outs_count_f += 1
-            strikes_count_f = ball_count_f = foul_count_f = 0
+            outs_count_f = 1
+
+        # Pop Fly that is caught resulting in an Out
 
         if result_idx == 14:
             print("Pop fly caught - Yer' out!")
-            outs_count_f += 1
-            strikes_count_f = ball_count_f = foul_count_f = 0
+            outs_count_f = 1
 
-    ball_count_print(outs_count_f, strikes_count_f, ball_count_f)
+    # ball_count_print(outs_count_f, strikes_count_f, ball_count_f)   TODO Move to at bat function
+    # ball_count_print(0, 3, ball_count_f)   TODO for testing - remove when finished
     print()
 
-    return outs_count_f, strikes_count_f, ball_count_f, foul_count_f
+    return pitch_result_f, outs_count_f, strikes_count_f, ball_count_f, foul_count_f
 
 
 def next_batter(team_f, batting_lineup_f, batting_lineup_keep_f):
@@ -208,7 +212,7 @@ def bases_picture():
     # Place holder for bases picture to potentially use to show status of bases during an at bat
 
     base01 = '*'
-    base02 = '*'
+    base02 = ' '
     base03 = '*'
 
     print("            [{}]".format(base02))
