@@ -131,13 +131,6 @@ def process_pitch_result(pitch_result_f, outs_count_f, strikes_count_f, ball_cou
                 print("Yer' out!")
                 outs_count_f = 1
 
-        if result_idx == 11:
-            print("Ball!")
-            ball_count_f +=1
-            print("Ball count: {}".format(ball_count_f))
-            if ball_count_f == 4:
-                print("Ball count is 4, Need to add process to walk the batter")  # TODO  Need to Process a Walked Batter
-
         if result_idx == 12:
             print("Foul ball!")
             if foul_count_f < 2:
