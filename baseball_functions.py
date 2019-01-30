@@ -114,6 +114,16 @@ def process_pitch_result(pitch_result_f, outs_count_f, strikes_count_f, ball_cou
     result_txt, result_idx = pitch_result_f
     print("Pitch Result: ",result_txt, result_idx)
 
+    # Add code here to simulate specific pitch_result_'s in order test the while loop  TODO Set pitch_result for testing
+    # e.g. pitch_result_ = ('TEST > foul out', 13)
+
+    # print()
+    # pitch_result_f = ('TEST > ball', 11)
+    # pitch_result_f = ('TEST > strike', 10)
+    # pitch_result_f = ('TEST > foul out', 13)
+    # result_txt, result_idx = pitch_result_f
+    # print("*TEST* Pitch Result: ",result_txt, result_idx)
+
     # Hit
 
     if result_idx in range(1,5):
@@ -127,9 +137,18 @@ def process_pitch_result(pitch_result_f, outs_count_f, strikes_count_f, ball_cou
         if result_idx == 10:
             strikes_count_f += 1
             print("Strike {}!".format(strikes_count_f))
+
             if strikes_count_f == 3:
                 print("Yer' out!")
-                outs_count_f = 1
+                outs_count_f += 1
+
+        if result_idx == 11:
+            print('Ball!')
+            ball_count_f += 1
+            print('Ball count: {}'.format(ball_count_f))
+
+            if ball_count_f == 4:
+                print('Ball count is 4. Need to add process to walk the batter')  # TODO Add Walk the batter process
 
         if result_idx == 12:
             print("Foul ball!")
@@ -144,13 +163,13 @@ def process_pitch_result(pitch_result_f, outs_count_f, strikes_count_f, ball_cou
 
         if result_idx == 13:
             print("Fouled out!")
-            outs_count_f = 1
+            outs_count_f += 1
 
         # Pop Fly that is caught resulting in an Out
 
         if result_idx == 14:
             print("Pop fly caught - Yer' out!")
-            outs_count_f = 1
+            outs_count_f += 1
 
     # ball_count_print(outs_count_f, strikes_count_f, ball_count_f)   TODO Move to at bat function
     # ball_count_print(0, 3, ball_count_f)   TODO for testing - remove when finished
