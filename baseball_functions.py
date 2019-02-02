@@ -6,6 +6,7 @@
 # - ball count print
 # - process pitch result
 # - next batter
+# - walk batter
 
 import random
 
@@ -234,3 +235,17 @@ def bases_picture():
     print("          \\     /")
     print("           \\   /")
     print("            [ ]")
+
+
+def walk_batter(hit_f, base1_f, base2_f, base3_f, home_plate_f):
+
+    print('hitf: {}'.format(hit_f))
+    print('base1_f: {}'.format(base1_f))
+    print('base2_f: {}'.format(base2_f))
+    print('base3_f: {}'.format(base3_f))
+    print('home_plate_f: {}'.format(home_plate_f))
+    print()
+    print('Add Process here to walk the batter after four balls')
+
+    return hit_f, base1_f, base2_f, base3_f, home_plate_f
+
