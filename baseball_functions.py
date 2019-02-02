@@ -119,11 +119,11 @@ def process_pitch_result(pitch_result_f, outs_count_f, strikes_count_f, ball_cou
     # e.g. pitch_result_ = ('TEST > foul out', 13)
 
     # print()
-    # pitch_result_f = ('TEST > ball', 11)
+    pitch_result_f = ('TEST > ball', 11)
     # pitch_result_f = ('TEST > strike', 10)
     # pitch_result_f = ('TEST > foul out', 13)
-    # result_txt, result_idx = pitch_result_f
-    # print("*TEST* Pitch Result: ",result_txt, result_idx)
+    result_txt, result_idx = pitch_result_f
+    print("*TEST* Pitch Result: ", result_txt, result_idx)
 
     # Hit
 
@@ -237,15 +237,28 @@ def bases_picture():
     print("            [ ]")
 
 
-def walk_batter(hit_f, base1_f, base2_f, base3_f, home_plate_f):
+def walk_batter(base1_f, base2_f, base3_f, home_plate_f):
 
-    print('hitf: {}'.format(hit_f))
     print('base1_f: {}'.format(base1_f))
     print('base2_f: {}'.format(base2_f))
     print('base3_f: {}'.format(base3_f))
     print('home_plate_f: {}'.format(home_plate_f))
     print()
-    print('Add Process here to walk the batter after four balls')
+    print('Add Process here to walk the batter after four balls')     # TODO Add process to walk batter
 
-    return hit_f, base1_f, base2_f, base3_f, home_plate_f
+    # if no one on first base, put batter on first, no change for other bases
 
+    if base1_f == 0:
+        base1_f = 1
+
+    # if there is already a batter on first base, then put batter on first and process other runners
+
+    if base1_f == 1:
+
+        if base3_f == 1 and base2_f == 1:     # No action if there is no one on second base
+            home_plate_f += 1
+
+        if base3_f == 0 and base2_f == 1:
+            base3_f = 1
+
+    return base1_f, base2_f, base3_f, home_plate_f

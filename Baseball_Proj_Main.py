@@ -8,7 +8,7 @@ from baseball_functions import *
 
 hit_g = base1_g = base2_g = base3_g = home_plate_g = 0
 
-bb_diamond = {'h_g': 0, 'b1_g': 0, 'b2_g': 0, 'b3_g':0}     # Possible alternate to track who is on base
+bb_diamond = {'b1_g': 0, 'b2_g': 0, 'b3_g': 0, 'h_g': 0,}     # Possible alternate to track who is on base
 
 # Player positions stored in a tuple
 

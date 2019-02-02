@@ -12,6 +12,7 @@ players_tuple = ("Pitcher", "Catcher", "First Base", "Second Base", "Third Base"
 pitch_result_tuple = (('strike', 10), ('ball', 11), ('foul ball', 12), ('foul out', 13), ('out - defense', 14),
                       ('hit - single', 1), ('hit - double', 2), ('hit - triple', 3), ('hit - homerun', 4))
 
+bb_diamond = {'b1_g': 0, 'b2_g': 0, 'b3_g': 0, 'h_g': 0,}     # Possible alternate to track who is on base
 
 
 def at_bat(team_f, player_f):
@@ -99,6 +100,14 @@ while outs_count < 3:
         if ball_count == 4:
             print('*** Walk the batter *** : {}'.format(pitch_result_))
             print()
+
+            # TODO Need to test walk_batter function
+
+            bb_diamond['b1_g'], bb_diamond['b2_g'], bb_diamond['b3_g'], bb_diamond['h_g'] = \
+                walk_batter(bb_diamond['b1_g'], bb_diamond['b2_g'], bb_diamond['b3_g'], bb_diamond['h_g'])
+
+            #  TODO Need to increment team runs if any were made when batter was walked
+
             strikes_ = ball_count = foul_count = 0
             ball_count_print(outs_count, strikes_, ball_count)  # TODO
             break
