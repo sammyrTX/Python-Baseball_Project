@@ -1,5 +1,7 @@
 # 01-28-19 - Updates to player at bat processing
 
+# 02-11-19  TODO Need to review and incorporate into functions and main file
+
 from baseball_functions import *
 
 # Player positions stored in a tuple
