@@ -287,7 +287,9 @@ def next_batter(team_f,
 
     print(">>>> Line Up for team {}: {}".format(team_f,
                                                 batting_lineup_f[team_f]),)
-
+    # print('Batter position ID in function to be passed to call from main: {} > {}'.format(batter_up_f,  TODO Clean UP
+    #                                                                                       players_tuple_f[batter_up_f],
+    #                                                                                       ))
     return team_f, batting_lineup_f, batter_up_f
 
 
