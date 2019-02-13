@@ -33,9 +33,10 @@ players_tuple = ("Pitcher",
 #   [1]: Player Position
 #   [2]: Inning (0 - 8 for 1st through 9th Inning)
 #   [3]: Hits (Cumulative for a player within an inning)
-#   [4]: RBI (Run(s) Batted In; will ignore errors since they are not being tracked)
+#   [4]: Runs Scored
+#   [5]: RBI (Run(s) Batted In; will ignore errors since they are not being tracked)
 
-teams_roster = {player: [[0, 0, 0, 0, 0]] for player in players_tuple}
+teams_roster = {player: [] for player in players_tuple}
 
 # print("Teams Roster: \n {}".format(teams_roster))   # TODO For testing
 
@@ -79,7 +80,7 @@ innings_tracker = [x for x in range(0, 9)]
 
 # Home team & Visitors score tracking
 
-score_tracking_by_inning = [0 for init_inning in range(10)]
+score_tracking_by_inning = [0 for init_inning in range(9)]
 
 score_list = [list(score_tracking_by_inning),
               list(score_tracking_by_inning), ]

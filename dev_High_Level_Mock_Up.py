@@ -1,3 +1,7 @@
+
+# TODO  Continue work on Scores section at bottom. Need to compare total score from teams_roster against score_list
+#       and make sure/verify they tie
+
 # Mock up to test bases updating, player actions storage, team score storage
 # High level
 
@@ -40,11 +44,17 @@ from baseball_functions import *
 #   [1]: Player Position
 #   [2]: Inning (0 - 8 for 1st through 9th Inning)
 #   [3]: Hits (Cumulative for a player within an inning)
-#   [4]: RBI (Run(s) Batted In; will ignore errors since they are not being tracked)
+#   [4]: Runs Scored
+#   [5]: RBI (Run(s) Batted In; will ignore errors since they are not being tracked)
 
-teams_roster = {player: [[0, 0, 0, 0, 0]] for player in players_tuple}
+teams_roster = {player: [] for player in players_tuple}
 
 print("Teams Roster: \n {}".format(teams_roster))   # TODO For testing
+
+# Print test for roster dictionary  # TODO  for testing
+# for x, y in teams_roster.items():
+#
+#     print(x, ' : ', y)
 
 # For team_at_bat description (0 - Visitors, 1 - Home)
 
@@ -84,10 +94,25 @@ innings_tracker = [x for x in range(0, 9)]
 
 # Home team & Visitors score tracking
 
-score_tracking_by_inning = [0 for init_inning in range(10)]
+score_tracking_by_inning = [0 for init_inning in range(9)]
 
 score_list = [list(score_tracking_by_inning),
               list(score_tracking_by_inning), ]
+
+print('score tracking: ', score_list)   # TODO Remove after testing
+print()
+
+######################################################################################################
+
+# Test data to check handling of player data   # TODO Remove after testing
+
+hits_check = 3  # index position 3
+
+runs_check = 2  # index position 4
+
+RBI_check = 7  # index position 5
+
+######################################################################################################
 
 ######################################################################################################
 
@@ -134,6 +159,19 @@ for current_inning in innings_tracker:
 
     print('\t','At bat: {} > {}'.format(batter_up_m, players_tuple[batter_up_m]))
 
+    # Pass player and results data to teams roster list
+
+    teams_roster[players_tuple[batter_up_m]].append([team_at_bat,
+                                                     batter_up_m,
+                                                     current_inning,
+                                                     hits_check,
+                                                     runs_check,
+                                                     RBI_check,])
+
+    # Pass player runs to score_list
+
+    score_list[team_at_bat][current_inning] += runs_check
+
     print('>' * 45)
 
     # Home
@@ -148,6 +186,15 @@ for current_inning in innings_tracker:
 
     print('\t','At bat: {} > {}'.format(batter_up_m, players_tuple[batter_up_m]))
 
+    # Pass player and results data to teams roster list
+
+    teams_roster[players_tuple[batter_up_m]].append([team_at_bat,
+                                                     batter_up_m,
+                                                     current_inning,
+                                                     hits_check,
+                                                     runs_check,
+                                                     RBI_check,])
+
     print()
 
     print('+' * 100)
@@ -158,5 +205,28 @@ print()
 print('****** Check if there is a tie after the 9th inning; play another single inning until the tie is broken *******')
 
 print()
+
+print('Show contents of teams_roster dict after game is played through')
+print(teams_roster)
+
+print()
+print('Print total score for each team:')
+print('*** ADD PROCESS HERE FOR SCORE ***')
+# generate total score based on data from teams_roster dict
+
+for teams in range(2):
+    print(teams)
+
+    for players in teams_roster:
+        for scores in teams_roster[players][teams]:
+            print(scores)
+        print(players)
+
+print()
+print('Print score_list:')
+print(score_list)
+print(sum(score_list[0]))
+print(sum(score_list[1]))
+
 print('*** END ***')
 print()
