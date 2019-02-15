@@ -192,8 +192,12 @@ for current_inning in innings_tracker:
                                                      batter_up_m,
                                                      current_inning,
                                                      hits_check,
-                                                     runs_check,
+                                                     (runs_check + 1),  # TODO  test value adjusted for Home
                                                      RBI_check,])
+
+    # Pass player runs to score_list
+
+    score_list[team_at_bat][current_inning] += (runs_check + 1)
 
     print()
 
@@ -214,19 +218,76 @@ print('Print total score for each team:')
 print('*** ADD PROCESS HERE FOR SCORE ***')
 # generate total score based on data from teams_roster dict
 
+teams_roster_total_score = [[],[]]
+
+print('teams_roster_total_score: {}'.format(teams_roster_total_score))
+print()
+
 for teams in range(2):
     print(teams)
 
     for players in teams_roster:
-        for scores in teams_roster[players][teams]:
-            print(scores)
         print(players)
+        # for scores in teams_roster[players]:
+        #     # print('stored data: {}'.format(teams_roster[players].values()))
+        print('stored data: {}'.format(teams_roster[players]))
+        print('+' * 50)
+
+        for test_ in teams_roster[players]:
+            print('   > {}'.format(test_))
+            print('teams: {}; test_[0]: {}; test_[0] == teams : {}'.format(teams, test_[0], test_[0] == teams))
+            print('test_[4]: {}'.format(test_[4] + 99))
+
+            print('teams_roster_total_score: {}'.format(teams_roster_total_score))
+            print()
+
+            print('***')
+
+            if test_[0] == teams:
+                teams_roster_total_score[teams].append(test_[4])
+
+            print('teams_roster_total_score[teams]: {}'.format(teams_roster_total_score[teams]))
+        print()
 
 print()
+
+print(':' * 50)
+
+print('teams_roster_total_score: {}'.format((teams_roster_total_score)))
+
+print('teams_roster_total_score[0] total: {}'.format(sum(teams_roster_total_score[0])))
+
+print('teams_roster_total_score[1] total: {}'.format(sum(teams_roster_total_score[1])))
+
+print(':' * 50)
+
+print()
+
 print('Print score_list:')
 print(score_list)
 print(sum(score_list[0]))
 print(sum(score_list[1]))
+
+#############################################################################################################
+
+print()
+print('Compare teams roster total score against score list:')
+
+print('Visitors:')
+print('sum(teams_roster_total_score[0]): {}'.format(sum(teams_roster_total_score[0])))
+print('sum(score_list[0]): {}'.format(sum(score_list[0])))
+print('teams_roster_total_score[0] == score_list[0]? {}'.format(sum(teams_roster_total_score[0]) == sum(score_list[0])))
+
+print()
+
+print('Home:')
+print('sum(teams_roster_total_score[1]): {}'.format(sum(teams_roster_total_score[1])))
+print('sum(score_list[1]): {}'.format(sum(score_list[1])))
+print('teams_roster_total_score[1] == score_list[1]? {}'.format(sum(teams_roster_total_score[1]) == sum(score_list[1])))
+
+print()
+
+#############################################################################################################
 
 print('*** END ***')
 print()
