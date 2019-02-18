@@ -1,6 +1,4 @@
 
-# TODO  Continue work on Scores section at bottom. Need to compare total score from teams_roster against score_list
-#       and make sure/verify they tie
 
 # Mock up to test bases updating, player actions storage, team score storage
 # High level
@@ -269,24 +267,28 @@ print(sum(score_list[0]))
 print(sum(score_list[1]))
 
 #############################################################################################################
-
-print()
-print('Compare teams roster total score against score list:')
-
-print('Visitors:')
-print('sum(teams_roster_total_score[0]): {}'.format(sum(teams_roster_total_score[0])))
-print('sum(score_list[0]): {}'.format(sum(score_list[0])))
-print('teams_roster_total_score[0] == score_list[0]? {}'.format(sum(teams_roster_total_score[0]) == sum(score_list[0])))
-
-print()
-
-print('Home:')
-print('sum(teams_roster_total_score[1]): {}'.format(sum(teams_roster_total_score[1])))
-print('sum(score_list[1]): {}'.format(sum(score_list[1])))
-print('teams_roster_total_score[1] == score_list[1]? {}'.format(sum(teams_roster_total_score[1]) == sum(score_list[1])))
-
-print()
-
+# #  TODO Keep Score checker and implent as self-test in main code
+#
+# # Testing below indicates scoring is working so far
+# # After game play is further along, use test below to re-confirm scoring code is working
+#
+# print()
+# print('Compare teams roster total score against score list:')
+#
+# print('Visitors:')
+# print('sum(teams_roster_total_score[0]): {}'.format(sum(teams_roster_total_score[0])))
+# print('sum(score_list[0]): {}'.format(sum(score_list[0])))
+# print('teams_roster_total_score[0] == score_list[0]? {}'.format(sum(teams_roster_total_score[0]) == sum(score_list[0])))
+#
+# print()
+#
+# print('Home:')
+# print('sum(teams_roster_total_score[1]): {}'.format(sum(teams_roster_total_score[1])))
+# print('sum(score_list[1]): {}'.format(sum(score_list[1])))
+# print('teams_roster_total_score[1] == score_list[1]? {}'.format(sum(teams_roster_total_score[1]) == sum(score_list[1])))
+#
+# print()
+#
 #############################################################################################################
 
 print('*** END ***')

@@ -98,11 +98,13 @@ if __name__ == "__main__":
     print()
 
     # Set up batting order for a working list and copy to keep for starting at the top of the line up
-    print("Set up batting order")
+    print("Set up batting order...")
 
     batting_lineup = [list(batting_order()), list(batting_order())]
 
     batting_lineup_keep = tuple(tuple(x) for x in batting_lineup)
+
+    print("Batting order set!")
 
     # print("vistors batting order: {}".format(batting_lineup[0]))     # TODO clean up
     # print("home batting order: {}".format(batting_lineup[1]))       # TODO clean up
@@ -121,12 +123,10 @@ if __name__ == "__main__":
     print()
 
     # Innings Loop
-    for game_inning in innings_tracker:
+    for current_inning in innings_tracker:
         print("-" * 50)
-        # score_list[0][game_inning] = game_inning  # TODO - Remove - this tests score storage for visitors
-        # score_list[1][game_inning] = game_inning  # TODO - Remove - this tests score storage for home
 
-        print(innings_name[game_inning], "*** BEGIN ***")
+        print(innings_name[current_inning], "*** BEGIN ***")
 
         print("Top of the Inning: Visitors at bat")
 
@@ -134,6 +134,7 @@ if __name__ == "__main__":
         outs_m = 0
         balls_m = 0
         strikes_m = 0
+        fouls_m = 0
 
         while outs_m < 3:
             print("Out count: {}".format(outs_m))
@@ -142,31 +143,56 @@ if __name__ == "__main__":
 
             print()
 
-            print("len of line up list before get next batter: {}".format(len(batting_lineup[team_at_bat]))) # TODO Remove
-            print("len(batting_lineup_f[team_f]) != 0 : {}".format((batting_lineup[team_at_bat]) != 0))
-            print("^^^")
+            print('Grab next batter from line up for {}:'.format(teams_description[team_at_bat]))
 
             team_at_bat, batting_lineup, batter_up_m = next_batter(team_at_bat, batting_lineup, batting_lineup_keep)
 
-            print("Batter up: {}".format(players_tuple[batter_up_m]))
+            print('\t','At bat: {} > {}'.format(batter_up_m, players_tuple[batter_up_m]))
 
             print()
-            print("Strikes: {}, Outs: {}".format(strikes_m, outs_m))
 
-            print("len of line up list AFTER get next batter: {}".format(len(batting_lineup[team_at_bat]))) # TODO Remove
+            # For this section, need the following:  TODO  Add the following processes
+            #     - pitch result - DONE
+            #     - process the result - DONE
+            #     - Advance Runner OR
+            #     - Tally Strikes, Balls, Fouls, etc.
+            #     - If a Hit, record bases status and tally runs batted in
 
-            print("^^^")
+            # This while loop is for testing  TODO Testing
+            # while strikes_m < 3:
+            #     strikes_m += 1
+            # else:
+            #     strikes_m = 0
+            #     outs_m += 1
+            #     print("OUT!")
 
-            while strikes_m < 3:
-                strikes_m += 1
-            else:
-                strikes_m = 0
-                outs_m += 1
-                print("OUT!")
+            pitch_result_m, outs_m, strikes_m, balls_m, fouls_m = process_pitch_result(pitch_result(),
+                                                                                       outs_m,
+                                                                                       strikes_m,
+                                                                                       balls_m,
+                                                                                       fouls_m)
+
+            # Fold in the advance runner function here ***  TODO Advance RUnner
+            # def advance_runner(hit_f,
+            #                    base1_f,
+            #                    base2_f,
+            #                    base3_f,
+            #                    home_plate_f,):
+
+            # return hit_f, base1_f, base2_f, base3_f, home_plate_f
 
             ball_count_print(outs_m, strikes_m, balls_m)
 
             # v_outs += 1
+
+            # Pass player and results data to teams roster list
+
+            teams_roster[players_tuple[batter_up_m]].append([team_at_bat,
+                                                             batter_up_m,
+                                                             current_inning,
+                                                             hits_check,
+                                                             runs_check,
+                                                             RBI_check,])
 
         print("Last Out Count: {}".format(outs_m))
         print(">>>>>>>>>>")
@@ -184,7 +210,7 @@ if __name__ == "__main__":
 
         print("Last Out Count: {}".format(outs_m))
 
-        print(innings_name[game_inning], "*** END ***")
+        print(innings_name[current_inning], "*** END ***")
 
         print("-" * 50)
         print()

@@ -190,7 +190,7 @@ def process_pitch_result(pitch_result_f, outs_count_f, strikes_count_f, ball_cou
 
     if result_idx in range(1, 5):
         print("A hit: ", result_txt, result_idx)
-        print("Add step here to advance runner")
+        print("Add step here to advance runner >>> Using advance_runner()")
 
     # Strike, Ball or Foul
 
@@ -263,7 +263,7 @@ def next_batter(team_f,
 
         batter_up_f = batting_lineup_f[team_f][0]
         batting_lineup_f[team_f].pop(0)
-        print("At bat: {}".format(players_tuple_f[batter_up_f]))
+        # print("At bat: {}".format(players_tuple_f[batter_up_f]))  TODO check if required if not already in main
 
         # troubleshooting print statements; remove after testing   TODO Test Prints to be removed
         # print("len(batting_lineup_f[team_f]: {}".format(len(batting_lineup_f[team_f])))
@@ -285,8 +285,8 @@ def next_batter(team_f,
         batting_lineup_f[team_f].pop(0)
         print("At bat: {}".format(players_tuple_f[batter_up_f]))
 
-    print(">>>> Line Up for team {}: {}".format(team_f,
-                                                batting_lineup_f[team_f]),)
+    # print(">>>> Line Up for team {}: {}".format(team_f,  TODO Clean UP
+    #                                             batting_lineup_f[team_f]),)
     # print('Batter position ID in function to be passed to call from main: {} > {}'.format(batter_up_f,  TODO Clean UP
     #                                                                                       players_tuple_f[batter_up_f],
     #                                                                                       ))
