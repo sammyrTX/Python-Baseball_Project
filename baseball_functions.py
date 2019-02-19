@@ -13,11 +13,15 @@ import random
 #  **** Advance Runner Needs further testing ****
 
 
-def advance_runner(hit_f,
+def advance_runner(hit_,
                    bb_diamond_adv_runner,
                    ):
 
-    home_plate_f, base1_f, base2_f, base3_f = bb_diamond_adv_runner
+    hit_txt, hit_f = hit_
+
+    print('hit_ : {}'.format(hit_))
+
+    home_plate_f, base1_f, base2_f, base3_f = bb_diamond_adv_runner.values()
 
     print("before advance:")
     print("Hits: {} 1st: {} 2nd: {} 3rd: {} Home: {}".format(hit_f,
@@ -75,7 +79,12 @@ def advance_runner(hit_f,
 
     print("batter: {}".format(batter))
 
-    return (hit_f, base1_f, base2_f, base3_f, home_plate_f)
+    bb_diamond_adv_runner['h_g'] = home_plate_f
+    bb_diamond_adv_runner['b1_g'] = base1_f
+    bb_diamond_adv_runner['b2_g'] = base2_f
+    bb_diamond_adv_runner['b3_g'] = base3_f
+
+    return hit_, bb_diamond_adv_runner
 
 
 def print_scorebox(visitors_list, home_list):
@@ -185,7 +194,8 @@ def process_pitch_result(pitch_result_f,
     # e.g. pitch_result_ = ('TEST > foul out', 13)
 
     # print()  TODO Test Pitches
-    pitch_result_f = ('TEST > ball', 11)
+    pitch_result_f = ('TEST > hit - home run', 4)
+    # pitch_result_f = ('TEST > ball', 11)
     # pitch_result_f = ('TEST > strike', 10)
     # pitch_result_f = ('TEST > foul out', 13)
     result_txt, result_idx = pitch_result_f
@@ -197,14 +207,8 @@ def process_pitch_result(pitch_result_f,
         print("(Function) A hit: ", result_txt, result_idx)
         print("Add step here to advance runner >>> Using advance_runner()")
 
-
         # Work in progress, checking on using dictionary to pass values between functions back to main
-        x = advance_runner(pitch_result_f,
-                           bb_diamond_f,
-                           )
-                           base2_f,
-                           base3_f,
-                           home_plate_f,):
+        pitch_result_f, bb_diamond_f = advance_runner(pitch_result_f, bb_diamond_f)
 
     # Strike, Ball or Foul
 
@@ -251,7 +255,7 @@ def process_pitch_result(pitch_result_f,
     # ball_count_print(0, 3, ball_count_f)   TODO for testing - remove when finished
     print()
 
-    return pitch_result_f, outs_count_f, strikes_count_f, ball_count_f, foul_count_f
+    return pitch_result_f, outs_count_f, strikes_count_f, ball_count_f, foul_count_f, bb_diamond_f
 
 
 def next_batter(team_f,
