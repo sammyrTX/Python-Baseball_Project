@@ -14,20 +14,20 @@ import random
 
 
 def advance_runner(hit_f,
-                   base1_f,
-                   base2_f,
-                   base3_f,
-                   home_plate_f,):
+                   bb_diamond_adv_runner,
+                   ):
+
+    home_plate_f, base1_f, base2_f, base3_f = bb_diamond_adv_runner
 
     print("before advance:")
-    print("Hits: {} 1st: {} 2nd: {} 3rd: {} Home: {}"
-          .format(hit_f,
-                  base1_f,
-                  base2_f,
-                  base3_f,
-                  home_plate_f,))
+    print("Hits: {} 1st: {} 2nd: {} 3rd: {} Home: {}".format(hit_f,
+                                                             base1_f,
+                                                             base2_f,
+                                                             base3_f,
+                                                             home_plate_f,
+                                                             ))
 
-    print("Hit Result = {}".format(hit_f))
+    print("(Function Adv Runner) Hit Result = {}".format(hit_f))
 
     batter = 1   # Initialize batter to put batter on base if someone already on first
     print("batter: {}".format(batter))
@@ -75,7 +75,7 @@ def advance_runner(hit_f,
 
     print("batter: {}".format(batter))
 
-    return hit_f, base1_f, base2_f, base3_f, home_plate_f
+    return (hit_f, base1_f, base2_f, base3_f, home_plate_f)
 
 
 def print_scorebox(visitors_list, home_list):
@@ -168,7 +168,12 @@ def ball_count_print(outs_f, strikes_f, ball_f):
     print("*" * 16)
 
 
-def process_pitch_result(pitch_result_f, outs_count_f, strikes_count_f, ball_count_f, foul_count_f):
+def process_pitch_result(pitch_result_f,
+                         outs_count_f,
+                         strikes_count_f,
+                         ball_count_f,
+                         foul_count_f,
+                         bb_diamond_f):
 
     # Need to add steps to process advancing runners and tracking runs scored  TODO
     # Need to add steps to process a batter getting walked (4 balls)
@@ -179,7 +184,7 @@ def process_pitch_result(pitch_result_f, outs_count_f, strikes_count_f, ball_cou
     # Add code here to simulate specific pitch_result_'s in order test the while loop  TODO Set pitch_result for testing
     # e.g. pitch_result_ = ('TEST > foul out', 13)
 
-    # print()
+    # print()  TODO Test Pitches
     pitch_result_f = ('TEST > ball', 11)
     # pitch_result_f = ('TEST > strike', 10)
     # pitch_result_f = ('TEST > foul out', 13)
@@ -189,8 +194,17 @@ def process_pitch_result(pitch_result_f, outs_count_f, strikes_count_f, ball_cou
     # Hit
 
     if result_idx in range(1, 5):
-        print("A hit: ", result_txt, result_idx)
+        print("(Function) A hit: ", result_txt, result_idx)
         print("Add step here to advance runner >>> Using advance_runner()")
+
+
+        # Work in progress, checking on using dictionary to pass values between functions back to main
+        x = advance_runner(pitch_result_f,
+                           bb_diamond_f,
+                           )
+                           base2_f,
+                           base3_f,
+                           home_plate_f,):
 
     # Strike, Ball or Foul
 

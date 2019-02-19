@@ -166,11 +166,13 @@ if __name__ == "__main__":
             #     outs_m += 1
             #     print("OUT!")
 
-            pitch_result_m, outs_m, strikes_m, balls_m, fouls_m = process_pitch_result(pitch_result(),
+            pitch_result_m, outs_m, strikes_m, balls_m, fouls_m, bb_diamond = process_pitch_result(pitch_result(),
                                                                                        outs_m,
                                                                                        strikes_m,
                                                                                        balls_m,
-                                                                                       fouls_m)
+                                                                                       fouls_m,
+                                                                                       bb_diamond,
+                                                                                       )
 
             # Fold in the advance runner function here ***  TODO Advance RUnner
             # def advance_runner(hit_f,
