@@ -76,7 +76,7 @@ pitch_result_tuple = (('strike', 10),
 
 # Innings tracker list by list comprehension
 
-innings_tracker = [x for x in range(0, 9)]
+innings_tracker = [x for x in range(0, 2)]  # 9)]    #  TODO Testing - Set innings to just 3
 
 # Home team & Visitors score tracking
 
@@ -136,6 +136,8 @@ if __name__ == "__main__":
         strikes_m = 0
         fouls_m = 0
 
+        bb_diamond = {base: 0 for base in bb_diamond}
+
         print("Top of the Inning: {} at bat".format(teams_description[team_at_bat]))
 
         while outs_m < 3:
@@ -149,53 +151,95 @@ if __name__ == "__main__":
 
             team_at_bat, batting_lineup, batter_up_m = next_batter(team_at_bat, batting_lineup, batting_lineup_keep)
 
-            print('\t','At bat: {} > {}'.format(batter_up_m, players_tuple[batter_up_m]))
+            while True:
+                print('\t','At bat: {} > {}'.format(batter_up_m, players_tuple[batter_up_m]))
 
-            print()
+                print()
 
-            # For this section, need the following:  TODO  Add the following processes
-            #     - pitch result - DONE
-            #     - process the result - DONE
-            #     - Advance Runner  - DONE
-            #     - Tally Strikes, Balls, Fouls, etc. - DONE
-            #     - If a Hit, record bases status and tally runs batted in - In Progress
-            #        * Focusing on Pitch Process, Advance Runner & Main to handle runner and any scoring batted in
+                # For this section, need the following:  TODO  Add the following processes
+                #     - pitch result - DONE
+                #     - process the result - DONE
+                #     - Advance Runner  - DONE
+                #     - Tally Strikes, Balls, Fouls, etc. - DONE
+                #     - If a Hit, record bases status and tally runs batted in - In Progress
+                #        * Focusing on Pitch Process, Advance Runner & Main to handle runner and any scoring batted in
 
-            # This while loop is for testing  TODO Testing
-            # while strikes_m < 3:
-            #     strikes_m += 1
-            # else:
-            #     strikes_m = 0
-            #     outs_m += 1
-            #     print("OUT!")
+                # This while loop is for testing  TODO Testing
+                # while strikes_m < 3:
+                #     strikes_m += 1
+                # else:
+                #     strikes_m = 0
+                #     outs_m += 1
+                #     print("OUT!")
+                outs_pre = int(outs_m)  # TODO REMOVE AFTER TESTING
+                pitch_result_m, outs_m, strikes_m, balls_m, fouls_m, bb_diamond = process_pitch_result(pitch_result(),
+                                                                                                       outs_m,
+                                                                                                       strikes_m,
+                                                                                                       balls_m,
+                                                                                                       fouls_m,
+                                                                                                       bb_diamond,
+                                                                                                       )
+                if outs_m > outs_pre:
 
-            pitch_result_m, outs_m, strikes_m, balls_m, fouls_m, bb_diamond = process_pitch_result(pitch_result(),
-                                                                                                   outs_m,
-                                                                                                   strikes_m,
-                                                                                                   balls_m,
-                                                                                                   fouls_m,
-                                                                                                   bb_diamond,
-                                                                                                   )
+                    print('Batter is out...go to next batter')
+                    print('Clear Ball Count')
 
-            bases_picture(bb_diamond)
+                    strikes_m = 0
+                    balls_m = 0
+                    fouls_m = 0
 
-            # Process any hits that resulted in a run batted in ***  TODO Tally score by team, player & inning
-            if bb_diamond['h_g'] != 0:
-                print('In main : If a run is batted or walked in, need to append to teams roster')
-                print('*** HERE IS WHERE A RUN IS SCORED >>> bb_diamond[h_g] = {}'.format(bb_diamond['h_g']))
-                print('*** Add Process here to tally score >>> bb_diamond[h_g] = {}'.format(bb_diamond['h_g']))
-            # Pass player and results data to teams roster list
-            # Use function below to add data to teams roster
-            #     teams_roster[players_tuple[batter_up_m]].append([team_at_bat,
-            #                                                      batter_up_m,
-            #                                                      current_inning,
-            #                                                      hits_check,
-            #                                                      runs_check,
-            #                                                      RBI_check,])
+                    bases_picture(bb_diamond)
 
-            ball_count_print(outs_m,
-                             strikes_m,
-                             balls_m,)
+                    break
+
+                if pitch_result_m[0] in ('strike', 'ball', 'foul ball'):
+
+                    print('Show batter count')
+                    print()
+                    ball_count_print(outs_m,
+                                     strikes_m,
+                                     balls_m,)
+                    continue
+
+                if pitch_result_m[1] in range(1, 5):
+
+                    bases_picture(bb_diamond)
+
+                    # Process any hits that resulted in a run batted in ***  TODO Tally score by team, player & inning
+                    if bb_diamond['h_g'] != 0:
+                        print('In main : If a run is batted or walked in, need to append to teams roster')
+                        print('*** HERE IS WHERE A RUN IS SCORED >>> bb_diamond[h_g] = {}'.format(bb_diamond['h_g']))
+                        print('*** Add Process here to tally score >>> bb_diamond[h_g] = {}'.format(bb_diamond['h_g']))
+                    # Pass player and results data to teams roster list and any runs scored. Clear Home Plate after
+                    # runs nd RBI's recorded
+
+                        bb_diamond['h_g'] = 0
+
+                        #### RESUME WORK HERE 2/20/19  TODO  Place holder for work on 20FEB2019
+
+                        print('*** After runs recorded, clear home plate >>> bb_diamond[h_g] = {}'
+                              .format(bb_diamond['h_g']))
+
+                    # Use function below to add data to teams roster
+                    #     teams_roster[players_tuple[batter_up_m]].append([team_at_bat,
+                    #                                                      batter_up_m,
+                    #                                                      current_inning,
+                    #                                                      hits_check,
+                    #                                                      runs_check,
+                    #                                                      RBI_check,])
+                    print('Clear Ball Count')
+
+                    strikes_m = 0
+                    balls_m = 0
+                    fouls_m = 0
+
+                    print('Go to next batter')
+                    break
+
+                print('*** WHEN DOES THE FOLLOWING PRINT???***')
+                ball_count_print(outs_m,
+                                 strikes_m,
+                                 balls_m,)
 
         print("Last Out Count: {}".format(outs_m))
         print(">>>>>>>>>>")
@@ -206,6 +250,8 @@ if __name__ == "__main__":
         outs_m = 0
         balls_m = 0
         strikes_m = 0
+
+        bb_diamond = {base: 0 for base in bb_diamond}
 
         print("Bottom of the Inning: {} at bat".format(teams_description[team_at_bat]))
 
