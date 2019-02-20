@@ -122,19 +122,21 @@ if __name__ == "__main__":
     print("*** Start Game! ***")
     print()
 
+########################################################################################################################
+
     # Innings Loop
     for current_inning in innings_tracker:
         print("-" * 50)
 
         print(innings_name[current_inning], "*** BEGIN ***")
 
-        print("Top of the Inning: Visitors at bat")
-
         team_at_bat = 0
         outs_m = 0
         balls_m = 0
         strikes_m = 0
         fouls_m = 0
+
+        print("Top of the Inning: {} at bat".format(teams_description[team_at_bat]))
 
         while outs_m < 3:
             print("Out count: {}".format(outs_m))
@@ -174,19 +176,22 @@ if __name__ == "__main__":
                                                                                                    fouls_m,
                                                                                                    bb_diamond,
                                                                                                    )
+
+            bases_picture(bb_diamond)
+
             # Process any hits that resulted in a run batted in ***  TODO Tally score by team, player & inning
             if bb_diamond['h_g'] != 0:
                 print('In main : If a run is batted or walked in, need to append to teams roster')
                 print('*** HERE IS WHERE A RUN IS SCORED >>> bb_diamond[h_g] = {}'.format(bb_diamond['h_g']))
-
+                print('*** Add Process here to tally score >>> bb_diamond[h_g] = {}'.format(bb_diamond['h_g']))
             # Pass player and results data to teams roster list
             # Use function below to add data to teams roster
-                teams_roster[players_tuple[batter_up_m]].append([team_at_bat,
-                                                                 batter_up_m,
-                                                                 current_inning,
-                                                                 hits_check,
-                                                                 runs_check,
-                                                                 RBI_check,])
+            #     teams_roster[players_tuple[batter_up_m]].append([team_at_bat,
+            #                                                      batter_up_m,
+            #                                                      current_inning,
+            #                                                      hits_check,
+            #                                                      runs_check,
+            #                                                      RBI_check,])
 
             ball_count_print(outs_m,
                              strikes_m,
@@ -195,12 +200,14 @@ if __name__ == "__main__":
         print("Last Out Count: {}".format(outs_m))
         print(">>>>>>>>>>")
 
-        print("Bottom of the Inning: Home at bat")
+########################################################################################################################
 
         team_at_bat = 1
         outs_m = 0
         balls_m = 0
         strikes_m = 0
+
+        print("Bottom of the Inning: {} at bat".format(teams_description[team_at_bat]))
 
         while outs_m < 3:
             print("Out count: {}".format(outs_m))

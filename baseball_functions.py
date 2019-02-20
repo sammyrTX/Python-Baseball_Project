@@ -23,15 +23,16 @@ def advance_runner(hit_,
 
     home_plate_f, base1_f, base2_f, base3_f = bb_diamond_adv_runner.values()
 
-    print("before advance:")
-    print("Hits: {} 1st: {} 2nd: {} 3rd: {} Home: {}".format(hit_f,
-                                                             base1_f,
-                                                             base2_f,
-                                                             base3_f,
-                                                             home_plate_f,
-                                                             ))
-
-    print("(Function Adv Runner) Hit Result = {}".format(hit_f))
+    # Test prints to capture status  TODO Remove after testing
+    # print("before advance:")
+    # print("Hits: {} 1st: {} 2nd: {} 3rd: {} Home: {}".format(hit_f,
+    #                                                          base1_f,
+    #                                                          base2_f,
+    #                                                          base3_f,
+    #                                                          home_plate_f,
+    #                                                          ))
+    #
+    # print("(Function Adv Runner) Hit Result = {}".format(hit_f))
 
     batter = 1   # Initialize batter to put batter on base if someone already on first
     print("batter: {}".format(batter))
@@ -61,23 +62,25 @@ def advance_runner(hit_,
         hit_f -= 1
 
         print()
-        print("after 1 loop:\t",
-              hit_f,
-              base1_f,
-              base2_f,
-              base3_f,
-              home_plate_f,)
 
-        print("Hits: {} 1st: {} 2nd: {} 3rd: {} Home: {}".format(hit_f,
-                                                                 base1_f,
-                                                                 base2_f,
-                                                                 base3_f,
-                                                                 home_plate_f,))  # TODO
-        print("batter: {}".format(batter))
-
-    print("function returns:", hit_f, base1_f, base2_f, base3_f, home_plate_f)  # TODO  REMOVE AFTER TESTING
-
-    print("batter: {}".format(batter))
+        # Test prints to capture status  TODO Remove after testing
+        # print("after 1 loop:\t",
+        #       hit_f,
+        #       base1_f,
+        #       base2_f,
+        #       base3_f,
+        #       home_plate_f,)
+    #
+    #     print("Hits: {} 1st: {} 2nd: {} 3rd: {} Home: {}".format(hit_f,
+    #                                                              base1_f,
+    #                                                              base2_f,
+    #                                                              base3_f,
+    #                                                              home_plate_f,))  # TODO
+    #     print("batter: {}".format(batter))
+    #
+    # print("function returns:", hit_f, base1_f, base2_f, base3_f, home_plate_f)  # TODO  REMOVE AFTER TESTING
+    #
+    # print("batter: {}".format(batter))
 
     bb_diamond_adv_runner['h_g'] = home_plate_f
     bb_diamond_adv_runner['b1_g'] = base1_f
@@ -194,12 +197,14 @@ def process_pitch_result(pitch_result_f,
     # e.g. pitch_result_ = ('TEST > foul out', 13)
 
     # print()  TODO Test Pitches
-    pitch_result_f = ('TEST > hit - home run', 4)
+    # pitch_result_f = ('TEST > hit - double', 2)
+    # pitch_result_f = ('TEST > hit - single', 1)
+    # pitch_result_f = ('TEST > hit - home run', 4)
     # pitch_result_f = ('TEST > ball', 11)
     # pitch_result_f = ('TEST > strike', 10)
     # pitch_result_f = ('TEST > foul out', 13)
     result_txt, result_idx = pitch_result_f
-    print("*TEST* Pitch Result: ", result_txt, result_idx)
+    # print("*TEST* Pitch Result: ", result_txt, result_idx)
 
     # Hit
 
@@ -311,21 +316,38 @@ def next_batter(team_f,
     return team_f, batting_lineup_f, batter_up_f
 
 
-def bases_picture():
+def bases_picture(bb_diamond_f):
 
-    # Place holder for bases picture to potentially use to show status of bases during an at bat
+    # Place holder for bases picture to potentially use to show status of bases during an at bat  TODO Remove comment
 
-    base01 = '*'
-    base02 = ' '
-    base03 = '*'
+    base01 = bb_diamond_f['b1_g']
+    base02 = bb_diamond_f['b2_g']
+    base03 = bb_diamond_f['b3_g']
 
-    print("            [{}]".format(base02))
+    if base01 == 1:
+        base01_pic = '*'
+    else:
+        base01_pic = ' '
+
+    if base02 == 1:
+        base02_pic = '*'
+    else:
+        base02_pic = ' '
+
+    if base03 == 1:
+        base03_pic = '*'
+    else:
+        base03_pic = ' '
+
+    print("            [{}]".format(base02_pic))
     print("           /   \\")
     print("          /     \\")
-    print("        [{}]      [{}]".format(base03, base01))
+    print("        [{}]      [{}]".format(base03_pic, base01_pic))
     print("          \\     /")
     print("           \\   /")
     print("            [ ]")
+
+    return
 
 
 def walk_batter(base1_f, base2_f, base3_f, home_plate_f):
