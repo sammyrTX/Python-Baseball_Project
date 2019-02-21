@@ -234,7 +234,11 @@ def process_pitch_result(pitch_result_f,
             print('Ball count: {}'.format(ball_count_f))
 
             if ball_count_f == 4:
-                print('Ball count is 4. Need to add process to walk the batter')  # TODO Add Walk the batter process
+                print('Ball count is 4. Using walk_batter func to walk the batter')  # TODO Add Walk the batter process
+
+                bb_diamond_f = walk_batter(bb_diamond_f)
+
+                pitch_result_f = ['ball', 44]
 
         if result_idx == 12:
             print("Foul ball!")
@@ -351,8 +355,11 @@ def bases_picture(bb_diamond_f):
     return
 
 
-def walk_batter(base1_f, base2_f, base3_f, home_plate_f):
+def walk_batter(bb_diamond_walk_runner):
 
+    home_plate_f, base1_f, base2_f, base3_f = bb_diamond_walk_runner.values()
+
+    print('Bases before batter is walked:')
     print('base1_f: {}'.format(base1_f))
     print('base2_f: {}'.format(base2_f))
     print('base3_f: {}'.format(base3_f))
@@ -360,22 +367,40 @@ def walk_batter(base1_f, base2_f, base3_f, home_plate_f):
     print()
     print('Add Process here to walk the batter after four balls')     # TODO Add process to walk batter
 
+    # if there is already a batter on first base, then put batter on first and process other runners
+
+    if base1_f == 1:
+
+        if base3_f == 1 and base2_f == 1:     # Bases loaded, increment home plate for third base runner to home
+            home_plate_f += 1
+
+        if base3_f == 1 and base2_f == 0:     # Move runner to second base, third base stays
+            base2_f = 1
+
+        if base3_f == 0 and base2_f == 1:     # Move runner to third base, second base stays
+            base3_f = 1
+
+        if base3_f == 0 and base2_f == 0:     # Move runner to second base
+            base2_f = 1
+
     # if no one on first base, put batter on first, no change for other bases
 
     if base1_f == 0:
         base1_f = 1
 
-    # if there is already a batter on first base, then put batter on first and process other runners
+    bb_diamond_walk_runner['h_g'] = home_plate_f
+    bb_diamond_walk_runner['b1_g'] = base1_f
+    bb_diamond_walk_runner['b2_g'] = base2_f
+    bb_diamond_walk_runner['b3_g'] = base3_f
 
-    if base1_f == 1:
+    print('Bases after batter is walked:')
+    print('base1_f: {}'.format(base1_f))
+    print('base2_f: {}'.format(base2_f))
+    print('base3_f: {}'.format(base3_f))
+    print('home_plate_f: {}'.format(home_plate_f))
+    print()
 
-        if base3_f == 1 and base2_f == 1:     # No action if there is no one on second base
-            home_plate_f += 1
-
-        if base3_f == 0 and base2_f == 1:
-            base3_f = 1
-
-    return base1_f, base2_f, base3_f, home_plate_f
+    return bb_diamond_walk_runner
 
 
 def at_bat():   # TODO  Use this once functionality in Main is finalized
