@@ -7,6 +7,7 @@
 # - process pitch result
 # - next batter
 # - walk batter
+# - team at bat (PLACEHOLDER) Once main functionality stable, convert to function here
 
 import random
 
@@ -375,3 +376,8 @@ def walk_batter(base1_f, base2_f, base3_f, home_plate_f):
             base3_f = 1
 
     return base1_f, base2_f, base3_f, home_plate_f
+
+
+def at_bat():   # TODO  Use this once functionality in Main is finalized
+    # placeholder
+    pass

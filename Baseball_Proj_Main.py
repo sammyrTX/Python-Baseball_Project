@@ -44,7 +44,7 @@ teams_roster = {player: [] for player in players_tuple}
 
 team_at_bat = 0
 
-teams_description = ('VISITORS', 'HOME')
+team_description = ('VISITORS', 'HOME')
 
 # Innings
 
@@ -91,13 +91,12 @@ if __name__ == "__main__":
 
     print()
     print("*** MAIN SECTION _ START ***")
-    # print("+" * 80)  TODO REMOVE
 
     print()
     print("=" * 70)
-    print()
 
     # Set up batting order for a working list and copy to keep for starting at the top of the line up
+
     print("Set up batting order...")
 
     batting_lineup = [list(batting_order()), list(batting_order())]
@@ -112,7 +111,6 @@ if __name__ == "__main__":
     # print("vistors batting order (copy): {}".format(batting_lineup_keep[0]))    # TODO clean up
     # print("home batting order (copy): {}".format(batting_lineup_keep[1]))       # TODO clean up
 
-    print()
     print("=" * 70)
     print()
 
@@ -138,21 +136,14 @@ if __name__ == "__main__":
 
         bb_diamond = {base: 0 for base in bb_diamond}
 
-        print("Top of the Inning: {} at bat".format(teams_description[team_at_bat]))
+        print("Top of the Inning: {} at bat".format(team_description[team_at_bat]))
 
         while outs_m < 3:
-            print("Out count: {}".format(outs_m))
-            print("Strikes count: {}".format(strikes_m))
-            print("Balls count: {}".format(balls_m))
-
-            print()
-
-            print('Grab next batter from line up for {}:'.format(teams_description[team_at_bat]))
 
             team_at_bat, batting_lineup, batter_up_m = next_batter(team_at_bat, batting_lineup, batting_lineup_keep)
 
             while True:
-                print('\t','At bat: {} > {}'.format(batter_up_m, players_tuple[batter_up_m]))
+                print('\t','Up to bat for {}: {}'.format(team_description[team_at_bat], players_tuple[batter_up_m]))
 
                 print()
 
@@ -210,23 +201,30 @@ if __name__ == "__main__":
                         print('In main : If a run is batted or walked in, need to append to teams roster')
                         print('*** HERE IS WHERE A RUN IS SCORED >>> bb_diamond[h_g] = {}'.format(bb_diamond['h_g']))
                         print('*** Add Process here to tally score >>> bb_diamond[h_g] = {}'.format(bb_diamond['h_g']))
+
+                        # Add runs to score list
+
+                        score_list[team_at_bat][current_inning] += bb_diamond['h_g']
+
                     # Pass player and results data to teams roster list and any runs scored. Clear Home Plate after
                     # runs nd RBI's recorded
 
-                        bb_diamond['h_g'] = 0
+                        # Use function below to add data to teams roster
 
-                        #### RESUME WORK HERE 2/20/19  TODO  Place holder for work on 20FEB2019
+                        teams_roster[players_tuple[batter_up_m]].append([team_at_bat,
+                                                                         batter_up_m,
+                                                                         current_inning,
+                                                                         1,
+                                                                         bb_diamond['h_g'],
+                                                                         bb_diamond['h_g']])
+
+                        # Reset home plate
+                        bb_diamond['h_g'] = 0
 
                         print('*** After runs recorded, clear home plate >>> bb_diamond[h_g] = {}'
                               .format(bb_diamond['h_g']))
 
-                    # Use function below to add data to teams roster
-                    #     teams_roster[players_tuple[batter_up_m]].append([team_at_bat,
-                    #                                                      batter_up_m,
-                    #                                                      current_inning,
-                    #                                                      hits_check,
-                    #                                                      runs_check,
-                    #                                                      RBI_check,])
+
                     print('Clear Ball Count')
 
                     strikes_m = 0
@@ -253,7 +251,7 @@ if __name__ == "__main__":
 
         bb_diamond = {base: 0 for base in bb_diamond}
 
-        print("Bottom of the Inning: {} at bat".format(teams_description[team_at_bat]))
+        print("Bottom of the Inning: {} at bat".format(team_description[team_at_bat]))
 
         while outs_m < 3:
             print("Out count: {}".format(outs_m))
@@ -263,11 +261,15 @@ if __name__ == "__main__":
 
         print(innings_name[current_inning], "*** END ***")
 
+        print()
+        print('*** Home at bat to be updated after Visitors section is completed ***')
         print("-" * 50)
         print()
 
     # Need to add check after innings if the score is tied. Need to continue game one inning at a time until one team
     # has a score greater than the other.  TODO  Add check for Tie at end of nine innings
+
+########################################################################################################################
 
     print('*** After nine innings need to check if the score is tied. If true, continue game one inning at a time'
           ' until tie is broken ***')
@@ -282,10 +284,16 @@ if __name__ == "__main__":
     # ***** MAIN SECTION *****
 
     # This section tests the scorebox   TODO Remove Section below after testing
-    # print("Scorebox test:")
-    # print_scorebox(score_list[0], score_list[1])
-    #
-    # print()
+    print("Scorebox test:")
+    print_scorebox(score_list[0], score_list[1])
+
+    print()
+
+    # This section tests the teams roster   TODO Remove Section below after testing
+
+    print('Visitors data teams roster  *** PENDING ***')
+
+
 
     # This section tests the the bases dictionary   TODO Remove Section below after testing
 

@@ -11,5 +11,5 @@ _Pending Items:_
 
 _Current Work_
 
-    - Processing batter and keeping scores and ball counts initialized
-    - See Main section, visitors at bat, outs less than three
+    - Applying hits by each player to score tracking as well as teams roster data
+    - need to summarize teams roster data and verufy the score portion ties to score tracking
