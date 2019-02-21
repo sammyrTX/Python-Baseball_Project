@@ -36,7 +36,7 @@ players_tuple = ("Pitcher",
 #   [4]: Runs Scored
 #   [5]: RBI (Run(s) Batted In; will ignore errors since they are not being tracked)
 
-teams_roster = {player: [] for player in players_tuple}
+team_roster = {player: [] for player in players_tuple}
 
 # print("Teams Roster: \n {}".format(teams_roster))   # TODO For testing
 
@@ -211,13 +211,20 @@ if __name__ == "__main__":
 
                         # Use function below to add data to teams roster
 
-                        teams_roster[players_tuple[batter_up_m]].append([team_at_bat,
-                                                                         batter_up_m,
-                                                                         current_inning,
-                                                                         1,
-                                                                         bb_diamond['h_g'],
-                                                                         bb_diamond['h_g']])
+                        print('*** TEST ***: \n')
 
+                        print([team_at_bat, batter_up_m, current_inning, 1, bb_diamond['h_g'], bb_diamond['h_g']])
+
+
+                        team_roster[players_tuple[batter_up_m]].append([team_at_bat,
+                                                                        batter_up_m,
+                                                                        current_inning,
+                                                                        1,
+                                                                        bb_diamond['h_g'],
+                                                                        bb_diamond['h_g']])
+
+                        print('team roster after append: {}'.format(team_roster[players_tuple[batter_up_m]]))
+                        print('team roster (all):')
                         # Reset home plate
                         bb_diamond['h_g'] = 0
 
@@ -291,7 +298,9 @@ if __name__ == "__main__":
 
     # This section tests the teams roster   TODO Remove Section below after testing
 
-    print('Visitors data teams roster  *** PENDING ***')
+    print('Visitors data team roster  *** PENDING ***')
+
+    print('Current data stored in team_roster: \n{}'.format(team_roster))
 
 
 
