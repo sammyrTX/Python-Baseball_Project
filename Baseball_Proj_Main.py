@@ -26,7 +26,7 @@ players_tuple = ("Pitcher",
                  "Center Field",
                  "Right Field",)
 
-# Teams Roster with lists that for each player stores team, inning, hits, RBI's
+# Team Roster with lists that for each player stores team, inning, hits, RBI's
 #
 # List index key:
 #   [0]: Team (0 - Visitors, 1 - Home)
@@ -141,9 +141,10 @@ if __name__ == "__main__":
         while outs_m < 3:
 
             team_at_bat, batting_lineup, batter_up_m = next_batter(team_at_bat, batting_lineup, batting_lineup_keep)
+            print('\t','* Up to bat for {}: {} *'.format(team_description[team_at_bat], players_tuple[batter_up_m]))
 
             while True:
-                print('\t','Up to bat for {}: {}'.format(team_description[team_at_bat], players_tuple[batter_up_m]))
+                print('\t','At bat for {}: {}'.format(team_description[team_at_bat], players_tuple[batter_up_m]))
 
                 print()
 
@@ -162,7 +163,8 @@ if __name__ == "__main__":
                 #     strikes_m = 0
                 #     outs_m += 1
                 #     print("OUT!")
-                outs_pre = int(outs_m)  # TODO REMOVE AFTER TESTING
+
+                outs_pre = int(outs_m)  # TODO Keep if best method to catch outs and proceed to next batter
                 pitch_result_m, outs_m, strikes_m, balls_m, fouls_m, bb_diamond = process_pitch_result(pitch_result(),
                                                                                                        outs_m,
                                                                                                        strikes_m,
@@ -185,6 +187,27 @@ if __name__ == "__main__":
 
                 if pitch_result_m[0] in ('strike', 'ball', 'foul ball'):
 
+                    if pitch_result_m[0] == 'ball' and pitch_result_m[1] == 44:
+                        # Batter was walked, tally home_plate if there was a score, init and then break for next batter
+
+                        team_roster[players_tuple[batter_up_m]].append([team_at_bat,
+                                                                        batter_up_m,
+                                                                        current_inning,
+                                                                        0,
+                                                                        bb_diamond['h_g'],
+                                                                        bb_diamond['h_g']])
+
+                        print('*** Batter is walked, init ball count, break and go to next batter')
+
+                        print('Clear Ball Count')
+                        strikes_m = 0
+                        balls_m = 0
+                        fouls_m = 0
+
+                        bases_picture(bb_diamond)
+
+                        break
+
                     print('Show batter count')
                     print()
                     ball_count_print(outs_m,
@@ -195,6 +218,20 @@ if __name__ == "__main__":
                 if pitch_result_m[1] in range(1, 5):
 
                     bases_picture(bb_diamond)
+
+                    # Process hit if there is no run batted in  TODO Tally hit (no score) by team, player & inning
+                    if bb_diamond['h_g'] == 0:
+                        print('*** TEST *** (Hit, but no runs batted in: \n')
+
+                        print([team_at_bat, batter_up_m, current_inning, 1, bb_diamond['h_g'], bb_diamond['h_g']])
+
+
+                        team_roster[players_tuple[batter_up_m]].append([team_at_bat,
+                                                                        batter_up_m,
+                                                                        current_inning,
+                                                                        22,    # reset to 1 after review
+                                                                        bb_diamond['h_g'],
+                                                                        bb_diamond['h_g']])
 
                     # Process any hits that resulted in a run batted in ***  TODO Tally score by team, player & inning
                     if bb_diamond['h_g'] != 0:
@@ -215,16 +252,17 @@ if __name__ == "__main__":
 
                         print([team_at_bat, batter_up_m, current_inning, 1, bb_diamond['h_g'], bb_diamond['h_g']])
 
+                        print('team roster before append: {}'.format(team_roster[players_tuple[batter_up_m]]))
 
-                        team_roster[players_tuple[batter_up_m]].append([team_at_bat,
+                        team_roster[players_tuple[batter_up_m]].append([team_at_bat,   # TODO Should be only append
                                                                         batter_up_m,
                                                                         current_inning,
-                                                                        1,
+                                                                        99,
                                                                         bb_diamond['h_g'],
                                                                         bb_diamond['h_g']])
 
                         print('team roster after append: {}'.format(team_roster[players_tuple[batter_up_m]]))
-                        print('team roster (all):')
+
                         # Reset home plate
                         bb_diamond['h_g'] = 0
 
@@ -299,6 +337,25 @@ if __name__ == "__main__":
     # This section tests the teams roster   TODO Remove Section below after testing
 
     print('Visitors data team roster  *** PENDING ***')
+
+    team_roster_score_summ = [[0], [0]]
+
+    for team_aggregate in range(0,2):
+        print('team idx:', team_aggregate)
+
+        for roster_ in team_roster:
+            print('roster_player: ', roster_)
+            for roster_2 in iter(team_roster[roster_]):
+                print('roster_2: {}'.format(roster_2))
+                if roster_2[0] == team_aggregate:
+                    print('roster_2[0]: {}'.format(roster_2[0]))
+                    print('roster_2[4]: {}'.format(roster_2[4]))
+                    team_roster_score_summ[team_aggregate].append(roster_2[4])
+
+    print('team_roster_score_summ: {}'.format(team_roster_score_summ))
+    for chk in iter(team_roster_score_summ):
+        print('chk: {}, sum(chk): {}'.format(chk, sum(chk)))
+
 
     print('Current data stored in team_roster: \n{}'.format(team_roster))
 
