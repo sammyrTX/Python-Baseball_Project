@@ -11,5 +11,5 @@ _Pending Items:_
 
 _Current Work_
 
-    - Applying hits by each player to score tracking as well as teams roster data
-    - need to summarize teams roster data and verufy the score portion ties to score tracking
+    - Created aggregated summary from data in team_roster
+    - Need to convert visitors at bat code to a function and move out of main to func file

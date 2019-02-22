@@ -76,13 +76,16 @@ pitch_result_tuple = (('strike', 10),
 
 # Innings tracker list by list comprehension
 
-innings_tracker = [x for x in range(0, 6)]  # 9)]    #  TODO Testing - Set innings to just 6
+innings_tracker = [x for x in range(0, 9)]  # 9)]    #  TODO Testing - Set innings to just 6
 
 # Home team & Visitors score tracking
 
 score_tracking_by_inning = [0 for init_inning in range(9)]
 
 score_list = [list(score_tracking_by_inning),
+              list(score_tracking_by_inning), ]
+
+score_list_team_roster = [list(score_tracking_by_inning),
               list(score_tracking_by_inning), ]
 
 # ***** MAIN SECTION *****
@@ -345,14 +348,6 @@ if __name__ == "__main__":
     for test_ in iter(team_roster_score_summ):
         print(test_)
 
-    # team_roster_score_summ = [[0], [0]]
-
-
-# # Innings tracker list by list comprehension
-#
-# innings_tracker = [x for x in range(0, 2)]  # 9)]    #  TODO Testing - Set innings to just 3
-
-
     for team_aggregate in range(0,2):
         print('team idx:', team_aggregate)
 
@@ -372,15 +367,24 @@ if __name__ == "__main__":
 
     # for chk in iter(team_roster_score_summ):
     #     print('chk: {}, sum(chk): {}'.format(chk, sum(chk[0])))
+    print('score_list_team_roster: {}'.format(score_list_team_roster))
 
     for team_value in range(0, 2):
         for chk in range(0, 9):
             print('team: {} \tchk: {}, \tsum(chk): {}'.format(team_value, chk, sum(team_roster_score_summ[chk][team_value])))
 
+            score_list_team_roster[team_value][chk] = sum(team_roster_score_summ[chk][team_value])
+
+
     # This section tests the scorebox   TODO Remove Section below after testing
     print("Scorebox test:")
     print_scorebox(score_list[0], score_list[1])
 
+    print(score_list)
+    print('score_list_team_roster: {}'.format(score_list_team_roster))
+
+    print("Scorebox for score_list_team_roster:")
+    print_scorebox(score_list_team_roster[0], score_list_team_roster[1])
 
     print('Current data stored in team_roster: \n{}'.format(team_roster))
 
