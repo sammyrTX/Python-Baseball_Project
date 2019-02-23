@@ -1,6 +1,8 @@
-import baseball_functions
+from baseball_functions import *
+
 import random
 
+if __name__ == "__main__":
 
 # def pitch_result():
 #     pitch_result_tuple = (('strike', 10), ('ball', 11), ('foul ball', 12), ('foul out', 13), ('out - defense', 14),
@@ -8,11 +10,14 @@ import random
 #     pitch_result_return = random.randint(0, 8)
 #     return pitch_result_tuple[pitch_result_return]
 
+    pitch_check = pitch_result()
+    type, idx = pitch_check
+    print(pitch_check)
+    print(type, idx)
 
-pitch_check = pitch_result()
-type, idx = pitch_check
-print(pitch_check)
-print(type, idx)
+    xxxx = batting_order()
 
-xxxx = batting_order()
+    print(xxxx)
 
+    for i in range(3):
+        print(i)
