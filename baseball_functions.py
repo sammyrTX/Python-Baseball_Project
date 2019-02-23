@@ -11,6 +11,19 @@
 
 import random
 
+# data for functions
+team_description_func = ('VISITORS', 'HOME')
+
+players_tuple_func = ("Pitcher",
+                      "Catcher",
+                      "First Base",
+                      "Second Base",
+                      "Third Base",
+                      "Shortstop",
+                      "Left Field",
+                      "Center Field",
+                      "Right Field",)
+
 #  **** Advance Runner Needs further testing ****
 
 
@@ -24,19 +37,7 @@ def advance_runner(hit_,
 
     home_plate_f, base1_f, base2_f, base3_f = bb_diamond_adv_runner.values()
 
-    # Test prints to capture status  TODO Remove after testing
-    # print("before advance:")
-    # print("Hits: {} 1st: {} 2nd: {} 3rd: {} Home: {}".format(hit_f,
-    #                                                          base1_f,
-    #                                                          base2_f,
-    #                                                          base3_f,
-    #                                                          home_plate_f,
-    #                                                          ))
-    #
-    # print("(Function Adv Runner) Hit Result = {}".format(hit_f))
-
     batter = 1   # Initialize batter to put batter on base if someone already on first
-    print("batter: {}".format(batter))
 
     while hit_f:
         if base3_f == 1:
@@ -150,13 +151,13 @@ def batting_order():
     batting_lineup = []
 
     while len(batting_lineup) < 9:
-        next_batter = random.randint(0, 8)  # TODO Check Shadow warning
-        if next_batter in batting_lineup:
+
+        next_batter_f = random.randint(0, 8)  # TODO Check Shadow warning
+        if next_batter_f in batting_lineup:
             continue
         else:
-            batting_lineup.append(next_batter)
+            batting_lineup.append(next_batter_f)
 
-    # print("batting order: {}".format(batting_lineup))
     return batting_lineup
 
 
@@ -188,12 +189,6 @@ def process_pitch_result(pitch_result_f,
                          foul_count_f,
                          bb_diamond_f):
 
-    # Need to add steps to process advancing runners and tracking runs scored  TODO
-    # Need to add steps to process a batter getting walked (4 balls)
-
-    result_txt, result_idx = pitch_result_f
-    print("Pitch Result: ", result_txt, result_idx)
-
     # Add code here to simulate specific pitch_result_'s in order test the while loop  TODO Set pitch_result for testing
     # e.g. pitch_result_ = ('TEST > foul out', 13)
 
@@ -208,16 +203,10 @@ def process_pitch_result(pitch_result_f,
     # print("*TEST* Pitch Result: ", result_txt, result_idx)
 
     # Hit
-
     if result_idx in range(1, 5):
-        print("(Function) A hit: ", result_txt, result_idx)
-        print("Add step here to advance runner >>> Using advance_runner()")
-
-        # Work in progress, checking on using dictionary to pass values between functions back to main
         pitch_result_f, bb_diamond_f = advance_runner(pitch_result_f, bb_diamond_f)
 
     # Strike, Ball or Foul
-
     if result_idx in range(10, 15):
 
         if result_idx == 10:
@@ -231,10 +220,8 @@ def process_pitch_result(pitch_result_f,
         if result_idx == 11:
             print('Ball!')
             ball_count_f += 1
-            print('Ball count: {}'.format(ball_count_f))
 
             if ball_count_f == 4:
-                print('Ball count is 4. Using walk_batter func to walk the batter')  # TODO Add Walk the batter process
 
                 bb_diamond_f = walk_batter(bb_diamond_f)
 
@@ -247,83 +234,42 @@ def process_pitch_result(pitch_result_f,
                 if strikes_count_f < 2:
                     strikes_count_f += 1
 
-            print("Foul count: {}".format(foul_count_f))
-
         # Foul Ball that is caught resulting in an Out
-
         if result_idx == 13:
             print("Fouled out!")
             outs_count_f += 1
 
         # Pop Fly that is caught resulting in an Out
-
         if result_idx == 14:
             print("Pop fly caught - Yer' out!")
             outs_count_f += 1
 
-    # ball_count_print(outs_count_f, strikes_count_f, ball_count_f)   TODO Move to at bat function
-    # ball_count_print(0, 3, ball_count_f)   TODO for testing - remove when finished
-    print()
-
-    return pitch_result_f, outs_count_f, strikes_count_f, ball_count_f, foul_count_f, bb_diamond_f
+    return (pitch_result_f,
+            outs_count_f,
+            strikes_count_f,
+            ball_count_f,
+            foul_count_f,
+            bb_diamond_f,
+            )
 
 
 def next_batter(team_f,
                 batting_lineup_f,
                 batting_lineup_keep_f,):
 
-    players_tuple_f = ("Pitcher",
-                       "Catcher",
-                       "First Base",
-                       "Second Base",
-                       "Third Base",
-                       "Shortstop",
-                       "Left Field",
-                       "Center Field",
-                       "Right Field",)
-
-    # troubleshooting print statements; remove after testing   TODO Test Prints to be removed
-    # print("from function: batting_lineup_f: {}".format(batting_lineup_f))
-    # print("from function: batting_lineup_keep_f: {}".format(batting_lineup_keep_f))
-    # print(batting_lineup_f == batting_lineup_keep_f)
-
     if len(batting_lineup_f[team_f]) != 0:
 
         batter_up_f = batting_lineup_f[team_f][0]
         batting_lineup_f[team_f].pop(0)
-        # print("At bat: {}".format(players_tuple_f[batter_up_f]))  TODO check if required if not already in main
-
-        # troubleshooting print statements; remove after testing   TODO Test Prints to be removed
-        # print("len(batting_lineup_f[team_f]: {}".format(len(batting_lineup_f[team_f])))
-        # print("check len of list: {}".format(len(batting_lineup_f[team_f]) != 0))
-        # print("check the keep tuple: {}".format(batting_lineup_keep_f[team_f]))
     else:
-        # troubleshooting print statements; remove after testing   TODO Test Prints to be removed
-        # print("Hit the else clause here ***")
-        # print("lineup: {}   keep tuple: {}".format(id(batting_lineup_f), id(batting_lineup_keep_f)))
-
         batting_lineup_f[team_f] = list(batting_lineup_keep_f[team_f])
-
-        # troubleshooting print statements; remove after testing   TODO Test Prints to be removed
-        # print("keep list: {}".format(list(batting_lineup_keep_f[team_f])))
-        # print("just keep: {}".format(batting_lineup_keep_f[team_f]))
-        # print("batting lineup after updating to batting line up keep: {}".format(batting_lineup_f[team_f]))
-
         batter_up_f = batting_lineup_f[team_f][0]
         batting_lineup_f[team_f].pop(0)
-        print("At bat: {}".format(players_tuple_f[batter_up_f]))
 
-    # print(">>>> Line Up for team {}: {}".format(team_f,  TODO Clean UP
-    #                                             batting_lineup_f[team_f]),)
-    # print('Batter position ID in function to be passed to call from main: {} > {}'.format(batter_up_f,  TODO Clean UP
-    #                                                                                       players_tuple_f[batter_up_f],
-    #                                                                                       ))
     return team_f, batting_lineup_f, batter_up_f
 
 
 def bases_picture(bb_diamond_f):
-
-    # Place holder for bases picture to potentially use to show status of bases during an at bat  TODO Remove comment
 
     base01 = bb_diamond_f['b1_g']
     base02 = bb_diamond_f['b2_g']
@@ -403,6 +349,129 @@ def walk_batter(bb_diamond_walk_runner):
     return bb_diamond_walk_runner
 
 
-def at_bat():   # TODO  Use this once functionality in Main is finalized
-    # placeholder
-    pass
+def at_bat(team_at_bat_fa,
+           batting_lineup_fa,
+           batting_lineup_fa_keep,
+           outs_fa,
+           strikes_fa,
+           balls_fa,
+           fouls_fa,
+           bb_diamond_fa,
+           team_roster_fa,
+           current_inning_fa,
+           score_list_fa,
+           ):
+
+    team_at_bat_fa, batting_lineup_fa, batter_up_fa = next_batter(team_at_bat_fa,
+                                                                  batting_lineup_fa,
+                                                                  batting_lineup_fa_keep,
+                                                                  )
+
+    print('\t','* Up to bat for {}: {} *'.format(team_description_func[team_at_bat_fa],
+                                                 players_tuple_func[batter_up_fa],))
+
+    while True:
+        print('\t','At bat for {}: {}'.format(team_description_func[team_at_bat_fa], players_tuple_func[batter_up_fa]))
+
+        print()
+        
+        outs_pre = int(outs_fa)
+        
+        pitch_result_fa, outs_fa, strikes_fa, balls_fa, fouls_fa, bb_diamond_fa = process_pitch_result(pitch_result(),
+                                                                                                       outs_fa,
+                                                                                                       strikes_fa,
+                                                                                                       balls_fa,
+                                                                                                       fouls_fa,
+                                                                                                       bb_diamond_fa,
+                                                                                                       )
+
+        if outs_fa > outs_pre:
+
+            strikes_fa = 0
+            balls_fa = 0
+            fouls_fa = 0
+
+            bases_picture(bb_diamond_fa)
+
+            break
+
+        if pitch_result_fa[0] in ('strike', 'ball', 'foul ball'):
+
+            # Batter was walked, tally home_plate if there was a score, init and then break for next batter
+
+            if pitch_result_fa[0] == 'ball' and pitch_result_fa[1] == 44:
+
+                team_roster_fa[players_tuple_func[batter_up_fa]].append([team_at_bat_fa,
+                                                                         batter_up_fa,
+                                                                         current_inning_fa,
+                                                                         0,
+                                                                         bb_diamond_fa['h_g'],
+                                                                         bb_diamond_fa['h_g'],
+                                                                         ])
+                # Clear ball count after batter is walked
+                strikes_fa = 0
+                balls_fa = 0
+                fouls_fa = 0
+
+                bases_picture(bb_diamond_fa)
+
+                break
+
+            print('Show batter count')
+            print()
+            ball_count_print(outs_fa,
+                             strikes_fa,
+                             balls_fa,)
+            continue
+
+        if pitch_result_fa[1] in range(1, 5):
+
+            bases_picture(bb_diamond_fa)
+
+            # Process hit if there is no run batted in
+            if bb_diamond_fa['h_g'] == 0:
+
+                team_roster_fa[players_tuple_func[batter_up_fa]].append([team_at_bat_fa,
+                                                                         batter_up_fa,
+                                                                         current_inning_fa,
+                                                                         1,
+                                                                         bb_diamond_fa['h_g'],
+                                                                         bb_diamond_fa['h_g']])
+
+            # Process any hits that resulted in a run batted in
+            if bb_diamond_fa['h_g'] != 0:
+
+                # Add runs to score list
+                score_list_fa[team_at_bat_fa][current_inning_fa] += bb_diamond_fa['h_g']
+
+                # Pass player and results data to teams roster list and any runs scored. Clear Home Plate after
+                # runs nd RBI's recorded
+                team_roster_fa[players_tuple_func[batter_up_fa]].append([team_at_bat_fa,
+                                                                         batter_up_fa,
+                                                                         current_inning_fa,
+                                                                         1,
+                                                                         bb_diamond_fa['h_g'],
+                                                                         bb_diamond_fa['h_g']])
+
+                # Reset home plate
+                bb_diamond_fa['h_g'] = 0
+
+            # Clear Ball Count
+            strikes_fa = 0
+            balls_fa = 0
+            fouls_fa = 0
+
+            print('Go to next batter')
+            break
+
+    return (team_at_bat_fa,
+            batting_lineup_fa,
+            batting_lineup_fa_keep,
+            outs_fa,
+            strikes_fa,
+            balls_fa,
+            fouls_fa,
+            bb_diamond_fa,
+            team_roster_fa,
+            current_inning_fa,
+            score_list_fa,)
