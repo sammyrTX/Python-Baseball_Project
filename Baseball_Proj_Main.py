@@ -60,15 +60,15 @@ innings_name = ["1st Inning",
 
 # Pitch Result tuple
 
-pitch_result_tuple = (('strike', 10),
-                      ('ball', 11),
-                      ('foul ball', 12),
-                      ('foul out', 13),
-                      ('out - defense', 14),
-                      ('hit - single', 1),
-                      ('hit - double', 2),
-                      ('hit - triple', 3),
-                      ('hit - home run', 4),)
+pitch_result_tuple = (('strike', 10, 'Strike!',),
+                      ('ball', 11, 'Ball!',),
+                      ('foul ball', 12, 'Foul Ball!',),
+                      ('foul out', 13, 'Out!',),
+                      ('out - defense', 14, 'Out!',),
+                      ('hit - single', 1, 'Hit! A Single',),
+                      ('hit - double', 2, 'Hit! A Double',),
+                      ('hit - triple', 3, 'Hit! A Triple',),
+                      ('hit - home run', 4, 'Home run!!!',),)
 
 # Innings tracker list by list comprehension
 
@@ -135,7 +135,7 @@ if __name__ == "__main__":
 
         bb_diamond = {base: 0 for base in bb_diamond}
 
-        print("Top of the Inning: {} at bat".format(team_description[team_at_bat]))
+        print("Top of the Inning ({})".format(innings_name[current_inning]))
 
         while outs_m < 3:
 
@@ -162,13 +162,12 @@ if __name__ == "__main__":
         outs_m = 0
         balls_m = 0
         strikes_m = 0
+        fouls_m = 0
 
         bb_diamond = {base: 0 for base in bb_diamond}
 
-        print('*** TEST of score_list: {}'.format(score_list))
-        print('*** TEST of score_list > score_list is None: {}'.format(score_list is None))
-
-        print("Bottom of the Inning ({}): {} at bat".format(innings_name[current_inning], team_description[team_at_bat]))
+        print("-" * 50)
+        print("Bottom of the Inning ({})".format(innings_name[current_inning]))
 
         while outs_m < 3:
 
@@ -185,9 +184,6 @@ if __name__ == "__main__":
                                                              current_inning,
                                                              score_list,
                                                              )
-            ball_count_print(outs_m,
-                             strikes_m,
-                             balls_m,)
 
     # Need to add check after innings if the score is tied. Need to continue game one inning at a time until one team
     # has a score greater than the other.  TODO  Add check for Tie at end of nine innings
@@ -243,7 +239,6 @@ if __name__ == "__main__":
         for chk in range(0, 9):
             # print('team: {} \tchk: {}, \tsum(chk): {}'.format(team_value, chk, sum(team_roster_score_summ[chk][team_value])))
             score_list_team_roster[team_value][chk] = sum(team_roster_score_summ[chk][team_value])
-
 
     # This section tests the scorebox   TODO Remove Section below after testing
     print("Score box test:")

@@ -31,9 +31,9 @@ def advance_runner(hit_,
                    bb_diamond_adv_runner,
                    ):
 
-    hit_txt, hit_f = hit_
+    hit_txt, hit_f, hit_descr = hit_
 
-    print('hit_ : {}'.format(hit_))
+    print('{}'.format(hit_descr))
 
     home_plate_f, base1_f, base2_f, base3_f = bb_diamond_adv_runner.values()
 
@@ -61,28 +61,9 @@ def advance_runner(hit_,
                 base1_f = 1
                 batter = 0
 
-        hit_f -= 1
+        hit_f -= 1  # Decrement hit_f in order to advance batter the appropriate number of bases
 
         print()
-
-        # Test prints to capture status  TODO Remove after testing
-        # print("after 1 loop:\t",
-        #       hit_f,
-        #       base1_f,
-        #       base2_f,
-        #       base3_f,
-        #       home_plate_f,)
-    #
-    #     print("Hits: {} 1st: {} 2nd: {} 3rd: {} Home: {}".format(hit_f,
-    #                                                              base1_f,
-    #                                                              base2_f,
-    #                                                              base3_f,
-    #                                                              home_plate_f,))  # TODO
-    #     print("batter: {}".format(batter))
-    #
-    # print("function returns:", hit_f, base1_f, base2_f, base3_f, home_plate_f)  # TODO  REMOVE AFTER TESTING
-    #
-    # print("batter: {}".format(batter))
 
     bb_diamond_adv_runner['h_g'] = home_plate_f
     bb_diamond_adv_runner['b1_g'] = base1_f
@@ -162,15 +143,15 @@ def batting_order():
 
 
 def pitch_result():
-    pitch_result_tuple = (('strike', 10),
-                          ('ball', 11),
-                          ('foul ball', 12),
-                          ('foul out', 13),
-                          ('out - defense', 14),
-                          ('hit - single', 1),
-                          ('hit - double', 2),
-                          ('hit - triple', 3),
-                          ('hit - home run', 4),)
+    pitch_result_tuple = (('strike', 10, 'Strike!',),
+                          ('ball', 11, 'Ball!',),
+                          ('foul ball', 12, 'Foul Ball!',),
+                          ('foul out', 13, 'Out!',),
+                          ('out - defense', 14, 'Out!',),
+                          ('hit - single', 1, 'Hit! A Single',),
+                          ('hit - double', 2, 'Hit! A Double',),
+                          ('hit - triple', 3, 'Hit! A Triple',),
+                          ('hit - home run', 4, 'Home Run!!!',),)
 
     pitch_result_return = random.randint(0, 8)
     return pitch_result_tuple[pitch_result_return]
@@ -199,7 +180,7 @@ def process_pitch_result(pitch_result_f,
     # pitch_result_f = ('TEST > ball', 11)
     # pitch_result_f = ('TEST > strike', 10)
     # pitch_result_f = ('TEST > foul out', 13)
-    result_txt, result_idx = pitch_result_f
+    result_txt, result_idx, result_description = pitch_result_f
     # print("*TEST* Pitch Result: ", result_txt, result_idx)
 
     # Hit
@@ -367,9 +348,6 @@ def at_bat(team_at_bat_fa,
                                                                   batting_lineup_fa_keep,
                                                                   )
 
-    print('\t','* Up to bat for {}: {} *'.format(team_description_func[team_at_bat_fa],
-                                                 players_tuple_func[batter_up_fa],))
-
     while True:
         print('\t','At bat for {}: {}'.format(team_description_func[team_at_bat_fa], players_tuple_func[batter_up_fa]))
 
@@ -393,6 +371,10 @@ def at_bat(team_at_bat_fa,
 
             bases_picture(bb_diamond_fa)
 
+            ball_count_print(outs_fa,
+                             strikes_fa,
+                             balls_fa,)
+
             break
 
         if pitch_result_fa[0] in ('strike', 'ball', 'foul ball'):
@@ -415,18 +397,18 @@ def at_bat(team_at_bat_fa,
 
                 bases_picture(bb_diamond_fa)
 
+                ball_count_print(outs_fa,
+                                 strikes_fa,
+                                 balls_fa,)
+
                 break
 
-            print('Show batter count')
-            print()
             ball_count_print(outs_fa,
                              strikes_fa,
                              balls_fa,)
             continue
 
         if pitch_result_fa[1] in range(1, 5):
-
-            bases_picture(bb_diamond_fa)
 
             # Process hit if there is no run batted in
             if bb_diamond_fa['h_g'] == 0:
@@ -461,7 +443,12 @@ def at_bat(team_at_bat_fa,
             balls_fa = 0
             fouls_fa = 0
 
-            print('Go to next batter')
+            bases_picture(bb_diamond_fa)
+
+            ball_count_print(outs_fa,
+                             strikes_fa,
+                             balls_fa,)
+
             break
 
     return (team_at_bat_fa,
