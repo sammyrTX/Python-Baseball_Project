@@ -63,8 +63,6 @@ def advance_runner(hit_,
 
         hit_f -= 1  # Decrement hit_f in order to advance batter the appropriate number of bases
 
-        print()
-
     bb_diamond_adv_runner['h_g'] = home_plate_f
     bb_diamond_adv_runner['b1_g'] = base1_f
     bb_diamond_adv_runner['b2_g'] = base2_f
@@ -161,6 +159,9 @@ def ball_count_print(outs_f, strikes_f, ball_f):
     print("*" * 16)
     print("S: {}  B: {}  O: {}".format(strikes_f, ball_f, outs_f))
     print("*" * 16)
+    print()
+    print("*" * 80)
+    print()
 
 
 def process_pitch_result(pitch_result_f,
@@ -271,13 +272,15 @@ def bases_picture(bb_diamond_f):
     else:
         base03_pic = ' '
 
-    print("            [{}]".format(base02_pic))
-    print("           /   \\")
-    print("          /     \\")
-    print("        [{}]      [{}]".format(base03_pic, base01_pic))
-    print("          \\     /")
-    print("           \\   /")
-    print("            [ ]")
+    print()
+    print("       [{}]".format(base02_pic))
+    print("      /   \\")
+    print("     /     \\")
+    print("   [{}]      [{}]".format(base03_pic, base01_pic))
+    print("     \\     /")
+    print("      \\   /")
+    print("       [ ]")
+    print()
 
     return
 
@@ -349,9 +352,9 @@ def at_bat(team_at_bat_fa,
                                                                   )
 
     while True:
-        print('\t','At bat for {}: {}'.format(team_description_func[team_at_bat_fa], players_tuple_func[batter_up_fa]))
+        print('At bat for {}: {}'.format(team_description_func[team_at_bat_fa], players_tuple_func[batter_up_fa]))
 
-        print()
+        print('')
         
         outs_pre = int(outs_fa)
         

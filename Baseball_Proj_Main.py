@@ -138,7 +138,7 @@ if __name__ == "__main__":
         print("Top of the Inning ({})".format(innings_name[current_inning]))
 
         while outs_m < 3:
-
+            # TODO Put returned values into variables and then unpack
             team_at_bat, batting_lineup, batting_lineup_keep, outs_m, strikes_m, balls_m, fouls_m, bb_diamond, \
             team_roster, current_inning, score_list = at_bat(team_at_bat,
                                                              batting_lineup,
@@ -152,9 +152,6 @@ if __name__ == "__main__":
                                                              current_inning,
                                                              score_list,
                                                              )
-        ball_count_print(outs_m,
-                         strikes_m,
-                         balls_m,)
 
 ########################################################################################################################
 
