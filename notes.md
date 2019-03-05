@@ -9,3 +9,9 @@ _Pending Items:_
      
    - Print score box after a run is scored
       - Print after a team is done with their at bat
+
+   - Convert main Innings For Loop which loops through nine innings to a While loop that checks for the 
+     completion of nine innings. After nine innings the scores are checked for a tie. Need to incorporate
+     extra innings if there is a tie.
+     
+   - Review some functions and switch arguments to lists and unpack arguments within the function 
