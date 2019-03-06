@@ -168,6 +168,8 @@ if __name__ == "__main__":
 
         while outs_m < 3:
 
+            # TODO convert return to a list and then unpack
+
             team_at_bat, batting_lineup, batting_lineup_keep, outs_m, strikes_m, balls_m, fouls_m, bb_diamond,\
             team_roster, current_inning, score_list = at_bat(team_at_bat,
                                                              batting_lineup,
@@ -187,8 +189,33 @@ if __name__ == "__main__":
 
 ########################################################################################################################
 
+    # Check for a tie game after completion of nine innings
+
+
     print('*** After nine innings need to check if the score is tied. If true, continue game one inning at a time'
           ' until tie is broken ***')
+
+    print()
+    
+    print_scorebox(score_list[0], score_list[1])
+
+    print()
+
+    print('VISITOR: {} \t HOME: {}'.format(sum(score_list[0]), sum(score_list[1])))
+
+    print()
+
+    if sum(score_list[0]) == sum(score_list[1]):
+        print('There is a tie after nine innings!')
+        print('Add process here for extra innings...')  # TODO Add process to add extra innings
+    else:
+        print('There is no tie...game complete!')
+
+    print()
+    print("*" * 80)
+
+########################################################################################################################
+
     print()
     print("*** END OF GAME ***")
     print()
