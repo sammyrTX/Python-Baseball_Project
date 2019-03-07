@@ -333,18 +333,15 @@ def walk_batter(bb_diamond_walk_runner):
     return bb_diamond_walk_runner
 
 
-def at_bat(team_at_bat_fa,
-           batting_lineup_fa,
-           batting_lineup_fa_keep,
-           outs_fa,
-           strikes_fa,
-           balls_fa,
-           fouls_fa,
-           bb_diamond_fa,
-           team_roster_fa,
-           current_inning_fa,
-           score_list_fa,
-           ):
+def at_bat(inning_data_func):
+
+    (team_at_bat_fa,
+     batting_lineup_fa, batting_lineup_fa_keep,
+     outs_fa, strikes_fa, balls_fa, fouls_fa,
+     bb_diamond_fa,
+     team_roster_fa,
+     current_inning_fa,
+     score_list_fa,) = inning_data_func
 
     team_at_bat_fa, batting_lineup_fa, batter_up_fa = next_batter(team_at_bat_fa,
                                                                   batting_lineup_fa,

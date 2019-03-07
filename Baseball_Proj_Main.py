@@ -6,8 +6,6 @@ from baseball_functions import *
 
 # Variables for bases & home plate
 
-hit_g = base1_g = base2_g = base3_g = home_plate_g = 0
-
 bb_diamond = {'h_g': 0,
               'b1_g': 0,
               'b2_g': 0,
@@ -42,8 +40,6 @@ team_roster = {player: [] for player in players_tuple}
 
 # Use to flag which team is at bat Team (0 - Visitors, 1 - Home)
 
-team_at_bat = 0
-
 team_description = ('VISITORS', 'HOME')
 
 # Innings
@@ -57,6 +53,8 @@ innings_name = ["1st Inning",
                 "7th Inning",
                 "8th Inning",
                 "9th Inning", ]
+
+innings_half = ['Top', 'Bottom']
 
 # Pitch Result tuple
 
@@ -127,70 +125,47 @@ if __name__ == "__main__":
 
         print(innings_name[current_inning], "*** BEGIN ***")
 
-        team_at_bat = 0
-        outs_m = 0
-        balls_m = 0
-        strikes_m = 0
-        fouls_m = 0
+        for team_at_bat in range(0, 2):
 
-        bb_diamond = {base: 0 for base in bb_diamond}
+            outs_m = 0
+            balls_m = 0
+            strikes_m = 0
+            fouls_m = 0
 
-        print("Top of the Inning ({})".format(innings_name[current_inning]))
+            bb_diamond = {base: 0 for base in bb_diamond}
 
-        while outs_m < 3:
-            # TODO Put returned values into variables and then unpack
-            team_at_bat, batting_lineup, batting_lineup_keep, outs_m, strikes_m, balls_m, fouls_m, bb_diamond, \
-            team_roster, current_inning, score_list = at_bat(team_at_bat,
-                                                             batting_lineup,
-                                                             batting_lineup_keep,
-                                                             outs_m,
-                                                             strikes_m,
-                                                             balls_m,
-                                                             fouls_m,
-                                                             bb_diamond,
-                                                             team_roster,
-                                                             current_inning,
-                                                             score_list,
-                                                             )
+            print("{} of the Inning ({})".format(innings_half[team_at_bat], innings_name[current_inning]))
 
-########################################################################################################################
+            while outs_m < 3:
 
-        team_at_bat = 1
-        outs_m = 0
-        balls_m = 0
-        strikes_m = 0
-        fouls_m = 0
+                inning_data = [team_at_bat,
+                               batting_lineup,
+                               batting_lineup_keep,
+                               outs_m,
+                               strikes_m,
+                               balls_m,
+                               fouls_m,
+                               bb_diamond,
+                               team_roster,
+                               current_inning,
+                               score_list,
+                               ]
 
-        bb_diamond = {base: 0 for base in bb_diamond}
-
-        print("-" * 50)
-        print("Bottom of the Inning ({})".format(innings_name[current_inning]))
-
-        while outs_m < 3:
-
-            # TODO convert return to a list and then unpack
-
-            team_at_bat, batting_lineup, batting_lineup_keep, outs_m, strikes_m, balls_m, fouls_m, bb_diamond,\
-            team_roster, current_inning, score_list = at_bat(team_at_bat,
-                                                             batting_lineup,
-                                                             batting_lineup_keep,
-                                                             outs_m,
-                                                             strikes_m,
-                                                             balls_m,
-                                                             fouls_m,
-                                                             bb_diamond,
-                                                             team_roster,
-                                                             current_inning,
-                                                             score_list,
-                                                             )
-
-    # Need to add check after innings if the score is tied. Need to continue game one inning at a time until one team
-    # has a score greater than the other.  TODO  Add check for Tie at end of nine innings
+                (team_at_bat,
+                 batting_lineup,
+                 batting_lineup_keep,
+                 outs_m,
+                 strikes_m,
+                 balls_m,
+                 fouls_m,
+                 bb_diamond,
+                 team_roster,
+                 current_inning,
+                 score_list,) = at_bat(inning_data)
 
 ########################################################################################################################
 
     # Check for a tie game after completion of nine innings
-
 
     print('*** After nine innings need to check if the score is tied. If true, continue game one inning at a time'
           ' until tie is broken ***')
