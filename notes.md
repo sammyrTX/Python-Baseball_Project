@@ -14,4 +14,7 @@ _Pending Items:_
      completion of nine innings. After nine innings the scores are checked for a tie. Need to incorporate
      extra innings if there is a tie.   *** Keeping for Loop, checking for tie after nine innings
      
+     - Moved Inning process to a function
+     - Run extra innings process after tie detected after nine innings
+     
    - Review some functions and switch arguments to lists and unpack arguments within the function 

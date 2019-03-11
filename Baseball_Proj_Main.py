@@ -70,7 +70,7 @@ pitch_result_tuple = (('strike', 10, 'Strike!',),
 
 # Innings tracker list by list comprehension
 
-innings_tracker = [x for x in range(0, 9)]  # 9)]    #  TODO Testing - Set innings to just 6
+innings_tracker = [x for x in range(0, 3)]  # 9)]    #  TODO Testing - Set innings to just 6
 
 # Home team & Visitors score tracking
 
@@ -125,43 +125,64 @@ if __name__ == "__main__":
 
         print(innings_name[current_inning], "*** BEGIN ***")
 
-        for team_at_bat in range(0, 2):
-
-            outs_m = 0
-            balls_m = 0
-            strikes_m = 0
-            fouls_m = 0
-
-            bb_diamond = {base: 0 for base in bb_diamond}
-
-            print("{} of the Inning ({})".format(innings_half[team_at_bat], innings_name[current_inning]))
-
-            while outs_m < 3:
-
-                inning_data = [team_at_bat,
+        inning_process_data = [current_inning,
+                               bb_diamond,
+                               innings_half,
+                               innings_name,
                                batting_lineup,
                                batting_lineup_keep,
-                               outs_m,
-                               strikes_m,
-                               balls_m,
-                               fouls_m,
-                               bb_diamond,
                                team_roster,
-                               current_inning,
                                score_list,
                                ]
+        (current_inning,
+         bb_diamond,
+         innings_half,
+         innings_name,
+         batting_lineup,
+         batting_lineup_keep,
+         team_roster,
+         score_list,
+         ) = inning_process(inning_process_data)
 
-                (team_at_bat,
-                 batting_lineup,
-                 batting_lineup_keep,
-                 outs_m,
-                 strikes_m,
-                 balls_m,
-                 fouls_m,
-                 bb_diamond,
-                 team_roster,
-                 current_inning,
-                 score_list,) = at_bat(inning_data)
+        # Original code in Main  TODO Remove this section once function is working
+        # for team_at_bat in range(0, 2):
+        #
+        #     outs_m = 0
+        #     balls_m = 0
+        #     strikes_m = 0
+        #     fouls_m = 0
+        #
+        #     bb_diamond = {base: 0 for base in bb_diamond}
+        #
+        #     print("{} of the Inning ({})".format(innings_half[team_at_bat],
+        #                                          innings_name[current_inning],))
+        #
+        #     while outs_m < 3:
+        #
+        #         inning_data = [team_at_bat,
+        #                        batting_lineup,
+        #                        batting_lineup_keep,
+        #                        outs_m,
+        #                        strikes_m,
+        #                        balls_m,
+        #                        fouls_m,
+        #                        bb_diamond,
+        #                        team_roster,
+        #                        current_inning,
+        #                        score_list,
+        #                        ]
+        #
+        #         (team_at_bat,
+        #          batting_lineup,
+        #          batting_lineup_keep,
+        #          outs_m,
+        #          strikes_m,
+        #          balls_m,
+        #          fouls_m,
+        #          bb_diamond,
+        #          team_roster,
+        #          current_inning,
+        #          score_list,) = at_bat(inning_data)
 
 ########################################################################################################################
 
@@ -182,6 +203,8 @@ if __name__ == "__main__":
 
     if sum(score_list[0]) == sum(score_list[1]):
         print('There is a tie after nine innings!')
+        print('Going to extra innings...')
+
         print('Add process here for extra innings...')  # TODO Add process to add extra innings
     else:
         print('There is no tie...game complete!')
