@@ -52,7 +52,30 @@ innings_name = ["1st Inning",
                 "6th Inning",
                 "7th Inning",
                 "8th Inning",
-                "9th Inning", ]
+                "9th Inning",
+                "10th Inning",
+                "11th Inning",
+                "12th Inning",
+                "13th Inning",
+                "14th Inning",
+                "15th Inning",
+                "16th Inning",
+                "17th Inning",
+                "18th Inning",
+                "19th Inning",
+                "20th Inning",
+                "21st Inning",
+                "22nd Inning",
+                "23rd Inning",
+                "24th Inning",
+                "25th Inning",
+                "26th Inning",
+                "27th Inning",
+                "28th Inning",
+                "29th Inning",
+                "30th Inning",
+                "*** OUT OF RANGE ***",
+                ]
 
 innings_half = ['Top', 'Bottom']
 
@@ -70,11 +93,11 @@ pitch_result_tuple = (('strike', 10, 'Strike!',),
 
 # Innings tracker list by list comprehension
 
-innings_tracker = [x for x in range(0, 3)]  # 9)]    #  TODO Testing - Set innings to just 6
+innings_tracker = [x for x in range(0, 9)]  # 9)]    #  TODO Testing - Set innings to just 3
 
 # Home team & Visitors score tracking
 
-score_tracking_by_inning = [0 for init_inning in range(9)]
+score_tracking_by_inning = [0 for init_inning in range(30)]  # Setting to max of 30 innings in extra innings
 
 score_list = [list(score_tracking_by_inning),
               list(score_tracking_by_inning), ]
@@ -201,13 +224,42 @@ if __name__ == "__main__":
 
     print()
 
-    if sum(score_list[0]) == sum(score_list[1]):
+    if True:
+        score_list = [list(score_tracking_by_inning),
+                      list(score_tracking_by_inning), ]
+        print('score_list: {}'.format(score_list))
+
+    # if sum(score_list[0]) == sum(score_list[1]):
         print('There is a tie after nine innings!')
         print('Going to extra innings...')
 
-        print('Add process here for extra innings...')  # TODO Add process to add extra innings
-    else:
-        print('There is no tie...game complete!')
+        # Run extra innings
+
+        while sum(score_list[0]) == sum(score_list[1]):
+
+            current_inning += 1
+            if innings_name[current_inning] != '*** OUT OF RANGE ***':
+
+                print(innings_name[current_inning], "*** EXTRA INNINGS BEGIN ***")
+
+                inning_process_data = [current_inning,
+                                       bb_diamond,
+                                       innings_half,
+                                       innings_name,
+                                       batting_lineup,
+                                       batting_lineup_keep,
+                                       team_roster,
+                                       score_list,
+                                       ]
+                (current_inning,
+                 bb_diamond,
+                 innings_half,
+                 innings_name,
+                 batting_lineup,
+                 batting_lineup_keep,
+                 team_roster,
+                 score_list,
+                 ) = inning_process(inning_process_data)
 
     print()
     print("*" * 80)
@@ -228,10 +280,13 @@ if __name__ == "__main__":
 
     # This section tests the teams roster   TODO Remove Section below after testing
 
-    team_roster_score_summ = [[[0], [0]] for x in range(0, 9)]
+    team_roster_score_summ = [[[0], [0]] for x in range(0, 30)]
 
     # Code for testing aggregation of scores; keep in main for now, but comment out some of the processes
     # print(team_roster_score_summ)
+
+
+
 
     # for test_ in iter(team_roster_score_summ):
         # print(test_)

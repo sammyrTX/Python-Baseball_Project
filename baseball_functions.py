@@ -100,19 +100,6 @@ def print_scorebox(visitors_list, home_list):
           "\t--",
           "\t--",)
 
-    print("HOME:     \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2}".
-          format(home_list[0],
-                 home_list[1],
-                 home_list[2],
-                 home_list[3],
-                 home_list[4],
-                 home_list[5],
-                 home_list[6],
-                 home_list[7],
-                 home_list[8],
-                 sum(home_list),
-                 0,))  # TODO Hard coded to zero; update to appropriate variable once available
-
     print("VISITORS: \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2}"
           .format(visitors_list[0],
                   visitors_list[1],
@@ -125,6 +112,19 @@ def print_scorebox(visitors_list, home_list):
                   visitors_list[8],
                   sum(visitors_list),
                   0,))    # TODO Hard coded to zero; update to appropriate variable once available
+
+    print("HOME:     \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2}".
+          format(home_list[0],
+                 home_list[1],
+                 home_list[2],
+                 home_list[3],
+                 home_list[4],
+                 home_list[5],
+                 home_list[6],
+                 home_list[7],
+                 home_list[8],
+                 sum(home_list),
+                 0,))  # TODO Hard coded to zero; update to appropriate variable once available
 
 
 def batting_order():

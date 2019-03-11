@@ -18,3 +18,5 @@ _Pending Items:_
      - Run extra innings process after tie detected after nine innings
      
    - Review some functions and switch arguments to lists and unpack arguments within the function 
+   
+   - Rebuilding score box to allow variable number of total innings
