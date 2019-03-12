@@ -73,58 +73,43 @@ def advance_runner(hit_,
 
 
 def print_scorebox(visitors_list, home_list):
+    print('INNING  ', end='')
 
-    print("INNING  ",
-          "\t 1",
-          "\t 2",
-          "\t 3",
-          "\t 4",
-          "\t 5",
-          "\t 6",
-          "\t 7",
-          "\t 8",
-          "\t 9",
-          "\t R",
-          "\t H",)
+    for ctr in range(0,len(visitors_list)):
+        print('\t{:>2}'.format(ctr + 1), end='')
 
-    print("------  ",
-          "\t--",
-          "\t--",
-          "\t--",
-          "\t--",
-          "\t--",
-          "\t--",
-          "\t--",
-          "\t--",
-          "\t--",
-          "\t--",
-          "\t--",)
+    print('\t R', end='')
 
-    print("VISITORS: \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2}"
-          .format(visitors_list[0],
-                  visitors_list[1],
-                  visitors_list[2],
-                  visitors_list[3],
-                  visitors_list[4],
-                  visitors_list[5],
-                  visitors_list[6],
-                  visitors_list[7],
-                  visitors_list[8],
-                  sum(visitors_list),
-                  0,))    # TODO Hard coded to zero; update to appropriate variable once available
+    print()
 
-    print("HOME:     \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2} \t{:>2}".
-          format(home_list[0],
-                 home_list[1],
-                 home_list[2],
-                 home_list[3],
-                 home_list[4],
-                 home_list[5],
-                 home_list[6],
-                 home_list[7],
-                 home_list[8],
-                 sum(home_list),
-                 0,))  # TODO Hard coded to zero; update to appropriate variable once available
+    print('------     ', end='')
+
+    for ctr in range(0,len(visitors_list)):
+        # print(ctr)
+        print('\t--', end='')
+
+    print('\t--', end='')
+
+    print()
+
+    print('VISITORS ', end='')
+
+    for ctr in range(0,len(visitors_list)):
+        # print(ctr)
+        print('\t{:>2}'.format(visitors_list[ctr]), end='')
+
+    print('\t{:>2}'.format(sum(visitors_list)), end='')
+
+
+    print()
+
+    print('HOME    ', end='')
+
+    for ctr in range(0,len(home_list)):
+        # print(ctr)
+        print('\t{:>2}'.format(home_list[ctr]), end='')
+
+    print('\t{:>2}'.format(sum(home_list)), end='')
 
 
 def batting_order():
