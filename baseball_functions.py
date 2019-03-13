@@ -1,3 +1,5 @@
+import random
+
 # Functions for baseball project:
 # - advance base runners based on hit passed from __main__
 # - print score box
@@ -10,7 +12,15 @@
 # - team at bat
 # - inning_process
 
-import random
+# Variables & Data structures
+
+# bases & home plate
+
+bb_diamond = {'h_g': 0,
+              'b1_g': 0,
+              'b2_g': 0,
+              'b3_g': 0,
+              }
 
 # data for functions
 team_description_func = ('VISITORS', 'HOME')
@@ -24,6 +34,74 @@ players_tuple_func = ("Pitcher",
                       "Left Field",
                       "Center Field",
                       "Right Field",)
+
+# Team Roster with lists that for each player stores team, inning, hits, RBI's
+#
+# List index key:
+#   [0]: Team (0 - Visitors, 1 - Home)
+#   [1]: Player Position
+#   [2]: Inning (0 - 8 for 1st through 9th Inning)
+#   [3]: Hits (Cumulative for a player within an inning)
+#   [4]: Runs Scored
+#   [5]: RBI (Run(s) Batted In; will ignore errors since they are not being tracked)
+
+team_roster = {player: [] for player in players_tuple_func}
+
+# Use to flag which team is at bat Team (0 - Visitors, 1 - Home)
+
+team_description = ('VISITORS', 'HOME')
+
+# Innings
+
+innings_name = ["1st Inning",
+                "2nd Inning",
+                "3rd Inning",
+                "4th Inning",
+                "5th Inning",
+                "6th Inning",
+                "7th Inning",
+                "8th Inning",
+                "9th Inning",
+                "10th Inning",
+                "11th Inning",
+                "12th Inning",
+                "13th Inning",
+                "14th Inning",
+                "15th Inning",
+                "16th Inning",
+                "17th Inning",
+                "18th Inning",
+                "19th Inning",
+                "20th Inning",
+                "21st Inning",
+                "22nd Inning",
+                "23rd Inning",
+                "24th Inning",
+                "25th Inning",
+                "26th Inning",
+                "27th Inning",
+                "28th Inning",
+                "29th Inning",
+                "30th Inning",
+                "*** OUT OF RANGE ***",
+                ]
+
+innings_half = ['Top', 'Bottom']
+
+# Innings tracker list by list comprehension
+
+innings_tracker = [x for x in range(0, 9)]  # 9)]    #  TODO Testing - Set innings to just 3
+
+# Home team & Visitors score tracking
+
+score_tracking_by_inning = [0 for init_inning in range(30)]  # Setting to max of 30 innings in extra innings
+
+score_list = [list(score_tracking_by_inning),
+              list(score_tracking_by_inning), ]
+
+score_list_team_roster = [list(score_tracking_by_inning),
+                          list(score_tracking_by_inning), ]
+
 
 #  **** Advance Runner Needs further testing ****
 
@@ -72,10 +150,17 @@ def advance_runner(hit_,
     return hit_, bb_diamond_adv_runner
 
 
-def print_scorebox(visitors_list, home_list):
+def print_scorebox(current_inning_f, visitors_list, home_list):
+
+    current_inning_f +=1
+
+    # if less than nine innings show values for all nine innings
+    if current_inning_f < 9:
+        current_inning_f = 9
+
     print('INNING  ', end='')
 
-    for ctr in range(0,len(visitors_list)):
+    for ctr in range(0, current_inning_f):
         print('\t{:>2}'.format(ctr + 1), end='')
 
     print('\t R', end='')
@@ -84,7 +169,7 @@ def print_scorebox(visitors_list, home_list):
 
     print('------     ', end='')
 
-    for ctr in range(0,len(visitors_list)):
+    for ctr in range(0, current_inning_f):
         # print(ctr)
         print('\t--', end='')
 
@@ -94,7 +179,7 @@ def print_scorebox(visitors_list, home_list):
 
     print('VISITORS ', end='')
 
-    for ctr in range(0,len(visitors_list)):
+    for ctr in range(0, current_inning_f):
         # print(ctr)
         print('\t{:>2}'.format(visitors_list[ctr]), end='')
 
@@ -105,11 +190,13 @@ def print_scorebox(visitors_list, home_list):
 
     print('HOME    ', end='')
 
-    for ctr in range(0,len(home_list)):
+    for ctr in range(0, current_inning_f):
         # print(ctr)
         print('\t{:>2}'.format(home_list[ctr]), end='')
 
     print('\t{:>2}'.format(sum(home_list)), end='')
+
+    print('\n\n')
 
 
 def batting_order():
@@ -435,6 +522,12 @@ def at_bat(inning_data_func):
                              strikes_fa,
                              balls_fa,)
 
+            print()
+
+            # Show Score box
+
+            print_scorebox(current_inning_fa, score_list[0], score_list[1])
+
             break
 
     return (team_at_bat_fa,
@@ -510,3 +603,64 @@ def inning_process(inning_process_data_inning):
             team_roster_inning,
             score_list_inning,
             )
+
+########################################################################################################################
+
+    # This section tests the teams roster   TODO Remove Section below after testing
+
+    # Code for testing aggregation of scores; keep in main for now, but comment out some of the processes
+    # print(team_roster_score_summ)
+
+
+
+    #
+    # # for test_ in iter(team_roster_score_summ):
+    #     # print(test_)
+    #
+    # for team_aggregate in range(0,2):
+    #     print('team idx:', team_aggregate)
+    #
+    #     for roster_ in team_roster:
+    #         print('roster_player: ', roster_)
+    #         for roster_2 in iter(team_roster[roster_]):
+    #
+    #             print('roster_2: {}'.format(roster_2))
+    #
+    #             if roster_2[0] == team_aggregate:
+    #                 print('roster_2[0]: {}'.format(roster_2[0]))
+    #                 print('roster_2[2]: {}'.format(roster_2[2]))
+    #                 print('roster_2[4]: {}'.format(roster_2[4]))
+    #                 team_roster_score_summ[roster_2[2]][roster_2[0]].append(roster_2[4])
+    #
+    # # print('team_roster_score_summ: {}'.format(team_roster_score_summ))
+    #
+    # # for chk in iter(team_roster_score_summ):
+    # #     print('chk: {}, sum(chk): {}'.format(chk, sum(chk[0])))
+    # # print('score_list_team_roster: {}'.format(score_list_team_roster))
+    #
+    # for team_value in range(0, 2):
+    #     for chk in range(0, 9):
+    #         # print('team: {} \tchk: {}, \tsum(chk): {}'.format(team_value, chk, sum(team_roster_score_summ[chk][team_value])))
+    #         score_list_team_roster[team_value][chk] = sum(team_roster_score_summ[chk][team_value])
+    #
+    # # This section tests the scorebox   TODO Remove Section below after testing
+    # print("Score box test:")
+    # print_scorebox(score_list[0], score_list[1])
+    #
+    # # print(score_list)
+    # # print('score_list_team_roster: {}'.format(score_list_team_roster))
+    # print()
+    # print("Score box for score_list_team_roster:")
+    # print_scorebox(score_list_team_roster[0], score_list_team_roster[1])
+    #
+    # # print('Current data stored in team_roster: \n{}'.format(team_roster))
+    #
+    #
+    #
+    # # This section tests the the bases dictionary   TODO Remove Section below after testing
+    #
+    # # print("Bases in a dictionary: {}".format(bb_diamond))
+    # # print("First Base: {}".format(bb_diamond.get('b1_g')))
+    # # print("*" * 30)
+    # # print()
+
