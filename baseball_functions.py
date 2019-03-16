@@ -165,8 +165,8 @@ def print_scorebox(current_inning_f, visitors_list, home_list):
 
     print('INNING  ', end='')
 
-    for ctr in range(0, current_inning_f):
-        print('\t{:>2}'.format(ctr + 1), end='')
+    for inning_counter in range(0, current_inning_f):
+        print('\t{:>2}'.format(inning_counter + 1), end='')
 
     print('\t R', end='')
 
@@ -174,8 +174,7 @@ def print_scorebox(current_inning_f, visitors_list, home_list):
 
     print('------     ', end='')
 
-    for ctr in range(0, current_inning_f):
-        # print(ctr)
+    for inning_counter in range(0, current_inning_f):
         print('\t--', end='')
 
     print('\t--', end='')
@@ -184,9 +183,8 @@ def print_scorebox(current_inning_f, visitors_list, home_list):
 
     print('VISITORS ', end='')
 
-    for ctr in range(0, current_inning_f):
-        # print(ctr)
-        print('\t{:>2}'.format(visitors_list[ctr]), end='')
+    for inning_counter in range(0, current_inning_f):
+        print('\t{:>2}'.format(visitors_list[inning_counter]), end='')
 
     print('\t{:>2}'.format(sum(visitors_list)), end='')
 
@@ -195,9 +193,8 @@ def print_scorebox(current_inning_f, visitors_list, home_list):
 
     print('HOME    ', end='')
 
-    for ctr in range(0, current_inning_f):
-        # print(ctr)
-        print('\t{:>2}'.format(home_list[ctr]), end='')
+    for inning_counter in range(0, current_inning_f):
+        print('\t{:>2}'.format(home_list[inning_counter]), end='')
 
     print('\t{:>2}'.format(sum(home_list)), end='')
 
