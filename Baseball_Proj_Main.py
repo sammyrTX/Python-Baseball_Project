@@ -2,6 +2,25 @@ from baseball_functions import *
 
 # Need overall clean up to conform with PEP 8   TODO
 
+########################################################################################################################
+#
+# Baseball Game Simulator
+#
+# Python v3.7
+#
+# This is a simple simulator that runs through a baseball game. It shows the results of each at bat by team by each
+# inning. Results at bat are determined at random. If there is a tie after nine innings, the game will go into extra
+# innings.
+#
+#
+# Primary goal is to use Python as the language and apply the appropriate data structures. Future features may be added
+# in the future
+#
+########################################################################################################################
+
+
+########################################################################################################################
+
 # ***** MAIN SECTION *****
 
 if __name__ == "__main__":

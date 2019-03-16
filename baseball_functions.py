@@ -12,6 +12,8 @@ import random
 # - team at bat
 # - inning_process
 
+########################################################################################################################
+
 # Variables & Data structures
 
 # bases & home plate
@@ -22,7 +24,8 @@ bb_diamond = {'h_g': 0,
               'b3_g': 0,
               }
 
-# data for functions
+# data for game play
+
 team_description_func = ('VISITORS', 'HOME')
 
 players_tuple_func = ("Pitcher",
@@ -51,7 +54,7 @@ team_roster = {player: [] for player in players_tuple_func}
 
 team_description = ('VISITORS', 'HOME')
 
-# Innings
+# Innings Descriptions
 
 innings_name = ["1st Inning",
                 "2nd Inning",
@@ -102,8 +105,10 @@ score_list = [list(score_tracking_by_inning),
 score_list_team_roster = [list(score_tracking_by_inning),
                           list(score_tracking_by_inning), ]
 
+########################################################################################################################
 
-#  **** Advance Runner Needs further testing ****
+#  Advance Runner based on hit result
+#  **** Needs further testing ****
 
 
 def advance_runner(hit_,
