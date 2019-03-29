@@ -7,10 +7,7 @@ _Pending Items:_
    - Incorporate some probability to the types of hits that currently being generated at random
    - Add process to determine if scores are tied after nine innings and proceed to extra innings
      if necessary
-   
-   - Print score box after a run is scored
-      - Print after a team is done with their at bat
-       
+          
    - Review some functions and switch arguments to lists and unpack arguments within the function 
    
    - Review advance runner; if there are runners on base, make sure after an out they remain on base 
@@ -34,4 +31,5 @@ _Completed:_
    
    - Moved most of the data structures to the function file
    
-   
+   - Print score box after a run is scored
+     - Print after a team is done with their at bat

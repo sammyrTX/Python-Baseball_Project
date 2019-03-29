@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
 ########################################################################################################################
 
-    # Innings Loop
+    # Innings Loop - Process Nine Innings
 
     for current_inning in innings_tracker:
         print("-" * 50)
@@ -91,7 +91,8 @@ if __name__ == "__main__":
 
     print()
 
-    score_list[0][0] += sum(score_list[1]) - sum(score_list[0])  # TODO Force a tie to test
+    # print('***** TEST >>> Forcing a tie to test extra innings section *****') # TODO Force a tie to test
+    # score_list[0][0] += sum(score_list[1]) - sum(score_list[0])  # TODO Force a tie to test
 
     print('VISITOR: {} \t HOME: {}'.format(sum(score_list[0]), sum(score_list[1])))
 
