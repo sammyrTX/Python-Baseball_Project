@@ -4,15 +4,10 @@ _Pending Items:_
    - Review score list and make it dynamic in terms of innings captured
    - Testing of overall game play and statistics
    - Some UI clean up and fine tuning
-   - Incorporate some probability to the types of hits that currently being generated at random
-   - Add process to determine if scores are tied after nine innings and proceed to extra innings
-     if necessary
-          
+   - Incorporate some probability to the types of hits that currently being generated at random          
    - Review some functions and switch arguments to lists and unpack arguments within the function 
-   
    - Review advance runner; if there are runners on base, make sure after an out they remain on base 
      unless it is the third out
-     
    - Rebuild the score list vs score_list_team_roster; put into a function and run as a test before
      the game ends. The totals between the two structures should tie out.
 

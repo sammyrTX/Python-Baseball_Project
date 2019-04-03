@@ -237,9 +237,9 @@ def pitch_result():
 
 def ball_count_print(outs_f, strikes_f, ball_f):
     """Prints out the current ball count based on arguments"""
-    print("*" * 16)
+    print("-" * 16)
     print("S: {}  B: {}  O: {}".format(strikes_f, ball_f, outs_f))
-    print("*" * 16)
+    print("-" * 16)
     print()
     print("*" * 80)
     print()
