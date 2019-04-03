@@ -54,7 +54,7 @@ team_roster = {player: [] for player in players_tuple_func}
 
 team_description = ('VISITORS', 'HOME')
 
-# Innings Descriptions
+# Innings Descriptions (includes extra innings after standard nine)
 
 innings_name = ["1st Inning",
                 "2nd Inning",
@@ -114,6 +114,8 @@ score_list_team_roster = [list(score_tracking_by_inning),
 def advance_runner(hit_,
                    bb_diamond_adv_runner,
                    ):
+    """Advances batter after a hit (single through home run) based on pitch_result.
+    takes the pitch result and a dictionary of the bases as arguments"""
 
     hit_txt, hit_f, hit_descr = hit_
 
@@ -156,6 +158,7 @@ def advance_runner(hit_,
 
 
 def print_scorebox(current_inning_f, visitors_list, home_list):
+    """Generates a score box of nine innings along with the number of total runs for the game"""
 
     current_inning_f +=1
 
@@ -202,6 +205,7 @@ def print_scorebox(current_inning_f, visitors_list, home_list):
 
 
 def batting_order():
+    """Generate a batting order of players at random"""
     batting_lineup = []
 
     while len(batting_lineup) < 9:
@@ -216,6 +220,7 @@ def batting_order():
 
 
 def pitch_result():
+    """Generate the result of a pitch at random based on available outcomes stored in a tuple"""
     pitch_result_tuple = (('strike', 10, 'Strike!',),
                           ('ball', 11, 'Ball!',),
                           ('foul ball', 12, 'Foul Ball!',),
@@ -231,6 +236,7 @@ def pitch_result():
 
 
 def ball_count_print(outs_f, strikes_f, ball_f):
+    """Prints out the current ball count based on arguments"""
     print("*" * 16)
     print("S: {}  B: {}  O: {}".format(strikes_f, ball_f, outs_f))
     print("*" * 16)
@@ -245,9 +251,8 @@ def process_pitch_result(pitch_result_f,
                          ball_count_f,
                          foul_count_f,
                          bb_diamond_f):
-
-    # Add code here to simulate specific pitch_result_'s in order test the while loop  TODO Set pitch_result for testing
-    # e.g. pitch_result_ = ('TEST > foul out', 13)
+    """Takes the generated pitch result and processes the batter. This includes a hit (calls the advance_runner function
+    ) or Strikes, Balls and Fouls (stores the count). With four balls it walks the batter."""
 
     # print()  TODO Test Pitches
     # pitch_result_f = ('TEST > hit - double', 2)
@@ -313,6 +318,8 @@ def process_pitch_result(pitch_result_f,
 def next_batter(team_f,
                 batting_lineup_f,
                 batting_lineup_keep_f,):
+    """Moves through the batting order and removes the next batter. When the batting order is exhausted, it reloads the
+    order from a tuple that has the whole batting order."""
 
     if len(batting_lineup_f[team_f]) != 0:
 
@@ -327,6 +334,8 @@ def next_batter(team_f,
 
 
 def bases_picture(bb_diamond_f):
+    """Generates a simple text based image of the bases and marks bases that have a base runner. This source
+    information is stored in a dictionary"""
 
     base01 = bb_diamond_f['b1_g']
     base02 = bb_diamond_f['b2_g']
@@ -361,6 +370,8 @@ def bases_picture(bb_diamond_f):
 
 
 def walk_batter(bb_diamond_walk_runner):
+    """After the fourth pitch result of ball, the batter is walked. Any runners on base advance one base (or go to
+    home plate and score)."""
 
     home_plate_f, base1_f, base2_f, base3_f = bb_diamond_walk_runner.values()
 
@@ -409,6 +420,8 @@ def walk_batter(bb_diamond_walk_runner):
 
 
 def at_bat(inning_data_func):
+    """Processes the batter for a team at bat. Takes the current team at bat, the batting order (and complete batting
+    order), base status dictionary, and score tracking."""
 
     (team_at_bat_fa,
      batting_lineup_fa, batting_lineup_fa_keep,
@@ -546,6 +559,8 @@ def at_bat(inning_data_func):
 
 
 def inning_process(inning_process_data_inning):
+    """Process each team for an inning while outs are less than three. Utilizes the at_bat function that processes the
+    current batter."""
 
     [current_inning_f,
      bb_diamond_inning,
