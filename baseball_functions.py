@@ -54,7 +54,7 @@ team_roster = {player: [] for player in players_tuple_func}
 
 team_description = ('VISITORS', 'HOME')
 
-# Innings Descriptions (includes extra innings after standard nine)
+# Innings Descriptions (includes extra innings after standard nine (up to 30))
 
 innings_name = ["1st Inning",
                 "2nd Inning",
@@ -93,7 +93,7 @@ innings_half = ['Top', 'Bottom']
 
 # Innings tracker list by list comprehension
 
-innings_tracker = [x for x in range(0, 3)]  # 9)]    #  TODO Testing - Set innings to just 3
+innings_tracker = [x for x in range(0, 1)]  # 9)]    #  TODO Testing - Set innings to just 3
 
 # Home team & Visitors score tracking
 
@@ -103,7 +103,8 @@ score_list = [list(score_tracking_by_inning),
               list(score_tracking_by_inning), ]
 
 score_list_team_roster = [list(score_tracking_by_inning),
-                          list(score_tracking_by_inning), ]
+                          list(score_tracking_by_inning),
+                          ]
 
 ########################################################################################################################
 
@@ -241,7 +242,7 @@ def ball_count_print(outs_f, strikes_f, ball_f):
     print("S: {}  B: {}  O: {}".format(strikes_f, ball_f, outs_f))
     print("-" * 16)
     print()
-    print("*" * 80)
+    print("*" * 50)
     print()
 
 
@@ -581,7 +582,7 @@ def inning_process(inning_process_data_inning):
 
         bb_diamond_inning = {base: 0 for base in bb_diamond_inning}
 
-        print("{} of the Inning ({})".format(innings_half_inning[team_at_bat_inning],
+        print(">>> {} of the {} <<<\n".format(innings_half_inning[team_at_bat_inning],
                                              innings_name_inning[current_inning_f],))
 
         while outs_m < 3:

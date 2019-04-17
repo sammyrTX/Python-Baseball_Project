@@ -20,7 +20,6 @@ from baseball_functions import *
 
 if __name__ == "__main__":
 
-    print()
     print("=" * 70)
 
     # Set up batting order for a working list and copy to keep for starting at the top of the line up
@@ -34,20 +33,16 @@ if __name__ == "__main__":
     print("Batting order set!")
 
     print("=" * 70)
-    print()
 
-    print()
-    print("*** Play Ball! ***")
-    print()
+    print('\n', "*** Play Ball! ***", '\n')
 
 ########################################################################################################################
 
     # Innings Loop - Process Nine Innings
 
     for current_inning in innings_tracker:
-        print("-" * 50)
 
-        print(innings_name[current_inning], "*** BEGIN ***")
+        print("-" * 50, '\n')
 
         inning_process_data = [current_inning,
                                bb_diamond,
@@ -68,6 +63,8 @@ if __name__ == "__main__":
          score_list,
          ) = inning_process(inning_process_data)
 
+        print("-" * 50, '\n')
+
 ########################################################################################################################
 
     # Check for a tie game after completion of nine innings
@@ -76,7 +73,7 @@ if __name__ == "__main__":
           ' until tie is broken ***')
 
     print()
-    
+
     print_scorebox(current_inning, score_list[0], score_list[1])
 
     print()
@@ -84,9 +81,7 @@ if __name__ == "__main__":
     # print('***** TEST >>> Forcing a tie to test extra innings section *****') # TODO Force a tie to test
     # score_list[0][0] += sum(score_list[1]) - sum(score_list[0])  # TODO Force a tie to test
 
-    print('VISITOR: {} \t HOME: {}'.format(sum(score_list[0]), sum(score_list[1])))
-
-    print()
+    print('VISITOR: {} \t HOME: {}'.format(sum(score_list[0]), sum(score_list[1])), '\n')
 
     # if True:
     #     score_list = [list(score_tracking_by_inning),
@@ -132,11 +127,8 @@ if __name__ == "__main__":
 
     print_scorebox(current_inning, score_list[0], score_list[1])
 
-    print()
-
-    print("*" * 80)
+    print("*" * 50)
 
 ########################################################################################################################
 
-    print()
-    print("*** END OF GAME ***")
+    print("\n*** END OF GAME ***")

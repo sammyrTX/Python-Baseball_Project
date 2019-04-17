@@ -28,3 +28,5 @@ _Completed:_
    
    - Print score box after a run is scored
      - Print after a team is done with their at bat
+     
+   - Cleaned up some of the borders printed between processes
