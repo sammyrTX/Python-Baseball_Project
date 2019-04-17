@@ -93,7 +93,9 @@ innings_half = ['Top', 'Bottom']
 
 # Innings tracker list by list comprehension
 
-innings_tracker = [x for x in range(0, 1)]  # 9)]    #  TODO Testing - Set innings to just 3
+range_variable = 9  # Set number of innings to play
+
+innings_tracker = [x for x in range(0, range_variable)]    #  TODO Testing - Set innings with range_variable
 
 # Home team & Visitors score tracking
 

@@ -30,3 +30,6 @@ _Completed:_
      - Print after a team is done with their at bat
      
    - Cleaned up some of the borders printed between processes
+   
+   - Added a variable (_range_variable_) to store the number of innings to play (to allow testing without running all nine innings)
+   
