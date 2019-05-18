@@ -129,9 +129,6 @@ def advance_runner(hit_,
 
     hit_txt, hit_f, hit_descr = hit_
 
-    print('{}'.format(hit_descr))
-    print('>>>>>>>> hit_: ', hit_)
-    print('>>>>>>>> bb_diamond_adv_runner: ', bb_diamond_adv_runner)
     home_plate_f, base1_f, base2_f, base3_f = bb_diamond_adv_runner.values()
     # home_plate_f, base1_f, base2_f, base3_f = bb_diamond_adv_runner.values()
 
@@ -174,7 +171,7 @@ def print_scorebox(current_inning_f, visitors_list, home_list):
     """Generates a score box of nine innings along with the number of total
        runs for the game"""
 
-    current_inning_f +=1
+    current_inning_f += 1
 
     # if less than nine innings show values for all nine innings
     if current_inning_f < 9:
@@ -264,19 +261,19 @@ def process_pitch_result(pitch_result_f,
                          strikes_count_f,
                          ball_count_f,
                          foul_count_f,
-                         bb_diamond_f):
+                         bb_diamond_f,):
     """Takes the generated pitch result and processes the batter. This
        includes a hit (calls the advance_runner function) or Strikes,
        Balls and Fouls (stores the count). With four balls it walks the
        batter."""
-    # print()  TODO Test Pitches
-    pitch_result_f = ('TEST > hit - double', 2, 'TEST > hit - double')  # TODO
+
+    # Test pitches can be inserted here see sample on next line
+    # pitch_result_f = ('TEST hit - double', 2, 'TEST Hit! A Double')
     result_txt, result_idx, result_description = pitch_result_f
-    # print("*TEST* Pitch Result: ", result_txt, result_idx)
 
     # Hit
     if result_idx in range(1, 5):
-        print('>>>>>>> bb_diamond_f: ', bb_diamond_f)  # TODO
+
         pitch_result_f, bb_diamond_f = advance_runner(pitch_result_f,
                                                       bb_diamond_f)
 
@@ -323,8 +320,7 @@ def process_pitch_result(pitch_result_f,
             strikes_count_f,
             ball_count_f,
             foul_count_f,
-            bb_diamond_f,
-            )
+            bb_diamond_f,)
 
 
 def next_batter(team_f,
@@ -440,39 +436,43 @@ def at_bat(inning_data_func):
        and score tracking."""
 
     (team_at_bat_fa,
-     batting_lineup_fa, batting_lineup_fa_keep,
-     outs_fa, strikes_fa, balls_fa, fouls_fa,
+     batting_lineup_fa,
+     batting_lineup_fa_keep,
+     outs_fa,
+     strikes_fa,
+     balls_fa,
+     fouls_fa,
      bb_diamond_fa,
      team_roster_fa,
      current_inning_fa,
      score_list_fa,) = inning_data_func
 
-    team_at_bat_fa, batting_lineup_fa, batter_up_fa = next_batter(
+    (team_at_bat_fa,
+     batting_lineup_fa,
+     batter_up_fa) = next_batter(
         team_at_bat_fa,
         batting_lineup_fa,
         batting_lineup_fa_keep,
     )
 
     while True:
-        print('At bat for {}: {}'.format(team_description_func[team_at_bat_fa],
-                                         players_tuple_func[batter_up_fa]))
-
-        print('')
+        print('At bat for {}: {}\n'.format(team_description_func[team_at_bat_fa],
+                                           players_tuple_func[batter_up_fa]))
 
         outs_pre = int(outs_fa)
 
-        pitch_result_fa,
-        outs_fa,
-        strikes_fa,
-        balls_fa,
-        fouls_fa,
-        bb_diamond_fa = process_pitch_result(pitch_result(),
-                                             outs_fa,
-                                             strikes_fa,
-                                             balls_fa,
-                                             fouls_fa,
-                                             bb_diamond_fa,
-                                             )
+        (pitch_result_fa,
+         outs_fa,
+         strikes_fa,
+         balls_fa,
+         fouls_fa,
+         bb_diamond_fa) = process_pitch_result(pitch_result(),
+                                               outs_fa,
+                                               strikes_fa,
+                                               balls_fa,
+                                               fouls_fa,
+                                               bb_diamond_fa,
+                                               )
 
         if outs_fa > outs_pre:
 
