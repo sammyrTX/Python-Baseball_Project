@@ -135,6 +135,7 @@ def advance_runner(hit_,
     # Initialize batter to put batter on base if someone already on first
     batter = 1
 
+
     while hit_f:
         if base3_f == 1:
             base3_f = 0
@@ -147,7 +148,7 @@ def advance_runner(hit_,
         if base1_f == 1:
             if batter:
                 base1_f = 1
-                batter = 0
+                batter = 0    # TODO  Check warning for usage; IDE is indicating variable is not used
             else:
                 base1_f = 0
             base2_f = 1
@@ -230,6 +231,7 @@ def batting_order():
 
 
 def pitch_result():
+
     """Generate the result of a pitch at random based on available outcomes
        stored in a tuple"""
     pitch_result_tuple = (('strike', 10, 'Strike!',),
@@ -247,6 +249,7 @@ def pitch_result():
 
 
 def ball_count_print(outs_f, strikes_f, ball_f):
+
     """Prints out the current ball count based on arguments"""
     print("-" * 16)
     print("S: {}  B: {}  O: {}".format(strikes_f, ball_f, outs_f))
@@ -276,7 +279,7 @@ def process_pitch_result(pitch_result_f,
 
         pitch_result_f, bb_diamond_f = advance_runner(pitch_result_f,
                                                       bb_diamond_f)
-
+        
     # Strike, Ball or Foul
     if result_idx in range(10, 15):
 
@@ -326,6 +329,7 @@ def process_pitch_result(pitch_result_f,
 def next_batter(team_f,
                 batting_lineup_f,
                 batting_lineup_keep_f,):
+
     """Moves through the batting order and removes the next batter. When
        the batting order is exhausted, it reloads the order from a tuple
        that has the whole batting order."""
@@ -343,6 +347,7 @@ def next_batter(team_f,
 
 
 def bases_picture(bb_diamond_f):
+
     """Generates a simple text based image of the bases and marks bases
        that have a base runner. This source information is stored in a
        dictionary"""
@@ -380,8 +385,10 @@ def bases_picture(bb_diamond_f):
 
 
 def walk_batter(bb_diamond_walk_runner):
+
     """After the fourth pitch result of ball, the batter is walked. Any
        runners on base advance one base (or go to home plate and score)."""
+
 
     home_plate_f, base1_f, base2_f, base3_f = bb_diamond_walk_runner.values()
 
@@ -391,6 +398,7 @@ def walk_batter(bb_diamond_walk_runner):
     print('base3_f: {}'.format(base3_f))
     print('home_plate_f: {}'.format(home_plate_f))
     print()
+
     print('Add Process here to walk the batter after four balls')
 
     # if there is already a batter on first base, then put batter on first and
@@ -474,6 +482,7 @@ def at_bat(inning_data_func):
                                                bb_diamond_fa,
                                                )
 
+
         if outs_fa > outs_pre:
 
             strikes_fa = 0
@@ -481,6 +490,7 @@ def at_bat(inning_data_func):
             fouls_fa = 0
 
             bases_picture(bb_diamond_fa)
+
 
             ball_count_print(outs_fa,
                              strikes_fa,
@@ -523,6 +533,7 @@ def at_bat(inning_data_func):
             continue
 
         if pitch_result_fa[1] in range(1, 5):
+
 
             # Process hit if there is no run batted in
             if bb_diamond_fa['h_g'] == 0:
