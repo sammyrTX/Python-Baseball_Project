@@ -1,20 +1,22 @@
 from baseball_functions import *
 
 
-########################################################################################################################
+###############################################################################
 
 """Baseball Game Simulator
 
    Python v3.7
 
-   This is a simple simulator that runs through a baseball game. It shows the results of each at bat by team for each
-   inning. Results at bat are determined at random. If there is a tie after nine innings, the game will go into extra
-   innings.
+   This is a simple simulator that runs through a baseball game. It shows
+   the results of each at bat by team for each inning. Results at bat
+   are determined at random. If there is a tie after nine innings, the
+   game will go into extra innings.
 
-   Primary goal is to use Python as the language and apply the appropriate data structures. Future features may be
-   added."""
+   Primary goal is to use Python as the language and apply the appropriate
+   data structures. Future features may be added.
+   """
 
-########################################################################################################################
+###############################################################################
 
 # ***** MAIN SECTION *****
 
@@ -36,7 +38,7 @@ if __name__ == "__main__":
 
     print('\n', "*** Play Ball! ***", '\n')
 
-########################################################################################################################
+###############################################################################
 
     # Innings Loop - Process Nine Innings
 
@@ -65,7 +67,7 @@ if __name__ == "__main__":
 
         print("-" * 50, '\n')
 
-########################################################################################################################
+###############################################################################
 
     # Check for a tie game after completion of nine innings
 
@@ -78,15 +80,7 @@ if __name__ == "__main__":
 
     print()
 
-    # print('***** TEST >>> Forcing a tie to test extra innings section *****') # TODO Force a tie to test
-    # score_list[0][0] += sum(score_list[1]) - sum(score_list[0])  # TODO Force a tie to test
-
     print('VISITOR: {} \t HOME: {}'.format(sum(score_list[0]), sum(score_list[1])), '\n')
-
-    # if True:
-    #     score_list = [list(score_tracking_by_inning),
-    #                   list(score_tracking_by_inning), ]
-    #     print('score_list: {}'.format(score_list))
 
     if sum(score_list[0]) == sum(score_list[1]):
         print('There is a tie after nine innings!')
@@ -129,6 +123,6 @@ if __name__ == "__main__":
 
     print("*" * 50)
 
-########################################################################################################################
+###############################################################################
 
     print("\n*** END OF GAME ***")
