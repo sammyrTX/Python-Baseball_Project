@@ -1,5 +1,7 @@
 import random
 
+from scorebox_functions.scorebox import print_scorebox
+
 # Functions for baseball project:
 # - advance base runners based on hit passed from __main__
 # - print score box
@@ -168,53 +170,6 @@ def advance_runner(hit_,
     return hit_, bb_diamond_adv_runner
 
 
-def print_scorebox(current_inning_f, visitors_list, home_list):
-    """Generates a score box of nine innings along with the number of total
-       runs for the game"""
-
-    current_inning_f += 1
-
-    # if less than nine innings show values for all nine innings
-    if current_inning_f < 9:
-        current_inning_f = 9
-
-    print('INNING  ', end='')
-
-    for inning_counter in range(0, current_inning_f):
-        print('\t{:>2}'.format(inning_counter + 1), end='')
-
-    print('\t R', end='')
-
-    print()
-
-    print('------     ', end='')
-
-    for inning_counter in range(0, current_inning_f):
-        print('\t--', end='')
-
-    print('\t--', end='')
-
-    print()
-
-    print('VISITORS ', end='')
-
-    for inning_counter in range(0, current_inning_f):
-        print('\t{:>2}'.format(visitors_list[inning_counter]), end='')
-
-    print('\t{:>2}'.format(sum(visitors_list)), end='')
-
-    print()
-
-    print('HOME    ', end='')
-
-    for inning_counter in range(0, current_inning_f):
-        print('\t{:>2}'.format(home_list[inning_counter]), end='')
-
-    print('\t{:>2}'.format(sum(home_list)), end='')
-
-    print('\n\n')
-
-
 def batting_order():
     """Generate a batting order of players at random"""
     batting_lineup = []
@@ -279,7 +234,7 @@ def process_pitch_result(pitch_result_f,
 
         pitch_result_f, bb_diamond_f = advance_runner(pitch_result_f,
                                                       bb_diamond_f)
-        
+
     # Strike, Ball or Foul
     if result_idx in range(10, 15):
 

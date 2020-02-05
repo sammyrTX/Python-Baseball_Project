@@ -1,6 +1,3 @@
-from baseball_functions import *
-
-
 ###############################################################################
 
 """Baseball Game Simulator
@@ -17,6 +14,30 @@ from baseball_functions import *
    """
 
 ###############################################################################
+
+# Functions
+from baseball_functions import(advance_runner,
+                               batting_order,
+                               pitch_result,
+                               ball_count_print,
+                               process_pitch_result,
+                               next_batter,
+                               bases_picture,
+                               walk_batter,
+                               at_bat,
+                               inning_process)
+
+# Variables
+from baseball_functions import(innings_tracker,
+                               bb_diamond,
+                               innings_half,
+                               innings_name,
+                               team_roster,
+                               score_list,
+                               )
+
+from scorebox_functions.scorebox import print_scorebox
+
 
 # ***** MAIN SECTION *****
 
