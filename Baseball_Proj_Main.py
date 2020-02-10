@@ -36,7 +36,7 @@ from baseball_functions import(innings_tracker,
                                score_list,
                                )
 
-from scorebox_functions.scorebox import print_scorebox
+from baseball_funcs.scorebox import print_scorebox
 
 
 # ***** MAIN SECTION *****
