@@ -327,13 +327,13 @@ def bases_picture(bb_diamond_f):
         base03_pic = ' '
 
     print()
-    print("       [{}]".format(base02_pic))
-    print("      /   \\")
-    print("     /     \\")
-    print("   [{}]      [{}]".format(base03_pic, base01_pic))
-    print("     \\     /")
-    print("      \\   /")
-    print("       [ ]")
+    print(f'       [{base02_pic}]')
+    print('      /   \\')
+    print('     /     \\')
+    print(f'  [{base03_pic}]      [{base01_pic}]')
+    print('     \\     /')
+    print('      \\   /')
+    print('       [ ]')
     print()
 
     return

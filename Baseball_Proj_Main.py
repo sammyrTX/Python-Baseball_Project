@@ -16,8 +16,16 @@
 ###############################################################################
 
 # Functions
+
+from baseball_funcs.game_set_up import(batting_order,
+                                       innings_tracker,
+                                       )
+
+from baseball_funcs.innings import(inning_process,
+                                   )
+
 from baseball_functions import(advance_runner,
-                               batting_order,
+                               # batting_order,
                                pitch_result,
                                ball_count_print,
                                process_pitch_result,
@@ -25,10 +33,11 @@ from baseball_functions import(advance_runner,
                                bases_picture,
                                walk_batter,
                                at_bat,
-                               inning_process)
+                               # inning_process,
+                               )
 
 # Variables
-from baseball_functions import(innings_tracker,
+from baseball_functions import(#innings_tracker,
                                bb_diamond,
                                innings_half,
                                innings_name,
@@ -45,7 +54,8 @@ if __name__ == "__main__":
 
     print("=" * 70)
 
-    # Set up batting order for a working list and copy to keep for starting at the top of the line up
+    # Set up batting order for a working list and copy to keep for starting
+    # at the top of the line up
 
     print("Set up batting order...")
 
