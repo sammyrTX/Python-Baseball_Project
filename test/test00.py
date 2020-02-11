@@ -9,7 +9,7 @@ print(f'TESTING!!!')
 
 def test00_00():
 
-    assert team_description_func is ('VISITORS', 'HOME')
+    assert team_description_func == ('VISITORS', 'HOME')
 
 
 print('End Testing...!')
