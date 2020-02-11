@@ -3,5 +3,5 @@
 *.xml
 __pycache__
 tf*.py
-test*.py
+#test*.py
 venv
