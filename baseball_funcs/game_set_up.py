@@ -148,3 +148,25 @@ def batting_order():
             batting_lineup.append(next_batter_f)
 
     return batting_lineup
+
+
+def start_game():
+
+    print('=' * 70)
+
+    # Set up batting order for a working list and copy to keep for starting
+    # at the top of the line up
+
+    print("Set up batting order...")
+
+    batting_lineup = [list(batting_order()), list(batting_order())]
+
+    batting_lineup_keep = tuple(tuple(x) for x in batting_lineup)
+
+    print("Batting order set!")
+
+    print('=' * 70)
+
+    print('\n', "*** Play Ball! ***", '\n')
+
+    return batting_lineup, batting_lineup_keep

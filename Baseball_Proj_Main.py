@@ -24,6 +24,7 @@ from baseball_funcs.game_set_up import(batting_order,
                                        innings_name,
                                        team_roster,
                                        score_list,
+                                       start_game,
                                        )
 
 from baseball_funcs.innings import(inning_process,
@@ -36,22 +37,8 @@ from baseball_funcs.scorebox import print_scorebox
 
 if __name__ == "__main__":
 
-    print("=" * 70)
-
-    # Set up batting order for a working list and copy to keep for starting
-    # at the top of the line up
-
-    print("Set up batting order...")
-
-    batting_lineup = [list(batting_order()), list(batting_order())]
-
-    batting_lineup_keep = tuple(tuple(x) for x in batting_lineup)
-
-    print("Batting order set!")
-
-    print("=" * 70)
-
-    print('\n', "*** Play Ball! ***", '\n')
+    # Set up batting order and start game
+    batting_lineup, batting_lineup_keep = start_game()
 
 ###############################################################################
 
