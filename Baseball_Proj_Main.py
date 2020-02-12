@@ -19,31 +19,15 @@
 
 from baseball_funcs.game_set_up import(batting_order,
                                        innings_tracker,
+                                       bb_diamond,
+                                       innings_half,
+                                       innings_name,
+                                       team_roster,
+                                       score_list,
                                        )
 
 from baseball_funcs.innings import(inning_process,
                                    )
-
-from baseball_functions import(advance_runner,
-                               # batting_order,
-                               pitch_result,
-                               ball_count_print,
-                               process_pitch_result,
-                               next_batter,
-                               bases_picture,
-                               walk_batter,
-                               at_bat,
-                               # inning_process,
-                               )
-
-# Variables
-from baseball_functions import(#innings_tracker,
-                               bb_diamond,
-                               innings_half,
-                               innings_name,
-                               team_roster,
-                               score_list,
-                               )
 
 from baseball_funcs.scorebox import print_scorebox
 
@@ -111,7 +95,7 @@ if __name__ == "__main__":
 
     print()
 
-    print('VISITOR: {} \t HOME: {}'.format(sum(score_list[0]), sum(score_list[1])), '\n')
+    print(f'VISITOR: {sum(score_list[0])} \t HOME: {sum(score_list[1])}', '\n')
 
     if sum(score_list[0]) == sum(score_list[1]):
         print('There is a tie after nine innings!')

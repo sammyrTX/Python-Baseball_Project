@@ -29,10 +29,7 @@ def inning_process(inning_process_data_inning):
 
         bb_diamond_inning = {base: 0 for base in bb_diamond_inning}
 
-        print(">>> {} of the {} <<<\n".format(
-            innings_half_inning[team_at_bat_inning],
-            innings_name_inning[current_inning_f],)
-        )
+        print(f'>>> {innings_half_inning[team_at_bat_inning]} of the {innings_name_inning[current_inning_f]} <<<\n')
 
         while outs_m < 3:
 

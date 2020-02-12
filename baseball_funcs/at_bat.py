@@ -67,6 +67,8 @@ def process_pitch_result(pitch_result_f,
     # Hit
     if result_idx in range(1, 5):
 
+        print(f'{result_description}!')
+
         pitch_result_f, bb_diamond_f = advance_runner(pitch_result_f,
                                                       bb_diamond_f)
 
