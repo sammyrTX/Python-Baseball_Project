@@ -104,7 +104,6 @@ def advance_runner(hit_,
     hit_txt, hit_f, hit_descr = hit_
 
     home_plate_f, base1_f, base2_f, base3_f = bb_diamond_adv_runner.values()
-    # home_plate_f, base1_f, base2_f, base3_f = bb_diamond_adv_runner.values()
 
     # Initialize batter to put batter on base if someone already on first
     batter = 1
