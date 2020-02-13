@@ -27,7 +27,8 @@ from baseball_funcs.game_set_up import(batting_order,
                                        start_game,
                                        )
 
-from baseball_funcs.innings import(inning_process,
+from baseball_funcs.innings import(innings_nine,
+                                   inning_process,
                                    )
 
 from baseball_funcs.scorebox import print_scorebox
@@ -39,6 +40,9 @@ if __name__ == "__main__":
 
     # Set up batting order and start game
     batting_lineup, batting_lineup_keep = start_game()
+
+    # Play nine innings
+    innings_nine(batting_lineup, batting_lineup_keep)
 
 ###############################################################################
 
