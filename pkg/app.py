@@ -17,9 +17,9 @@
 
 # Functions
 
-from pkg.baseball_funcs.game_set_up import start_game
+from baseball_funcs.game_set_up import start_game
 
-from pkg.baseball_funcs.innings import innings_nine
+from baseball_funcs.innings import innings_nine
 
 
 # ***** MAIN SECTION *****
