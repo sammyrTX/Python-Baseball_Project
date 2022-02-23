@@ -1,5 +1,5 @@
 """
-Proesses handling base running, baseball picture
+Processes handling base running, baseball picture
 """
 
 

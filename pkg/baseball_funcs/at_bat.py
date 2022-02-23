@@ -7,17 +7,17 @@ count.
 
 import random
 
-from baseball_funcs.game_set_up import(team_description_func,
-                                       players_tuple_func,
-                                       score_list,
-                                       )
+from . game_set_up import(team_description_func,
+                          players_tuple_func,
+                          score_list,
+                          )
 
-from baseball_funcs.base_running import(bases_picture,
-                                        walk_batter,
-                                        advance_runner,
-                                        )
+from . base_running import(bases_picture,
+                           walk_batter,
+                           advance_runner,
+                           )
 
-from baseball_funcs.scorebox import print_scorebox
+from . scorebox import print_scorebox
 
 
 def pitch_result():
