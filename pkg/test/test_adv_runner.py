@@ -6,11 +6,12 @@ Check base runner output based on pitch and number of base runners.
 import pytest
 
 
-from .. baseball_funcs.game_set_up import (team_description_func,
-                                           players_tuple_func,
-                                           )
+from ..baseball_funcs.game_set_up import (
+    team_description_func,
+    players_tuple_func,
+)
 
-from .. baseball_funcs.base_running import advance_runner
+from ..baseball_funcs.base_running import advance_runner
 
 ###############################################################################
 
@@ -33,284 +34,336 @@ pitch_result_tuple = (('strike', 10, 'Strike!',),
 
 # When there are no runners on base
 
+
 def test_advance_runner_single():
+    """Test Single, no person on base"""
 
-    """Test Single, no person on base
-    """
+    hit_ = (
+        "hit - single",
+        1,
+        "Hit! A Single",
+    )
+    bb_diamond_adv_runner = {
+        "h_g": 0,
+        "b1_g": 0,
+        "b2_g": 0,
+        "b3_g": 0,
+    }
 
-    hit_ = ('hit - single', 1, 'Hit! A Single',)
-    bb_diamond_adv_runner = {'h_g': 0,
-                             'b1_g': 0,
-                             'b2_g': 0,
-                             'b3_g': 0,
-                             }
+    hit_, bb_diamond_adv_runner_result = advance_runner(
+        hit_,
+        bb_diamond_adv_runner,
+    )
 
-    hit_, bb_diamond_adv_runner_result = advance_runner(hit_,
-                                                        bb_diamond_adv_runner,
-                                                        )
-
-    assert bb_diamond_adv_runner_result == {'h_g': 0,
-                                            'b1_g': 1,
-                                            'b2_g': 0,
-                                            'b3_g': 0,
-                                            }
+    assert bb_diamond_adv_runner_result == {
+        "h_g": 0,
+        "b1_g": 1,
+        "b2_g": 0,
+        "b3_g": 0,
+    }
 
 
 def test_advance_runner_double():
+    """Test Double, no person on base"""
 
-    """Test Double, no person on base
-    """
+    hit_ = (
+        "hit - double",
+        2,
+        "Hit! A Double",
+    )
+    bb_diamond_adv_runner = {
+        "h_g": 0,
+        "b1_g": 0,
+        "b2_g": 0,
+        "b3_g": 0,
+    }
 
-    hit_ = ('hit - double', 2, 'Hit! A Double',)
-    bb_diamond_adv_runner = {'h_g': 0,
-                             'b1_g': 0,
-                             'b2_g': 0,
-                             'b3_g': 0,
-                             }
+    hit_, bb_diamond_adv_runner_result = advance_runner(
+        hit_,
+        bb_diamond_adv_runner,
+    )
 
-    hit_, bb_diamond_adv_runner_result = advance_runner(hit_,
-                                                        bb_diamond_adv_runner,
-                                                        )
-
-    assert bb_diamond_adv_runner_result == {'h_g': 0,
-                                            'b1_g': 0,
-                                            'b2_g': 1,
-                                            'b3_g': 0,
-                                            }
+    assert bb_diamond_adv_runner_result == {
+        "h_g": 0,
+        "b1_g": 0,
+        "b2_g": 1,
+        "b3_g": 0,
+    }
 
 
 def test_advance_runner_triple():
+    """Test Triple, no person on base"""
 
-    """Test Triple, no person on base
-    """
+    hit_ = (
+        "hit - triple",
+        3,
+        "Hit! A Triple",
+    )
+    bb_diamond_adv_runner = {
+        "h_g": 0,
+        "b1_g": 0,
+        "b2_g": 0,
+        "b3_g": 0,
+    }
 
-    hit_ = ('hit - triple', 3, 'Hit! A Triple',)
-    bb_diamond_adv_runner = {'h_g': 0,
-                             'b1_g': 0,
-                             'b2_g': 0,
-                             'b3_g': 0,
-                             }
+    hit_, bb_diamond_adv_runner_result = advance_runner(
+        hit_,
+        bb_diamond_adv_runner,
+    )
 
-    hit_, bb_diamond_adv_runner_result = advance_runner(hit_,
-                                                        bb_diamond_adv_runner,
-                                                        )
-
-    assert bb_diamond_adv_runner_result == {'h_g': 0,
-                                            'b1_g': 0,
-                                            'b2_g': 0,
-                                            'b3_g': 1,
-                                            }
+    assert bb_diamond_adv_runner_result == {
+        "h_g": 0,
+        "b1_g": 0,
+        "b2_g": 0,
+        "b3_g": 1,
+    }
 
 
 def test_advance_runner_homer():
+    """Test Homerun, no person on base"""
 
-    """Test Homerun, no person on base
-    """
+    hit_ = ("hit - home run", 4, "Home Run!!!")
+    bb_diamond_adv_runner = {
+        "h_g": 0,
+        "b1_g": 0,
+        "b2_g": 0,
+        "b3_g": 0,
+    }
 
-    hit_ = ('hit - home run', 4, 'Home Run!!!')
-    bb_diamond_adv_runner = {'h_g': 0,
-                             'b1_g': 0,
-                             'b2_g': 0,
-                             'b3_g': 0,
-                             }
+    hit_, bb_diamond_adv_runner_result = advance_runner(
+        hit_,
+        bb_diamond_adv_runner,
+    )
 
-    hit_, bb_diamond_adv_runner_result = advance_runner(hit_,
-                                                        bb_diamond_adv_runner,
-                                                        )
+    assert bb_diamond_adv_runner_result == {
+        "h_g": 1,
+        "b1_g": 0,
+        "b2_g": 0,
+        "b3_g": 0,
+    }
 
-    assert bb_diamond_adv_runner_result == {'h_g': 1,
-                                            'b1_g': 0,
-                                            'b2_g': 0,
-                                            'b3_g': 0,
-                                            }
 
 # When runner on first base
 
 
 def test_advance_runner_single_b1():
+    """Test Single, person on first base"""
 
-    """Test Single, person on first base
-    """
+    hit_ = (
+        "hit - single",
+        1,
+        "Hit! A Single",
+    )
+    bb_diamond_adv_runner = {
+        "h_g": 0,
+        "b1_g": 1,
+        "b2_g": 0,
+        "b3_g": 0,
+    }
 
-    hit_ = ('hit - single', 1, 'Hit! A Single',)
-    bb_diamond_adv_runner = {'h_g': 0,
-                             'b1_g': 1,
-                             'b2_g': 0,
-                             'b3_g': 0,
-                             }
+    hit_, bb_diamond_adv_runner_result = advance_runner(
+        hit_,
+        bb_diamond_adv_runner,
+    )
 
-    hit_, bb_diamond_adv_runner_result = advance_runner(hit_,
-                                                        bb_diamond_adv_runner,
-                                                        )
-
-    assert bb_diamond_adv_runner_result == {'h_g': 0,
-                                            'b1_g': 1,
-                                            'b2_g': 1,
-                                            'b3_g': 0,
-                                            }
+    assert bb_diamond_adv_runner_result == {
+        "h_g": 0,
+        "b1_g": 1,
+        "b2_g": 1,
+        "b3_g": 0,
+    }
 
 
 def test_advance_runner_double_b1():
+    """Test Double, person on first base"""
 
-    """Test Double, person on first base
-    """
+    hit_ = (
+        "hit - double",
+        2,
+        "Hit! A Double",
+    )
+    bb_diamond_adv_runner = {
+        "h_g": 0,
+        "b1_g": 1,
+        "b2_g": 0,
+        "b3_g": 0,
+    }
 
-    hit_ = ('hit - double', 2, 'Hit! A Double',)
-    bb_diamond_adv_runner = {'h_g': 0,
-                             'b1_g': 1,
-                             'b2_g': 0,
-                             'b3_g': 0,
-                             }
+    hit_, bb_diamond_adv_runner_result = advance_runner(
+        hit_,
+        bb_diamond_adv_runner,
+    )
 
-    hit_, bb_diamond_adv_runner_result = advance_runner(hit_,
-                                                        bb_diamond_adv_runner,
-                                                        )
-
-    assert bb_diamond_adv_runner_result == {'h_g': 0,
-                                            'b1_g': 0,
-                                            'b2_g': 1,
-                                            'b3_g': 1,
-                                            }
+    assert bb_diamond_adv_runner_result == {
+        "h_g": 0,
+        "b1_g": 0,
+        "b2_g": 1,
+        "b3_g": 1,
+    }
 
 
 def test_advance_runner_triple_b1():
+    """Test Triple, person on first base"""
 
-    """Test Triple, person on first base
-    """
+    hit_ = (
+        "hit - triple",
+        3,
+        "Hit! A Triple",
+    )
+    bb_diamond_adv_runner = {
+        "h_g": 0,
+        "b1_g": 1,
+        "b2_g": 0,
+        "b3_g": 0,
+    }
 
-    hit_ = ('hit - triple', 3, 'Hit! A Triple',)
-    bb_diamond_adv_runner = {'h_g': 0,
-                             'b1_g': 1,
-                             'b2_g': 0,
-                             'b3_g': 0,
-                             }
+    hit_, bb_diamond_adv_runner_result = advance_runner(
+        hit_,
+        bb_diamond_adv_runner,
+    )
 
-    hit_, bb_diamond_adv_runner_result = advance_runner(hit_,
-                                                        bb_diamond_adv_runner,
-                                                        )
-
-    assert bb_diamond_adv_runner_result == {'h_g': 1,
-                                            'b1_g': 0,
-                                            'b2_g': 0,
-                                            'b3_g': 1,
-                                            }
+    assert bb_diamond_adv_runner_result == {
+        "h_g": 1,
+        "b1_g": 0,
+        "b2_g": 0,
+        "b3_g": 1,
+    }
 
 
 def test_advance_runner_homer_b1():
+    """Test Homerun, person on first base"""
 
-    """Test Homerun, person on first base
-    """
+    hit_ = ("hit - home run", 4, "Home Run!!!")
+    bb_diamond_adv_runner = {
+        "h_g": 0,
+        "b1_g": 1,
+        "b2_g": 0,
+        "b3_g": 0,
+    }
 
-    hit_ = ('hit - home run', 4, 'Home Run!!!')
-    bb_diamond_adv_runner = {'h_g': 0,
-                             'b1_g': 1,
-                             'b2_g': 0,
-                             'b3_g': 0,
-                             }
+    hit_, bb_diamond_adv_runner_result = advance_runner(
+        hit_,
+        bb_diamond_adv_runner,
+    )
 
-    hit_, bb_diamond_adv_runner_result = advance_runner(hit_,
-                                                        bb_diamond_adv_runner,
-                                                        )
+    assert bb_diamond_adv_runner_result == {
+        "h_g": 2,
+        "b1_g": 0,
+        "b2_g": 0,
+        "b3_g": 0,
+    }
 
-    assert bb_diamond_adv_runner_result == {'h_g': 2,
-                                            'b1_g': 0,
-                                            'b2_g': 0,
-                                            'b3_g': 0,
-                                            }
 
 # When runner on second base
 
 
 def test_advance_runner_single_b2():
+    """Test Single, person on second base"""
 
-    """Test Single, person on second base
-    """
+    hit_ = (
+        "hit - single",
+        1,
+        "Hit! A Single",
+    )
+    bb_diamond_adv_runner = {
+        "h_g": 0,
+        "b1_g": 0,
+        "b2_g": 1,
+        "b3_g": 0,
+    }
 
-    hit_ = ('hit - single', 1, 'Hit! A Single',)
-    bb_diamond_adv_runner = {'h_g': 0,
-                             'b1_g': 0,
-                             'b2_g': 1,
-                             'b3_g': 0,
-                             }
+    hit_, bb_diamond_adv_runner_result = advance_runner(
+        hit_,
+        bb_diamond_adv_runner,
+    )
 
-    hit_, bb_diamond_adv_runner_result = advance_runner(hit_,
-                                                        bb_diamond_adv_runner,
-                                                        )
-
-    assert bb_diamond_adv_runner_result == {'h_g': 0,
-                                            'b1_g': 1,
-                                            'b2_g': 0,
-                                            'b3_g': 1,
-                                            }
+    assert bb_diamond_adv_runner_result == {
+        "h_g": 0,
+        "b1_g": 1,
+        "b2_g": 0,
+        "b3_g": 1,
+    }
 
 
 def test_advance_runner_double_b2():
+    """Test Double, person on second base"""
 
-    """Test Double, person on second base
-    """
+    hit_ = (
+        "hit - double",
+        2,
+        "Hit! A Double",
+    )
+    bb_diamond_adv_runner = {
+        "h_g": 0,
+        "b1_g": 0,
+        "b2_g": 1,
+        "b3_g": 0,
+    }
 
-    hit_ = ('hit - double', 2, 'Hit! A Double',)
-    bb_diamond_adv_runner = {'h_g': 0,
-                             'b1_g': 0,
-                             'b2_g': 1,
-                             'b3_g': 0,
-                             }
+    hit_, bb_diamond_adv_runner_result = advance_runner(
+        hit_,
+        bb_diamond_adv_runner,
+    )
 
-    hit_, bb_diamond_adv_runner_result = advance_runner(hit_,
-                                                        bb_diamond_adv_runner,
-                                                        )
-
-    assert bb_diamond_adv_runner_result == {'h_g': 1,
-                                            'b1_g': 0,
-                                            'b2_g': 1,
-                                            'b3_g': 0,
-                                            }
+    assert bb_diamond_adv_runner_result == {
+        "h_g": 1,
+        "b1_g": 0,
+        "b2_g": 1,
+        "b3_g": 0,
+    }
 
 
 def test_advance_runner_triple_b2():
+    """Test Triple, person on second base"""
 
-    """Test Triple, person on second base
-    """
+    hit_ = (
+        "hit - triple",
+        3,
+        "Hit! A Triple",
+    )
+    bb_diamond_adv_runner = {
+        "h_g": 0,
+        "b1_g": 0,
+        "b2_g": 1,
+        "b3_g": 0,
+    }
 
-    hit_ = ('hit - triple', 3, 'Hit! A Triple',)
-    bb_diamond_adv_runner = {'h_g': 0,
-                             'b1_g': 0,
-                             'b2_g': 1,
-                             'b3_g': 0,
-                             }
+    hit_, bb_diamond_adv_runner_result = advance_runner(
+        hit_,
+        bb_diamond_adv_runner,
+    )
 
-    hit_, bb_diamond_adv_runner_result = advance_runner(hit_,
-                                                        bb_diamond_adv_runner,
-                                                        )
-
-    assert bb_diamond_adv_runner_result == {'h_g': 1,
-                                            'b1_g': 0,
-                                            'b2_g': 0,
-                                            'b3_g': 1,
-                                            }
+    assert bb_diamond_adv_runner_result == {
+        "h_g": 1,
+        "b1_g": 0,
+        "b2_g": 0,
+        "b3_g": 1,
+    }
 
 
 def test_advance_runner_homer_b2():
+    """Test Homerun, person on second base"""
 
-    """Test Homerun, person on second base
-    """
+    hit_ = ("hit - home run", 4, "Home Run!!!")
+    bb_diamond_adv_runner = {
+        "h_g": 0,
+        "b1_g": 0,
+        "b2_g": 1,
+        "b3_g": 0,
+    }
 
-    hit_ = ('hit - home run', 4, 'Home Run!!!')
-    bb_diamond_adv_runner = {'h_g': 0,
-                             'b1_g': 0,
-                             'b2_g': 1,
-                             'b3_g': 0,
-                             }
+    hit_, bb_diamond_adv_runner_result = advance_runner(
+        hit_,
+        bb_diamond_adv_runner,
+    )
 
-    hit_, bb_diamond_adv_runner_result = advance_runner(hit_,
-                                                        bb_diamond_adv_runner,
-                                                        )
+    assert bb_diamond_adv_runner_result == {
+        "h_g": 2,
+        "b1_g": 0,
+        "b2_g": 0,
+        "b3_g": 0,
+    }
 
-    assert bb_diamond_adv_runner_result == {'h_g': 2,
-                                            'b1_g': 0,
-                                            'b2_g': 0,
-                                            'b3_g': 0,
-                                            }
 
 #################################
 #################################
@@ -320,92 +373,108 @@ def test_advance_runner_homer_b2():
 
 
 def test_advance_runner_single_b3():
+    """Test Single, person on third base"""
 
-    """Test Single, person on third base
-    """
+    hit_ = (
+        "hit - single",
+        1,
+        "Hit! A Single",
+    )
+    bb_diamond_adv_runner = {
+        "h_g": 0,
+        "b1_g": 0,
+        "b2_g": 0,
+        "b3_g": 1,
+    }
 
-    hit_ = ('hit - single', 1, 'Hit! A Single',)
-    bb_diamond_adv_runner = {'h_g': 0,
-                             'b1_g': 0,
-                             'b2_g': 0,
-                             'b3_g': 1,
-                             }
+    hit_, bb_diamond_adv_runner_result = advance_runner(
+        hit_,
+        bb_diamond_adv_runner,
+    )
 
-    hit_, bb_diamond_adv_runner_result = advance_runner(hit_,
-                                                        bb_diamond_adv_runner,
-                                                        )
-
-    assert bb_diamond_adv_runner_result == {'h_g': 1,
-                                            'b1_g': 1,
-                                            'b2_g': 0,
-                                            'b3_g': 0,
-                                            }
+    assert bb_diamond_adv_runner_result == {
+        "h_g": 1,
+        "b1_g": 1,
+        "b2_g": 0,
+        "b3_g": 0,
+    }
 
 
 def test_advance_runner_double_b3():
+    """Test Double, person on third base"""
 
-    """Test Double, person on third base
-    """
+    hit_ = (
+        "hit - double",
+        2,
+        "Hit! A Double",
+    )
+    bb_diamond_adv_runner = {
+        "h_g": 0,
+        "b1_g": 0,
+        "b2_g": 0,
+        "b3_g": 1,
+    }
 
-    hit_ = ('hit - double', 2, 'Hit! A Double',)
-    bb_diamond_adv_runner = {'h_g': 0,
-                             'b1_g': 0,
-                             'b2_g': 0,
-                             'b3_g': 1,
-                             }
+    hit_, bb_diamond_adv_runner_result = advance_runner(
+        hit_,
+        bb_diamond_adv_runner,
+    )
 
-    hit_, bb_diamond_adv_runner_result = advance_runner(hit_,
-                                                        bb_diamond_adv_runner,
-                                                        )
-
-    assert bb_diamond_adv_runner_result == {'h_g': 1,
-                                            'b1_g': 0,
-                                            'b2_g': 1,
-                                            'b3_g': 0,
-                                            }
+    assert bb_diamond_adv_runner_result == {
+        "h_g": 1,
+        "b1_g": 0,
+        "b2_g": 1,
+        "b3_g": 0,
+    }
 
 
 def test_advance_runner_triple_b3():
+    """Test Triple, person on third base"""
 
-    """Test Triple, person on third base
-    """
+    hit_ = (
+        "hit - triple",
+        3,
+        "Hit! A Triple",
+    )
+    bb_diamond_adv_runner = {
+        "h_g": 0,
+        "b1_g": 0,
+        "b2_g": 0,
+        "b3_g": 1,
+    }
 
-    hit_ = ('hit - triple', 3, 'Hit! A Triple',)
-    bb_diamond_adv_runner = {'h_g': 0,
-                             'b1_g': 0,
-                             'b2_g': 0,
-                             'b3_g': 1,
-                             }
+    hit_, bb_diamond_adv_runner_result = advance_runner(
+        hit_,
+        bb_diamond_adv_runner,
+    )
 
-    hit_, bb_diamond_adv_runner_result = advance_runner(hit_,
-                                                        bb_diamond_adv_runner,
-                                                        )
-
-    assert bb_diamond_adv_runner_result == {'h_g': 1,
-                                            'b1_g': 0,
-                                            'b2_g': 0,
-                                            'b3_g': 1,
-                                            }
+    assert bb_diamond_adv_runner_result == {
+        "h_g": 1,
+        "b1_g": 0,
+        "b2_g": 0,
+        "b3_g": 1,
+    }
 
 
 def test_advance_runner_homer_b3():
+    """Test Homerun, person on third base"""
 
-    """Test Homerun, person on third base
-    """
+    hit_ = ("hit - home run", 4, "Home Run!!!")
+    bb_diamond_adv_runner = {
+        "h_g": 0,
+        "b1_g": 0,
+        "b2_g": 0,
+        "b3_g": 1,
+    }
 
-    hit_ = ('hit - home run', 4, 'Home Run!!!')
-    bb_diamond_adv_runner = {'h_g': 0,
-                             'b1_g': 0,
-                             'b2_g': 0,
-                             'b3_g': 1,
-                             }
+    hit_, bb_diamond_adv_runner_result = advance_runner(
+        hit_,
+        bb_diamond_adv_runner,
+    )
 
-    hit_, bb_diamond_adv_runner_result = advance_runner(hit_,
-                                                        bb_diamond_adv_runner,
-                                                        )
-
-    assert bb_diamond_adv_runner_result == {'h_g': 2,
-                                            'b1_g': 0,
-                                            'b2_g': 0,
-                                            'b3_g': 0,
-                                            }
+    assert bb_diamond_adv_runner_result == {
+        "h_g": 2,
+        "b1_g": 0,
+        "b2_g": 0,
+        "b3_g": 0,
+    }

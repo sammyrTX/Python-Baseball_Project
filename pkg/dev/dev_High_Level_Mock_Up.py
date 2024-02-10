@@ -1,5 +1,3 @@
-
-
 # Mock up to test bases updating, player actions storage, team score storage
 # High level
 
@@ -7,26 +5,29 @@ from baseball_functions import *
 
 # Using the dictionary as the main baseball diamond to populate each inning by each time when at bat
 
-bb_diamond = {'h_g': 0,
-              'b1_g': 0,
-              'b2_g': 0,
-              'b3_g': 0,
-              }     # Possible alternate to track who is on base
+bb_diamond = {
+    "h_g": 0,
+    "b1_g": 0,
+    "b2_g": 0,
+    "b3_g": 0,
+}  # Possible alternate to track who is on base
 
 print()
 print(bb_diamond)
 
 # Player positions stored in a tuple
 
-players_tuple = ("Pitcher",
-                 "Catcher",
-                 "First Base",
-                 "Second Base",
-                 "Third Base",
-                 "Shortstop",
-                 "Left Field",
-                 "Center Field",
-                 "Right Field",)
+players_tuple = (
+    "Pitcher",
+    "Catcher",
+    "First Base",
+    "Second Base",
+    "Third Base",
+    "Shortstop",
+    "Left Field",
+    "Center Field",
+    "Right Field",
+)
 
 
 from baseball_functions import *
@@ -47,7 +48,7 @@ from baseball_functions import *
 
 teams_roster = {player: [] for player in players_tuple}
 
-print("Teams Roster: \n {}".format(teams_roster))   # TODO For testing
+print("Teams Roster: \n {}".format(teams_roster))  # TODO For testing
 
 # Print test for roster dictionary  # TODO  for testing
 # for x, y in teams_roster.items():
@@ -56,19 +57,21 @@ print("Teams Roster: \n {}".format(teams_roster))   # TODO For testing
 
 # For team_at_bat description (0 - Visitors, 1 - Home)
 
-teams_description = ('VISITORS', 'HOME')
+teams_description = ("VISITORS", "HOME")
 
 # Innings
 
-innings_name = ["1st Inning",
-                "2nd Inning",
-                "3rd Inning",
-                "4th Inning",
-                "5th Inning",
-                "6th Inning",
-                "7th Inning",
-                "8th Inning",
-                "9th Inning", ]
+innings_name = [
+    "1st Inning",
+    "2nd Inning",
+    "3rd Inning",
+    "4th Inning",
+    "5th Inning",
+    "6th Inning",
+    "7th Inning",
+    "8th Inning",
+    "9th Inning",
+]
 
 # Ball count variables
 
@@ -76,15 +79,17 @@ outs_count = strikes_count = ball_count = foul_count = 0
 
 # Pitch Result tuple
 
-pitch_result_tuple = (('strike', 10),
-                      ('ball', 11),
-                      ('foul ball', 12),
-                      ('foul out', 13),
-                      ('out - defense', 14),
-                      ('hit - single', 1),
-                      ('hit - double', 2),
-                      ('hit - triple', 3),
-                      ('hit - home run', 4),)
+pitch_result_tuple = (
+    ("strike", 10),
+    ("ball", 11),
+    ("foul ball", 12),
+    ("foul out", 13),
+    ("out - defense", 14),
+    ("hit - single", 1),
+    ("hit - double", 2),
+    ("hit - triple", 3),
+    ("hit - home run", 4),
+)
 
 # Innings tracker list by list comprehension
 
@@ -94,10 +99,12 @@ innings_tracker = [x for x in range(0, 9)]
 
 score_tracking_by_inning = [0 for init_inning in range(9)]
 
-score_list = [list(score_tracking_by_inning),
-              list(score_tracking_by_inning), ]
+score_list = [
+    list(score_tracking_by_inning),
+    list(score_tracking_by_inning),
+]
 
-print('score tracking: ', score_list)   # TODO Remove after testing
+print("score tracking: ", score_list)  # TODO Remove after testing
 print()
 
 ######################################################################################################
@@ -129,16 +136,17 @@ print()
 ######################################################################################################
 
 print()
-print('*** START ***')
+print("*** START ***")
 print()
 
 # Innings loop through 9th Inning
 
 for current_inning in innings_tracker:
+    print("+" * 100)
 
-    print('+' * 100)
-
-    print('Inning Counter: {} > {}'.format(current_inning, innings_name[current_inning]))
+    print(
+        "Inning Counter: {} > {}".format(current_inning, innings_name[current_inning])
+    )
     print()
 
     # Team at bat (Visitors at top of inning, Home at bottom)
@@ -149,76 +157,94 @@ for current_inning in innings_tracker:
 
     team_at_bat = 0
 
-    print('Top of Inning > Team at bat: {}'.format(teams_description[team_at_bat]))
+    print("Top of Inning > Team at bat: {}".format(teams_description[team_at_bat]))
 
-    print('Grab next batter from line up for {}:'.format(teams_description[team_at_bat]))
+    print(
+        "Grab next batter from line up for {}:".format(teams_description[team_at_bat])
+    )
 
-    team_at_bat, batting_lineup, batter_up_m = next_batter(team_at_bat, batting_lineup, batting_lineup_keep)
+    team_at_bat, batting_lineup, batter_up_m = next_batter(
+        team_at_bat, batting_lineup, batting_lineup_keep
+    )
 
-    print('\t','At bat: {} > {}'.format(batter_up_m, players_tuple[batter_up_m]))
+    print("\t", "At bat: {} > {}".format(batter_up_m, players_tuple[batter_up_m]))
 
     # Pass player and results data to teams roster list
 
-    teams_roster[players_tuple[batter_up_m]].append([team_at_bat,
-                                                     batter_up_m,
-                                                     current_inning,
-                                                     hits_check,
-                                                     runs_check,
-                                                     RBI_check,])
+    teams_roster[players_tuple[batter_up_m]].append(
+        [
+            team_at_bat,
+            batter_up_m,
+            current_inning,
+            hits_check,
+            runs_check,
+            RBI_check,
+        ]
+    )
 
     # Pass player runs to score_list
 
     score_list[team_at_bat][current_inning] += runs_check
 
-    print('>' * 45)
+    print(">" * 45)
 
     # Home
 
     team_at_bat = 1
 
-    print('Bottom of Inning > Team at bat: {}'.format(teams_description[team_at_bat]))
+    print("Bottom of Inning > Team at bat: {}".format(teams_description[team_at_bat]))
 
-    print('Grab next batter from line up for {}:'.format(teams_description[team_at_bat]))
+    print(
+        "Grab next batter from line up for {}:".format(teams_description[team_at_bat])
+    )
 
-    team_at_bat, batting_lineup, batter_up_m = next_batter(team_at_bat, batting_lineup, batting_lineup_keep)
+    team_at_bat, batting_lineup, batter_up_m = next_batter(
+        team_at_bat, batting_lineup, batting_lineup_keep
+    )
 
-    print('\t','At bat: {} > {}'.format(batter_up_m, players_tuple[batter_up_m]))
+    print("\t", "At bat: {} > {}".format(batter_up_m, players_tuple[batter_up_m]))
 
     # Pass player and results data to teams roster list
 
-    teams_roster[players_tuple[batter_up_m]].append([team_at_bat,
-                                                     batter_up_m,
-                                                     current_inning,
-                                                     hits_check,
-                                                     (runs_check + 1),  # TODO  test value adjusted for Home
-                                                     RBI_check,])
+    teams_roster[players_tuple[batter_up_m]].append(
+        [
+            team_at_bat,
+            batter_up_m,
+            current_inning,
+            hits_check,
+            (runs_check + 1),  # TODO  test value adjusted for Home
+            RBI_check,
+        ]
+    )
 
     # Pass player runs to score_list
 
-    score_list[team_at_bat][current_inning] += (runs_check + 1)
+    score_list[team_at_bat][current_inning] += runs_check + 1
 
     print()
 
-    print('+' * 100)
+    print("+" * 100)
 
 # Add section to check for tie
 
 print()
-print('****** Check if there is a tie after the 9th inning; play another single inning until the tie is broken *******')
+print(
+    "****** Check if there is a tie after the 9th inning; play another single inning until the tie is broken *******"
+)
 
 print()
 
-print('Show contents of teams_roster dict after game is played through')
+print("Show contents of teams_roster dict after game is played through")
 print(teams_roster)
 
 print()
-print('Print total score for each team:')
-print('*** ADD PROCESS HERE FOR SCORE ***')
+print("Print total score for each team:")
+print("*** ADD PROCESS HERE FOR SCORE ***")
 # generate total score based on data from teams_roster dict
 
-teams_roster_total_score = [[],[]]
+teams_roster_total_score = [[], []]
 
-print('teams_roster_total_score: {}'.format(teams_roster_total_score))
+print("teams_roster_total_score: {}".format(teams_roster_total_score))
 print()
 
 for teams in range(2):
@@ -228,40 +254,48 @@ for teams in range(2):
         print(players)
         # for scores in teams_roster[players]:
         #     # print('stored data: {}'.format(teams_roster[players].values()))
-        print('stored data: {}'.format(teams_roster[players]))
-        print('+' * 50)
+        print("stored data: {}".format(teams_roster[players]))
+        print("+" * 50)
 
         for test_ in teams_roster[players]:
-            print('   > {}'.format(test_))
-            print('teams: {}; test_[0]: {}; test_[0] == teams : {}'.format(teams, test_[0], test_[0] == teams))
-            print('test_[4]: {}'.format(test_[4] + 99))
+            print("   > {}".format(test_))
+            print(
+                "teams: {}; test_[0]: {}; test_[0] == teams : {}".format(
+                    teams, test_[0], test_[0] == teams
+                )
+            )
+            print("test_[4]: {}".format(test_[4] + 99))
 
-            print('teams_roster_total_score: {}'.format(teams_roster_total_score))
+            print("teams_roster_total_score: {}".format(teams_roster_total_score))
             print()
 
-            print('***')
+            print("***")
 
             if test_[0] == teams:
                 teams_roster_total_score[teams].append(test_[4])
 
-            print('teams_roster_total_score[teams]: {}'.format(teams_roster_total_score[teams]))
+            print(
+                "teams_roster_total_score[teams]: {}".format(
+                    teams_roster_total_score[teams]
+                )
+            )
         print()
 
 print()
 
-print(':' * 50)
+print(":" * 50)
 
-print('teams_roster_total_score: {}'.format((teams_roster_total_score)))
+print("teams_roster_total_score: {}".format((teams_roster_total_score)))
 
-print('teams_roster_total_score[0] total: {}'.format(sum(teams_roster_total_score[0])))
+print("teams_roster_total_score[0] total: {}".format(sum(teams_roster_total_score[0])))
 
-print('teams_roster_total_score[1] total: {}'.format(sum(teams_roster_total_score[1])))
+print("teams_roster_total_score[1] total: {}".format(sum(teams_roster_total_score[1])))
 
-print(':' * 50)
+print(":" * 50)
 
 print()
 
-print('Print score_list:')
+print("Print score_list:")
 print(score_list)
 print(sum(score_list[0]))
 print(sum(score_list[1]))
@@ -291,5 +325,5 @@ print(sum(score_list[1]))
 #
 #############################################################################################################
 
-print('*** END ***')
+print("*** END ***")
 print()

@@ -17,15 +17,14 @@
 
 # Functions
 
-from . baseball_funcs.game_set_up import start_game
+from .baseball_funcs.game_set_up import start_game
 
-from . baseball_funcs.innings import innings_nine
+from .baseball_funcs.innings import innings_nine
 
 
 # ***** MAIN SECTION *****
 
 if __name__ == "__main__":
-
     # Set up batting order and start game
     batting_lineup, batting_lineup_keep = start_game()
 
