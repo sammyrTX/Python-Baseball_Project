@@ -1,6 +1,6 @@
 import random
 
-from baseball_funcs.scorebox import print_scorebox
+from . scorebox import print_scorebox
 
 # Functions for baseball project:
 # - advance base runners based on hit passed from __main__

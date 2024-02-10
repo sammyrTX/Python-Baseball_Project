@@ -2,23 +2,23 @@
 Processes and data structures for an inning
 """
 
-from baseball_funcs.at_bat import (at_bat,
-                                   )
+from . at_bat import (at_bat,
+                      )
 
 
 def innings_nine(batting_lineup, batting_lineup_keep):
 
     """Process nine innings"""
 
-    from baseball_funcs.game_set_up import(innings_tracker,
-                                           bb_diamond,
-                                           innings_half,
-                                           innings_name,
-                                           team_roster,
-                                           score_list,
-                                           )
+    from . game_set_up import(innings_tracker,
+                              bb_diamond,
+                              innings_half,
+                              innings_name,
+                              team_roster,
+                              score_list,
+                              )
 
-    from baseball_funcs.scorebox import print_scorebox
+    from . scorebox import print_scorebox
 
     current_inning = 0
 

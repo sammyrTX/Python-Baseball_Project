@@ -2,11 +2,15 @@
 Test Suite
 Check base runner output based on pitch and number of base runners.
 """
-from baseball_funcs.game_set_up import (team_description_func,
-                                        players_tuple_func,
-                                        )
 
-from baseball_funcs.base_running import advance_runner
+import pytest
+
+
+from .. baseball_funcs.game_set_up import (team_description_func,
+                                           players_tuple_func,
+                                           )
+
+from .. baseball_funcs.base_running import advance_runner
 
 ###############################################################################
 

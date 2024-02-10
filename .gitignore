@@ -5,3 +5,4 @@ __pycache__
 tf*.py
 #test*.py
 venv
+.pytest_cache/
